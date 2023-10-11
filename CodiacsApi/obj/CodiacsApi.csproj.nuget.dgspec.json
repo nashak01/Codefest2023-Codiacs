@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\users\\mrsne\\Documents\\Codefest2023-Codiacs\\CodiacsApi\\CodiacsApi.csproj": {}
+    "C:\\Users\\mrsne\\Documents\\Codefest2023-Codiacs\\CodiacsApi\\CodiacsApi.csproj": {}
   },
   "projects": {
-    "C:\\users\\mrsne\\Documents\\Codefest2023-Codiacs\\CodiacsApi\\CodiacsApi.csproj": {
+    "C:\\Users\\mrsne\\Documents\\Codefest2023-Codiacs\\CodiacsApi\\CodiacsApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\users\\mrsne\\Documents\\Codefest2023-Codiacs\\CodiacsApi\\CodiacsApi.csproj",
+        "projectUniqueName": "C:\\Users\\mrsne\\Documents\\Codefest2023-Codiacs\\CodiacsApi\\CodiacsApi.csproj",
         "projectName": "CodiacsApi",
-        "projectPath": "C:\\users\\mrsne\\Documents\\Codefest2023-Codiacs\\CodiacsApi\\CodiacsApi.csproj",
+        "projectPath": "C:\\Users\\mrsne\\Documents\\Codefest2023-Codiacs\\CodiacsApi\\CodiacsApi.csproj",
         "packagesPath": "C:\\Users\\mrsne\\.nuget\\packages\\",
-        "outputPath": "C:\\users\\mrsne\\Documents\\Codefest2023-Codiacs\\CodiacsApi\\obj\\",
+        "outputPath": "C:\\Users\\mrsne\\Documents\\Codefest2023-Codiacs\\CodiacsApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mrsne\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,28 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.23, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.23, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.23, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.23, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
