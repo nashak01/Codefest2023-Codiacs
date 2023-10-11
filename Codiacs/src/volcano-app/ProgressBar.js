@@ -1,12 +1,32 @@
-//import "./ProgressBar.css";
+import { useEffect } from "react";
+import "./ProgressBar.css";
 
 function ProgressBar(props) {
-  const progress = props.progress.toString() + "%";
+  const progressValue = props.progress;
+  const progress = progressValue.toString() + "%";
+
+  const progressBar = document.getElementById("progressBar");
+
+  useEffect(() => {
+    if (progressBar) {
+      if (progressValue <= 30) {
+        progressBar.className =
+          "progress-bar progress-bar-striped progress-bar-animated bg-success";
+      } else if (progressValue <= 75) {
+        progressBar.className =
+          "progress-bar progress-bar-striped progress-bar-animated bg-warning";
+      } else {
+        progressBar.className =
+          "progress-bar progress-bar-striped progress-bar-animated bg-danger";
+      }
+    }
+  }, [progressValue, progressBar]);
 
   return (
     <div className="progress">
       <div
-        className="progress-bar"
+        id="progressBar"
+        className="progress-bar progress-bar-striped progress-bar-animated"
         role="progressbar"
         style={{ width: progress }}
         aria-valuenow="25"
