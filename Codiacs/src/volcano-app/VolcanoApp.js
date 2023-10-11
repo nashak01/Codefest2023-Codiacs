@@ -7,8 +7,9 @@ import eruptingVolcanoImage from "../images/erupting-volcano.png";
 import UsedEmotions from "./UsedEmotions";
 import UnusedEmojiEmotions from "./UnusedEmojiEmotions";
 import UsedEmojiEmotions from "./UsedEmojiEmotions";
+import AppHeader from "../AppHeader";
 
-function VolcanoApp() {
+function VolcanoApp(props) {
   const [selectedEmotions, setSelectedEmotions] = useState([]);
   const [selectedEmojiEmotions, setSelectedEmojiEmotions] = useState([]);
   const [progress, setProgress] = useState(0);
@@ -66,6 +67,7 @@ function VolcanoApp() {
 
   return (
     <>
+      <AppHeader setPageValue={props.setPageValue} />
       <div className="row align-items-center">
         <div className="col-sm-2" style={{ paddingLeft: "2%" }}>
           <UnusedEmotions emotions={unusedEmotions} />
