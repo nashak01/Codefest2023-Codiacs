@@ -1,0 +1,80 @@
+
+/* Landing Page */
+
+.welcome_message{
+    margin-bottom: 20px;
+}
+.Game {
+    width: 350px;
+    border-radius: 20px;
+    text-align: center;
+    background: #ededed;
+    margin-right: 10px;
+  }
+
+.Game:hover{
+    cursor: pointer;
+}
+  
+
+.image img {
+    height: auto;
+    width: 108%;
+    margin-left: -11px;
+    display:inline;
+    margin-bottom: 5px;
+    margin-right: -10px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+  }
+
+  .level {
+    font-size: 0.7em;
+    background-color: rgb(164, 189, 183, 0.5);
+    width: 50px;
+    padding: 3px;
+    border-radius: 5px;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    display: block;
+    margin: 0px auto 10px;
+  }
+  
+  .name {
+    font-size: 1.25em;
+    font-weight: bolder;
+    letter-spacing: 1px;
+  }
+  
+  .job_title {
+    font-size: 0.65em;
+    font-weight: bolder;
+    color: gray;
+    margin-top: -2px;
+  }
+  
+  .job_discription {
+    font-size: 0.7em;
+    color: gray;
+    margin: 10px 30px 20px;
+  }
+  
+  .button .connect {
+    background-color: #000;
+    color: #ededed;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+  }
+
+  .connect:hover{
+    cursor: pointer;
+  }
+
+  .volcano:hover{
+    content: "<img src='img/erupting-volcano.png' alt='Profile Image'/>";
+    cursor: pointer;
+  }
+
+  
