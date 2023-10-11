@@ -1,10 +1,10 @@
-import './App.css';
-import VolcanoApp from './volcano-app/VolcanoApp';
+import "./App.css";
+import VolcanoApp from "./volcano-app/VolcanoApp";
 
 function App() {
   return (
     <div className="App">
-      <VolcanoApp/>
+      <VolcanoApp />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import "./ProgressBar.css";
+//import "./ProgressBar.css";
 
 function ProgressBar(props) {
   const progress = props.progress.toString() + "%";
