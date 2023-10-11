@@ -1,6 +1,11 @@
 .progress {
-    width: 400px;
+    /* width: 400px;
     -webkit-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
-    transform: rotate(-90deg);
+    transform: rotate(-90deg); */
+    width: 400px;
 }
+
+/* .progress-bar {
+    width: 400px;
+} */
