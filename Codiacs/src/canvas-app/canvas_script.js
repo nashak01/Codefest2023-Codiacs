@@ -78,4 +78,3 @@ window.onload = function () {
       a.click();
     });
   };
-  

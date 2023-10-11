@@ -1,4 +1,6 @@
 import "./canvas.css";
+import "./canvas_script.js";
+
 import AppHeader from "../AppHeader";
 function Canvas(props) {
   return (
