@@ -1,4 +1,5 @@
 import './canvas.css';
+import './canvas_script.js';
 function Canvas(){
     return(
         <main>

@@ -78,4 +78,26 @@ window.onload = function () {
       a.click();
     });
   };
+
+
+
+
+  // Butterfly
+  
+var element = document.getElementById("butterfly");
+
+element.addEventListener("click", function(e) {
+	e.preventDefault;
+
+	document.getElementById("rightwing").removeClass("rightwing");
+	document.getElementById("leftwing").removeClass("leftwing");
+	document.getElementById("body").removeClass("body");
+
+	element.offsetWidth = element.offsetWidth;
+
+	document.getElementById("rightwing").addClass("rightwing");
+	document.getElementById("leftwing").addClass("leftwing");
+	document.getElementById("body").addClass("body");
+}, false);
+
   

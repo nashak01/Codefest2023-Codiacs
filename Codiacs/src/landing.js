@@ -2,9 +2,31 @@ import './landing.css';
 function LandingPage(){
     return(
         <div class="container">
-            <div class="profile">
+            <a href="#" class="flex">
+                <div id="butterfly">
 
-            </div>
+                    <div class="wing wingl">
+                        <div id="leftwing">
+                            <div id="lwtop"></div>
+                            <div id="lwbottom"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="wing wingr">
+                        <div id="rightwing" class="">
+                            <div id="rwtop"></div>
+                            <div id="rwbottom"></div>
+                        </div>
+                    </div>
+
+                    <div id="body"></div>
+
+                    <div id="leftant"><div class="ball"></div></div>
+                    <div id="rightant"><div class="ball"></div></div>	
+
+                </div>
+	        </a>        
 
             <div>
                 <img src="img/LISTENING EAR CMYK.jpg"/>
