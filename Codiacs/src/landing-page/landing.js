@@ -1,35 +1,15 @@
-import './landing.css';
-function LandingPage(){
-    return(
-        <div class="container">
-            <a href="#" className="flex">
-                <div id="butterfly">
-
-                    <div className="wing wingl">
-                        <div id="leftwing">
-                            <div id="lwtop"></div>
-                            <div id="lwbottom"></div>
-                        </div>
-                    </div>
-
-
-                    <div className="wing wingr">
-                        <div id="rightwing" className="">
-                            <div id="rwtop"></div>
-                            <div id="rwbottom"></div>
-                        </div>
-                    </div>
-
-                    <div id="body"></div>
-
-                    <div id="leftant"><div className="ball"></div></div>
-                    <div id="rightant"><div className="ball"></div></div>	
-
-                </div>
-	        </a>        
+import "./landing.css";
+function LandingPage(props) {
+  return (
+    <div className="container">
+      <div className="profile"></div>
 
       <div>
-        <img src="img/LISTENING EAR CMYK.jpg" alt="Listening Ear logo" />
+        <img
+          src="img/LISTENING EAR CMYK.jpg"
+          alt="Listening Ear logo"
+          style={{ width: "100%" }}
+        />
       </div>
 
       <div className="welcome_message">
@@ -38,7 +18,10 @@ function LandingPage(){
         </h1>
       </div>
       <div className="row">
-        <div className="Game col">
+        <div
+          className="Game col"
+          onClick={() => props.setPageValue("memory-jar")}
+        >
           <div href="">
             <div className="content">
               <div className="image" id="Memory_Jar">
@@ -51,7 +34,7 @@ function LandingPage(){
             </div>
           </div>
         </div>
-        <div className="Game col">
+        <div className="Game col" onClick={() => props.setPageValue("canvas")}>
           <div href="">
             <div className="content">
               <div className="image" id="Canvas">
@@ -64,7 +47,7 @@ function LandingPage(){
             </div>
           </div>
         </div>
-        <div className="Game col">
+        <div className="Game col" onClick={() => props.setPageValue("volcano")}>
           <div href="">
             <div className="content">
               <div className="image volcano">
