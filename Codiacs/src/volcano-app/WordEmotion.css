@@ -1,0 +1,6 @@
+.box {
+    background-color: powderblue;
+    font-size: 20px;
+    width: fit-content;
+    border-style: groove;
+}
