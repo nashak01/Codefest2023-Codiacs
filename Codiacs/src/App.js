@@ -1,14 +1,23 @@
-import LandingPage from './landing';
-import Canvas from './canvas';
-import './App.css';
+import { useState } from "react";
+import LandingPage from "./landing-page/landing";
+import Canvas from "./canvas-app/canvas";
+import "./App.css";
 import VolcanoApp from "./volcano-app/VolcanoApp";
 
 function App() {
+  const [pageValue, setPageValue] = useState("landing");
+
   return (
     <div className="App">
-      <LandingPage></LandingPage>
-      <Canvas></Canvas>
-      <VolcanoApp />
+      {pageValue === "landing" ? (
+        <LandingPage setPageValue={setPageValue} />
+      ) : pageValue === "canvas" ? (
+        <Canvas setPageValue={setPageValue} />
+      ) : pageValue === "volcano" ? (
+        <VolcanoApp setPageValue={setPageValue} />
+      ) : (
+        <LandingPage setPageValue={setPageValue} />
+      )}
     </div>
   );
 }
