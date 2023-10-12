@@ -59,7 +59,7 @@ function Canvas(props) {
           </div>
         </div>
         <div className="right-block">
-          <canvas id="paint-canvas" width="640" height="400"></canvas>
+          <canvas id="paint-canvas" width="100000" height="100000"></canvas>
           <script src={canvas_script} defer></script>
         </div>
       </main>

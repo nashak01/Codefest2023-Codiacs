@@ -79,9 +79,8 @@ function MonsterPage(props) {
 
   return (
     <>
-      <AppHeader setPageValue={props.setPageValue} />
+      <AppHeader setPageValue={props.setPageValue} title={"Worry Monster"} />
       <div className="container">
-        <h1 className="text-center">Worry Monster</h1>
         <div className="row">
           <div className="col-md-6" style={{ border: "1px black solid" }}>
             <input type="color" class="js-color-picker  color-picker" />
