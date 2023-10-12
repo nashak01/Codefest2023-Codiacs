@@ -26,7 +26,7 @@ function AppHeader(props) {
           className="mb-3"
         />
       </div>
-      <h2>{props.title}</h2>
+      <h2 className="me-3">{props.title}</h2>
     </div>
   );
 }
