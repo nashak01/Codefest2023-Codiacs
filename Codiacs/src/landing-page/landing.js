@@ -9,6 +9,7 @@ function LandingPage(props) {
           src="img/LISTENING EAR CMYK.jpg"
           alt="Listening Ear logo"
           style={{ width: "100%" }}
+          className="my-3"
         />
       </div>
 
