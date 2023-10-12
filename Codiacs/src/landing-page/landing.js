@@ -17,9 +17,12 @@ function LandingPage(props) {
           />
         </div>
         <div className="col-2">
-          {/* <div className="profile">
-            <img className="butterfly_speech" src="img/butterfly_speech.jpg"></img>
-        <div id="butterfly">
+          <img
+            className="butterfly_speech"
+            src="img/butterfly_speech.jpg"
+          ></img>
+          <div className="profile">
+            <div id="butterfly">
               <div className="wing wingl">
                 <div id="leftwing">
                   <div id="lwtop"></div>
@@ -90,8 +93,9 @@ function LandingPage(props) {
                 </div>
               </div>
             </div>
-          </div> */}
-          <img src="img/butterfly.jpg" />
+          </div>
+          {/* <img src="img/butterfly_speech.jpg" className="butterfly_speech" />
+          <img src="img/butterfly.jpg" /> */}
         </div>
       </div>
 

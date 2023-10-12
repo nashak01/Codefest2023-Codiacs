@@ -1,14 +1,12 @@
 import { useState } from "react";
 import LandingPage from "./landing-page/landing";
-import "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js";
 import Canvas from "./canvas-app/canvas";
 import "./App.css";
-import "./canvas-app/canvas_script.js";
-import "./modal.js";
+// import "./modal.js";
 import "./modal.css";
-import "./alertButton"
-import React from 'react';
-import $ from 'jquery';
+import alertButton from "./alert_button";
+import React from "react";
+// import $ from "jquery";
 import VolcanoApp from "./volcano-app/VolcanoApp";
 import EMDRPage from "./emdr-app/EMDRPage";
 import MemoryJarApp from "./memory-jar/MemoryJarApp";
@@ -26,7 +24,6 @@ function App() {
         <VolcanoApp setPageValue={setPageValue} />
       ) : pageValue === "emdr" ? (
         <EMDRPage setPageValue={setPageValue} />
-
       ) : pageValue === "memory-jar" ? (
         <MemoryJarApp setPageValue={setPageValue} />
       ) : pageValue === "monster" ? (
