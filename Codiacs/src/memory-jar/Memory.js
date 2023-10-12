@@ -4,10 +4,13 @@ import { React, useState } from "react";
 function Memory(props) {
   const [amount, setAmount] = useState(0);
 
+  console.log(props.amounts);
+
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <div
-        key="1"
+        key={props.counter}
+        id={props.counter}
         className="box"
         // draggable
         // onDragStart={(e) => handleOnDrag(e, word)}
@@ -20,7 +23,10 @@ function Memory(props) {
             className="form-control-range"
             id="amountSlider"
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            onChange={(e) => {
+              setAmount(e.target.value);
+              props.amounts[props.counter] = e.target.value;
+            }}
           />
         </div>
       </div>

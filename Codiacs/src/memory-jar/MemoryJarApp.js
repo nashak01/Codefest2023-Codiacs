@@ -3,20 +3,56 @@ import { React, useState, useEffect } from "react";
 import memoryJarImage from "../images/memory-jar.jpg";
 import AppHeader from "../AppHeader";
 import Memory from "./Memory";
+import "./MemoryJarApp.css";
 
 function MemoryJarApp(props) {
   const [memories, setMemories] = useState([]);
-  const [memoriesStart, setMemoriesStart] = useState([]);
-  const [memoriesEnd, setMemoriesEnd] = useState([]);
+  var amounts = [];
 
-  function handleOnDrop(e) {
-    const memory = e.dataTransfer.getData("memory");
-    const memoryIndex = memories.indexOf(memory);
-    memories.splice(memoryIndex, 1);
-  }
+  //   function handleOnDrop(e) {
+  //     const memory = e.dataTransfer.getData("memory");
+  //     const memoryIndex = memories.indexOf(memory);
+  //     memories.splice(memoryIndex, 1);
+  //   }
 
-  function handleDragOver(e) {
-    e.preventDefault();
+  //   function handleDragOver(e) {
+  //     e.preventDefault();
+  //   }
+
+  //   useEffect(() => {
+  //     console.log(amounts);
+  //   }, [amounts]);
+
+  //const percentage = "65%";
+
+  const [percentages, setPercentages] = useState([]);
+  const [cumulativePercentages, setCumulativePercentages] = useState([]);
+
+  function createPercentages() {
+    const total = amounts.reduce((partialSum, a) => partialSum + +a, 0);
+    var counter = 0;
+    var temp;
+    var previous;
+    for (const amount of amounts) {
+      const percentage = 0.735 * (amount / total) * 100;
+      if (counter === 0) {
+        temp = percentage + 2.5;
+      } else {
+        temp = previous + percentage;
+      }
+      percentages.push(percentage.toString() + "%");
+      cumulativePercentages.push(temp.toString() + "%");
+      previous = temp;
+      counter += 1;
+    }
+    for (var i = 0; i < memories.length; i++) {
+      const item = document.getElementById("overlay" + i);
+      item.style.height = percentages[i];
+      if (i > 0) {
+        item.style.bottom = cumulativePercentages[i - 1];
+      }
+    }
+    console.log(cumulativePercentages);
   }
 
   function handleClick() {
@@ -26,8 +62,6 @@ function MemoryJarApp(props) {
 
   useEffect(() => {
     console.log(memories);
-    //setMemoriesStart(memories.splice(0, 3));
-    //setMemoriesEnd(memories.splice(3, 5));
     if (memories.length === 5) {
       document.getElementById("memory-input-button").disabled = true;
     }
@@ -42,28 +76,27 @@ function MemoryJarApp(props) {
 
       <div className="row align-items-center">
         <div className="col-sm-3" style={{ paddingLeft: "2%" }}>
-          {memories.slice(0, 3).map((memory) => (
-            <Memory memory={memory} />
+          {memories.slice(0, 3).map((memory, index) => (
+            <Memory memory={memory} amounts={amounts} counter={index} />
           ))}
         </div>
         <div className="col-sm-6">
-          <div onDrop={handleOnDrop} onDragOver={handleDragOver}>
+          <div class="container">
             <img
               src={memoryJarImage}
               alt="Memory Jar"
               style={{ height: "300px" }}
             />
+            <div className="overlay first" id="overlay0"></div>
+            <div className="overlay second" id="overlay1"></div>
+            <div className="overlay third" id="overlay2"></div>
+            {/* <div className="overlay fourth" id="overlay3"></div>
+            <div className="overlay fifth" id="overlay4"></div> */}
           </div>
-          {/* <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          ></div> */}
         </div>
         <div className="col-sm-3">
-          {memories.slice(3, 5).map((memory) => (
-            <Memory memory={memory} />
+          {memories.slice(3, 5).map((memory, index) => (
+            <Memory memory={memory} amounts={amounts} counter={index} />
           ))}
         </div>
 
@@ -72,7 +105,17 @@ function MemoryJarApp(props) {
           <button id="memory-input-button" type="submit" onClick={handleClick}>
             Add
           </button>
+
+          <button
+            id="create-jar-button"
+            type="submit"
+            onClick={createPercentages}
+          >
+            Fill your jar!
+          </button>
         </div>
+
+        <div style={{ display: "flex", justifyContent: "center" }}></div>
       </div>
     </>
   );
