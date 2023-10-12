@@ -28,4 +28,11 @@ var newtimeleft = timeString;
   document.getElementById('timer').text(newtimeleft)
 };
 
-progress(5, 5, document.getElementById('progressBar'));
+progress(30, 30, document.getElementById('progressBar'));
+
+
+
+$( "#Memory_Jar" ).on( "click", function() {
+  $(".content").hide();
+  $("#Memory_Jar_Page").show();                               
+} );

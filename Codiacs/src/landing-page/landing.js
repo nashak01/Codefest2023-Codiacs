@@ -1,9 +1,10 @@
 import "./landing.css";
-// import "./font_size.js";
+import "./font_size.js";
 function LandingPage(props) {
   return (
     <div className="container">
       <div className="profile">
+        <img className="butterfly_speech" src="img/butterfly_speech.jpg"></img>
         <div id="butterfly">
 
           <div className="wing wingl">
@@ -91,7 +92,7 @@ function LandingPage(props) {
               </div>
 
               <div className="text">
-                <p className="name">Memory Jar</p>
+                <p className="name"  style={{top: '93px' }}>Memory Jar</p>
               </div>
             </div>
 

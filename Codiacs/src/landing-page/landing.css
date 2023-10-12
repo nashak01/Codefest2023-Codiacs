@@ -19,6 +19,13 @@
 .Game:hover{
     cursor: pointer;
 }
+
+.butterfly_speech{
+	position: absolute;
+    right: 0;
+    width: 64px;
+    margin-right: 73px;
+}
   
 
 .image img {
