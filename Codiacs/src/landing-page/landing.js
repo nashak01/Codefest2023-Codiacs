@@ -1,4 +1,5 @@
 import "./landing.css";
+import alertButton from "../alert_button";
 // import "./font_size.js";
 function LandingPage(props) {
   return (
@@ -70,6 +71,7 @@ function LandingPage(props) {
               </div>
             </div>
           </div>
+          <alertButton />
           <img
             src="img/LISTENING EAR CMYK.jpg"
             alt="Listening Ear logo"
@@ -95,6 +97,7 @@ function LandingPage(props) {
                     src="img/MemoryJar2.png"
                     alt="Memory Jar"
                     style={{ minHeight: "100px" }}
+                    className="mt-5"
                   />
                 </div>
 
