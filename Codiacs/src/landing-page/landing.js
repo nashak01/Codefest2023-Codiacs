@@ -72,6 +72,23 @@ function LandingPage(props) {
             </div>
           </div>
         </div>
+        <div className="Game col" onClick={() => props.setPageValue("monster")}>
+          <div href="">
+            <div className="content">
+              <div className="image">
+                <img
+                  src="img/worry-eater-mouth-open.jpg"
+                  alt="worry monster"
+                  style={{ maxHeight: "210px", maxWidth: "175px" }}
+                />
+              </div>
+
+              <div className="text">
+                <p className="name">Worry Monster</p>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="Game col" onClick={() => props.setPageValue("emdr")}>
           <div href="">
             <div className="content">
