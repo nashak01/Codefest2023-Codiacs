@@ -9,6 +9,7 @@ function LandingPage(props) {
           src="img/LISTENING EAR CMYK.jpg"
           alt="Listening Ear logo"
           style={{ width: "100%" }}
+          className="my-3"
         />
       </div>
 
@@ -68,6 +69,23 @@ function LandingPage(props) {
 
               <div className="text">
                 <p className="name">Volcano</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="Game col" onClick={() => props.setPageValue("monster")}>
+          <div href="">
+            <div className="content">
+              <div className="image">
+                <img
+                  src="img/worry-eater-mouth-open.jpg"
+                  alt="worry monster"
+                  style={{ maxHeight: "210px", maxWidth: "175px" }}
+                />
+              </div>
+
+              <div className="text">
+                <p className="name">Worry Monster</p>
               </div>
             </div>
           </div>
