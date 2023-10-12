@@ -25,7 +25,11 @@ function LandingPage(props) {
           <div href="">
             <div className="content">
               <div className="image" id="Memory_Jar">
-                <img src="img/MemoryJar2.png" alt="Memory Jar" />
+                <img
+                  src="img/MemoryJar2.png"
+                  alt="Memory Jar"
+                  style={{ minHeight: "100px" }}
+                />
               </div>
 
               <div className="text">
@@ -38,7 +42,11 @@ function LandingPage(props) {
           <div href="">
             <div className="content">
               <div className="image" id="Canvas">
-                <img src="img/canvas.png" alt="Canvas" />
+                <img
+                  src="img/canvas.png"
+                  alt="Canvas"
+                  style={{ minHeight: "100px" }}
+                />
               </div>
 
               <div className="text">
@@ -51,11 +59,32 @@ function LandingPage(props) {
           <div href="">
             <div className="content">
               <div className="image volcano">
-                <img src="img/volcano.png" alt="Volcano" />
+                <img
+                  src="img/volcano.png"
+                  alt="Volcano"
+                  style={{ minHeight: "100px" }}
+                />
               </div>
 
               <div className="text">
                 <p className="name">Volcano</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="Game col" onClick={() => props.setPageValue("emdr")}>
+          <div href="">
+            <div className="content">
+              <div className="image">
+                <img
+                  src="img/emdr.png"
+                  alt="emdr"
+                  style={{ minHeight: "100px" }}
+                />
+              </div>
+
+              <div className="text">
+                <p className="name">EMDR</p>
               </div>
             </div>
           </div>

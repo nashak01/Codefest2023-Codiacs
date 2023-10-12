@@ -3,6 +3,7 @@ import LandingPage from "./landing-page/landing";
 import Canvas from "./canvas-app/canvas";
 import "./App.css";
 import VolcanoApp from "./volcano-app/VolcanoApp";
+import EMDRPage from "./emdr-app/EMDRPage";
 
 function App() {
   const [pageValue, setPageValue] = useState("landing");
@@ -15,6 +16,8 @@ function App() {
         <Canvas setPageValue={setPageValue} />
       ) : pageValue === "volcano" ? (
         <VolcanoApp setPageValue={setPageValue} />
+      ) : pageValue === "emdr" ? (
+        <EMDRPage setPageValue={setPageValue} />
       ) : (
         <LandingPage setPageValue={setPageValue} />
       )}
