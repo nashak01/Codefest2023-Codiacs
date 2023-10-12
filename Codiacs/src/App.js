@@ -3,6 +3,7 @@ import LandingPage from "./landing-page/landing";
 import Canvas from "./canvas-app/canvas";
 import "./App.css";
 import VolcanoApp from "./volcano-app/VolcanoApp";
+import MemoryJarApp from "./memory-jar/MemoryJarApp";
 
 function App() {
   const [pageValue, setPageValue] = useState("landing");
@@ -15,6 +16,8 @@ function App() {
         <Canvas setPageValue={setPageValue} />
       ) : pageValue === "volcano" ? (
         <VolcanoApp setPageValue={setPageValue} />
+      ) : pageValue === "memory-jar" ? (
+        <MemoryJarApp setPageValue={setPageValue} />
       ) : (
         <LandingPage setPageValue={setPageValue} />
       )}

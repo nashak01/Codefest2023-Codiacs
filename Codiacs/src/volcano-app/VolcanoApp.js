@@ -67,7 +67,7 @@ function VolcanoApp(props) {
 
   return (
     <>
-      <AppHeader setPageValue={props.setPageValue} />
+      <AppHeader setPageValue={props.setPageValue} title="Emotion Volcano" />
       <div className="row align-items-center">
         <div className="col-sm-2" style={{ paddingLeft: "2%" }}>
           <UnusedEmotions emotions={unusedEmotions} />
