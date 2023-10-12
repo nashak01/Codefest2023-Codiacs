@@ -3,8 +3,54 @@ function LandingPage(props) {
   return (
     <div className="container">
       <div className="profile"></div>
+        <div id="butterfly">
 
+          <div className="wing wingl">
+            <div id="leftwing">
+              <div id="lwtop"></div>
+              <div id="lwbottom"></div>
+            </div>
+          </div>
+
+
+          <div class="wing wingr">
+            <div id="rightwing" className="">
+              <div id="rwtop"></div>
+              <div id="rwbottom"></div>
+            </div>
+          </div>
+
+          <div id="body"></div>
+
+          <div id="leftant"><div className="ball"></div></div>
+          <div id="rightant"><div className="ball"></div></div>	
+
+        </div>
       <div>
+      <div id="profile_page" className="modal">
+
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          
+          <div className="favourite_color">
+            <h1>Pick Your Favourite Color</h1>
+            <input type="color" id="fav_color"></input>
+          </div>
+
+          <div className="customise_butteryfly">
+              <h1>Customise Your Very Own Butterfly</h1>
+          </div>
+
+          <div className="background_color">
+            <h1>Background Color</h1>
+          </div>
+
+          <div className="font_size">
+            <></>
+          </div>
+        </div>
+
+      </div>
         <img
           src="img/LISTENING EAR CMYK.jpg"
           alt="Listening Ear logo"
@@ -32,9 +78,10 @@ function LandingPage(props) {
                 <p className="name">Memory Jar</p>
               </div>
             </div>
+
           </div>
         </div>
-        <div className="Game col" onClick={() => props.setPageValue("canvas")}>
+        <div className="Game col" id="canvas_load" onClick={() => props.setPageValue("canvas")}>
           <div href="">
             <div className="content">
               <div className="image" id="Canvas">

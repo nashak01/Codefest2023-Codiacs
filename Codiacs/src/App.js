@@ -2,6 +2,9 @@ import { useState } from "react";
 import LandingPage from "./landing-page/landing";
 import Canvas from "./canvas-app/canvas";
 import "./App.css";
+import "./canvas-app/canvas_script.js";
+// import "./modal.js";
+import "./modal.css";
 import VolcanoApp from "./volcano-app/VolcanoApp";
 
 function App() {
