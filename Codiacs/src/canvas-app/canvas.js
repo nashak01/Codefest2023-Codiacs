@@ -1,12 +1,14 @@
 import "./canvas.css";
-import "./canvas_script.js";
+import canvas_script from "./canvas_script.js";
 
 import AppHeader from "../AppHeader";
 function Canvas(props) {
+  console.log("canvas.js loaded");
   return (
     <>
-      <AppHeader setPageValue={props.setPageValue} />
-      <main>
+      <AppHeader setPageValue={props.setPageValue} title="Drawing Canvas" />
+
+      <main style={{ marginTop: "3%" }}>
         <div className="left-block">
           <div className="colors">
             <button type="button" value="#0000ff"></button>
@@ -58,8 +60,14 @@ function Canvas(props) {
         </div>
         <div className="right-block">
           <canvas id="paint-canvas" width="640" height="400"></canvas>
+          <script src={canvas_script} defer></script>
         </div>
       </main>
+
+      {/* {document.getElementById("paint-canvas") !== null ? (
+        <script src={canvas_script}></script> : null
+      )} */}
+      {/* <OpenCanvas /> */}
     </>
   );
 }

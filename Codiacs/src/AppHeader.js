@@ -18,6 +18,15 @@ function AppHeader(props) {
         <img src={backArrow} alt="back arrow" style={{ height: "25px" }} />
         Back
       </button>
+      <div className="text-center">
+        <img
+          src="img/LISTENING EAR CMYK.jpg"
+          alt="Listening Ear logo"
+          style={{ width: "30%" }}
+          className="mb-3"
+        />
+      </div>
+      <h2>{props.title}</h2>
     </div>
   );
 }

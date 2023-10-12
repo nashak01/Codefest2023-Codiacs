@@ -11,7 +11,7 @@ using System.Net.Mail;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.ResponseCompression;
-using System.Text.RegularExpressions;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 
 
@@ -24,7 +24,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
     {
-        builder.AllowCredentials().AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000/");
+        builder.AllowCredentials().AllowAnyMethod().AllowAnyHeader();
     });
 });
 
@@ -52,19 +52,22 @@ builder.Services.AddAuthorization(options =>
 
 });
 
+//builder.Configuration["http_server_urls"] = "http://localhost:12345";
+
 var app = builder.Build();
 
 app.UseHttpsRedirection();
 
 app.UseCors();
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 app.UseResponseCompression();
 
 app.MapGet("/Feeling", (digitaltherapyroomdbContext db) =>
 {
-    return Results.Ok(db.Feelings.ToList());
+    return db.Feelings.ToList();
 });
 
 app.Run();
-
