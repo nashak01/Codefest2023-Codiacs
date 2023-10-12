@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DG307H88Jq+TQn6aasdqB4vr4nxyss3vb0z9cCzgVXgv4csR/46UBYg4YKmUw25X3PtghkYrpaMGeAzQ8bxxXQ==",
+  "dgSpecHash": "8GIJJa0woSFP1ZqjoCIbjX1kStPruFPnV1xYZoSxOz4u7zIc/n9yUryuxaaBjktePtUQmZ/a+XLUXea0gGwwKg==",
   "success": true,
   "projectFilePath": "C:\\Users\\mrsne\\Documents\\Codefest2023-Codiacs\\CodiacsApi\\CodiacsApi.csproj",
   "expectedPackageFiles": [
@@ -31,8 +31,11 @@
     "C:\\Users\\mrsne\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.8.0\\microsoft.identitymodel.protocols.openidconnect.6.8.0.nupkg.sha512",
     "C:\\Users\\mrsne\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.8.0\\microsoft.identitymodel.tokens.6.8.0.nupkg.sha512",
     "C:\\Users\\mrsne\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\mrsne\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\mrsne\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\mrsne\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\mrsne\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\mrsne\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
     "C:\\Users\\mrsne\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\mrsne\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
     "C:\\Users\\mrsne\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",

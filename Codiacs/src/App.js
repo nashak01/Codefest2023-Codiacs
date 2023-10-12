@@ -3,6 +3,7 @@ import LandingPage from "./landing-page/landing";
 import Canvas from "./canvas-app/canvas";
 import "./App.css";
 import VolcanoApp from "./volcano-app/VolcanoApp";
+import EMDRPage from "./emdr-app/EMDRPage";
 import MemoryJarApp from "./memory-jar/MemoryJarApp";
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
         <Canvas setPageValue={setPageValue} />
       ) : pageValue === "volcano" ? (
         <VolcanoApp setPageValue={setPageValue} />
+      ) : pageValue === "emdr" ? (
+        <EMDRPage setPageValue={setPageValue} />
       ) : pageValue === "memory-jar" ? (
         <MemoryJarApp setPageValue={setPageValue} />
       ) : (
