@@ -146,11 +146,25 @@ const EMDRPage = (props) => {
   }, [size, speed]);
 
   useEffect(() => {
-    const dot = document.getElementById("dot");
+    let dot = document.getElementById("dot");
     if (theme === "dark") {
-      dot.style.color = "white";
+      dot.style.backgroundColor = "white";
     } else {
-      dot.style.color = "black";
+      dot.style.backgroundColor = "black";
+    }
+
+    dot = document.getElementById("dot2");
+    if (theme === "dark") {
+      dot.style.backgroundColor = "white";
+    } else {
+      dot.style.backgroundColor = "black";
+    }
+
+    dot = document.getElementById("dot3");
+    if (theme === "dark") {
+      dot.style.backgroundColor = "white";
+    } else {
+      dot.style.backgroundColor = "black";
     }
   }, [theme]);
 
@@ -160,12 +174,8 @@ const EMDRPage = (props) => {
 
   return (
     <>
-      <AppHeader setPageValue={props.setPageValue} />
-      <div
-        className={`container${theme === "dark" ? " bg-dark text-light" : ""}`}
-      >
-        <h1>EMDR</h1>
-
+      <AppHeader setPageValue={props.setPageValue} title={"EMDR"} />
+      <div className={`${theme === "dark" ? " bg-dark text-light" : ""}`}>
         <div className="row">
           {fullScreen ? (
             <div className="col-sm-6 offset-sm-3">
