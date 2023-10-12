@@ -1,8 +1,9 @@
 import "./landing.css";
+// import "./font_size.js";
 function LandingPage(props) {
   return (
     <div className="container">
-      <div className="profile"></div>
+      <div className="profile">
         <div id="butterfly">
 
           <div className="wing wingl">
@@ -37,16 +38,26 @@ function LandingPage(props) {
             <input type="color" id="fav_color"></input>
           </div>
 
-          <div className="customise_butteryfly">
-              <h1>Customise Your Very Own Butterfly</h1>
-          </div>
+         
 
           <div className="background_color">
             <h1>Background Color</h1>
+            <input type="color" id="background_color"></input>
           </div>
 
-          <div className="font_size">
-            <></>
+          <div className="Font_Control">
+            <h1>Font Color</h1>
+            <input type="color" id="font_color"></input>
+            <h1>Font Size</h1>
+            <div class="font_size">
+			        <button role="button" id="decreasetext" onclick="decreaseText()"> <span>smaller</span></button>
+              <button role="button" id="resettext" onclick="resetText()">
+                <span>normal</span>
+              </button>
+              <button role="button" id="increasetext" onclick="increaseText()">
+                <span>bigger</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -125,7 +136,7 @@ function LandingPage(props) {
             <div className="content">
               <div className="image">
                 <img
-                  src="img/worry-eater-mouth-open.jpg"
+                  src="img/Picture3.jpg"
                   alt="worry monster"
                   style={{ maxHeight: "210px", maxWidth: "175px" }}
                 />
@@ -155,6 +166,7 @@ function LandingPage(props) {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

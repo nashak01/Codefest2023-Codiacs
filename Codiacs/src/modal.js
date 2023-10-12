@@ -16,3 +16,14 @@ btn.onclick = function() {
 span.onclick = function() {
   modal.style.display = "none";
 }
+
+// Get the modal
+var alert = document.getElementById("alert_modal");
+
+// Get the button that opens the modal
+var alert_btn = document.getElementById("alert_button");
+
+// When the user clicks on the button, open the modal
+alert_btn.onclick = function() {
+  modal.style.display = "block";
+}

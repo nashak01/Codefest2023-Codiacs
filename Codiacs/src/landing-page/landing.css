@@ -1,6 +1,10 @@
 
 /* Landing Page */
-
+/* .border_image{
+	background: url("/Codiacs/public/img/header.png");
+	min-height: 100vh;
+	min-width: 100vw;
+} */
 .welcome_message{
     margin-bottom: 20px;
 }
@@ -248,3 +252,73 @@
 	border: none;
 	padding: 0;
 }
+
+#background_color{
+	width: 70px;
+	height: 60px;
+	border: none;
+	padding: 0;
+}
+
+#font_color{
+	width: 70px;
+	height: 60px;
+	border: none;
+	padding: 0;
+}
+
+#font-size{
+	display: block;
+	position: relative;
+	left: 45%;
+}
+
+.font_size button {
+	vertical-align: bottom;
+	margin: 0 0.3125em;
+	padding: 0 0.3125em;
+	border: 1px solid #000;
+	background-color: #fff;
+	font-weight: bold;
+}
+
+.font_size button #increasetext {
+	font-size: 1.50em;
+}
+
+.font_size button #resettext {
+	font-size: 1.25em;
+}
+
+.font_size button #decreasetext {
+	font-size: 1.125em;
+}
+
+#alert_button{
+	position: absolute;
+	right: 0;
+	background-color: #e7302a;
+	color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+}
+
+#progressBar {
+	width: 90%;
+	margin: 10px auto;
+	height: 22px;
+	background-color: #B8C3C3;
+  }
+  #progressBar div {
+	height: 100%;
+	text-align: center;
+	width: 0;
+	background-color: #4B5863;
+	box-sizing: border-box;
+  }
+  p{
+	text-align: center
+  }
+  /* Do not take in account */
+  html{padding-top:30px}a.solink{position:fixed;top:0;width:100%;text-align:center;background:#f3f5f6;color:#cfd6d9;border:1px solid #cfd6d9;line-height:30px;text-decoration:none;transition:all .3s;z-index:999}a.solink::first-letter{text-transform:capitalize}a.solink:hover{color:#428bca}
+
