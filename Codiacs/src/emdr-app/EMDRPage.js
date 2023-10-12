@@ -3,7 +3,7 @@ import "./EMDR.css";
 import AppHeader from "../AppHeader";
 
 const EMDRPage = (props) => {
-  const [speed, setSpeed] = useState(1);
+  const [speed, setSpeed] = useState(6);
   const [size, setSize] = useState(50);
   const [theme, setTheme] = useState("light");
   const [fullScreen, setFullScreen] = useState(false);
