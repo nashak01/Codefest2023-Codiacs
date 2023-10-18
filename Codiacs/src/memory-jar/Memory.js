@@ -30,9 +30,9 @@ function Memory(props) {
           />
         </div>
       </div>
-      <div>
+      {/* <div>
         <input type="color" style={{ height: "80px" }} />
-      </div>
+      </div> */}
     </div>
   );
 }

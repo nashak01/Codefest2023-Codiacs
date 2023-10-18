@@ -75,13 +75,13 @@ function MemoryJarApp(props) {
       />
 
       <div className="row align-items-center">
-        <div className="col-sm-3" style={{ paddingLeft: "2%" }}>
+        <div className="col-sm-5" style={{ paddingLeft: "2%" }}>
           {memories.slice(0, 3).map((memory, index) => (
             <Memory memory={memory} amounts={amounts} counter={index} />
           ))}
         </div>
-        <div className="col-sm-6">
-          <div class="container">
+        <div className="col-sm-3">
+          <div class="memory-container">
             <img
               src={memoryJarImage}
               alt="Memory Jar"
@@ -90,11 +90,11 @@ function MemoryJarApp(props) {
             <div className="overlay first" id="overlay0"></div>
             <div className="overlay second" id="overlay1"></div>
             <div className="overlay third" id="overlay2"></div>
-            {/* <div className="overlay fourth" id="overlay3"></div>
-            <div className="overlay fifth" id="overlay4"></div> */}
+            <div className="overlay fourth" id="overlay3"></div>
+            <div className="overlay fifth" id="overlay4"></div>
           </div>
         </div>
-        <div className="col-sm-3">
+        <div className="col-sm-4">
           {memories.slice(3, 5).map((memory, index) => (
             <Memory memory={memory} amounts={amounts} counter={index} />
           ))}

@@ -1,9 +1,10 @@
 
+
 /* Landing Page */
 /* .border_image{
-	background: url("/Codiacs/public/img/header.png");
-	min-height: 100vh;
-	min-width: 100vw;
+    background: url("/Codiacs/public/img/header.png");
+    min-height: 100vh;
+    min-width: 100vw;
 } */
 .welcome_message{
     margin-bottom: 20px;
@@ -21,10 +22,18 @@
 }
 
 .butterfly_speech{
-	position: absolute;
+    position: absolute;
     right: 0;
     width: 64px;
     margin-right: 73px;
+}
+
+.gallery{
+    position: absolute;
+    width: 50px;
+    right: 80px;
+    cursor: pointer;
+    top: 90px;
 }
   
 
@@ -90,242 +99,241 @@
 
   
 #butterfly {
-	position: absolute;
+    position: absolute;
     margin-top: 25px;
     margin-right: 25px;
     right: 0;
-	width: 50px;
-	height: 100px;
-	padding: 0;
-	cursor: pointer;
+    width: 50px;
+    height: 100px;
+    padding: 0;
+    cursor: pointer;
 }
 
 
 
 .flex {
-	display: flex;
+    display: flex;
 }
 
 .vertical-center {
-	align-items: center;
+    align-items: center;
 }
 
 .justify {
-	justify-content: center;
+    justify-content: center;
 }
 
 .rightwing, .leftwing, .body {
-	animation-duration: 1s;
-	animation-iteration-count: 3;
+    animation-duration: 1s;
+    animation-iteration-count: 3;
 }
 
 .rightwing {
-	animation-name: flapright;
+    animation-name: flapright;
 }
 .leftwing {
-	animation-name: flapleft;
+    animation-name: flapleft;
 }
 .body {
-	animation-name: body;
+    animation-name: body;
 }
 
 .wing {
-	position: absolute;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	perspective: 500px;
-	perspective-origin: 50% 50%;
-	margin: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    perspective: 500px;
+    perspective-origin: 50% 50%;
+    margin: 0;
 }
 
 .wingr {
-	z-index: 3;
+    z-index: 3;
 }
 
 .wingl {
-	z-index: 2;
+    z-index: 2;
 }
 
 #rightwing {
-	width: 100%;
-	height: 200px;
-		#rwtop {
-		position: relative;
-		width: 50%;
-		height: 20%;
-		z-index: 20;
-		background: #00aeef;
-		margin-top: 5%;
-		margin-left: 50% !important;
-		border-radius: 500% 300% 1000% 0%;
-	}
-	#rwbottom {
-		position: absolute;
-		width: 45%;
-		height: 40%;
-		z-index: 10;
-		background: #00aeef;
-		margin-top: -10%;
-		margin-left: 50%;
-		border-radius: 0% 1000% 300% 500%;
-	}
+    width: 100%;
+    height: 200px;
+        #rwtop {
+        position: relative;
+        width: 50%;
+        height: 20%;
+        z-index: 20;
+        background: #00aeef;
+        margin-top: 5%;
+        margin-left: 50% !important;
+        border-radius: 500% 300% 1000% 0%;
+    }
+    #rwbottom {
+        position: absolute;
+        width: 45%;
+        height: 40%;
+        z-index: 10;
+        background: #00aeef;
+        margin-top: -10%;
+        margin-left: 50%;
+        border-radius: 0% 1000% 300% 500%;
+    }
 }
 
 #leftwing {
-	width: 100%;
-	height: 200px;
-	#lwtop {
-		position: relative;
-		width: 50%;
-		height: 20%;
-		z-index: 20;
-		background: #00aeef;
-		margin-top: 5%;
-		border-radius: 300% 500% 0% 1000%;
-	}
-	#lwbottom {
-		position: absolute;
-		width: 45%;
-		height: 40%;
-		z-index: 10;
-		background: #00aeef;
-		margin-top: -10%;
-		border-radius: 1000% 0% 500% 300%;
-	}
+    width: 100%;
+    height: 200px;
+    #lwtop {
+        position: relative;
+        width: 50%;
+        height: 20%;
+        z-index: 20;
+        background: #00aeef;
+        margin-top: 5%;
+        border-radius: 300% 500% 0% 1000%;
+    }
+    #lwbottom {
+        position: absolute;
+        width: 45%;
+        height: 40%;
+        z-index: 10;
+        background: #00aeef;
+        margin-top: -10%;
+        border-radius: 1000% 0% 500% 300%;
+    }
 }
 
 #body {
-	position: absolute;
-	z-index: 100;
-	background: #734F31;
-	width: 10px;
-	height: 75px;
-	margin-left: 19px;
-	margin-top: 12px;
-	border-radius: 50%;
+    position: absolute;
+    z-index: 100;
+    background: #734F31;
+    width: 10px;
+    height: 75px;
+    margin-left: 19px;
+    margin-top: 12px;
+    border-radius: 50%;
 }
 
 #leftant, #rightant {
-	position: absolute;
-	z-index: 50;
-	background: #734F31;
-	width: 5px;
-	height: 25px;
-	border-radius: 50%;
-	margin-top: -10px;
+    position: absolute;
+    z-index: 50;
+    background: #734F31;
+    width: 5px;
+    height: 25px;
+    border-radius: 50%;
+    margin-top: -10px;
 }
 
 #leftant {
-	margin-left: 17px;
-	transform: rotateZ(-20deg);	
+    margin-left: 17px;
+    transform: rotateZ(-20deg); 
 }
 
 #rightant {
-	position: absolute;
-	margin-left: 26px;
-	transform: rotateZ(20deg);	
+    position: absolute;
+    margin-left: 26px;
+    transform: rotateZ(20deg);  
 }
 
 .ball {
-	background: #00aeef;
-	width: 10px;
-	height: 10px;
-	margin-left: -2px;
-	border-radius: 50%;
+    background: #00aeef;
+    width: 10px;
+    height: 10px;
+    margin-left: -2px;
+    border-radius: 50%;
 }
 
 @keyframes flapright {
-    		0%   { transform: rotateY(0deg); }
-				50%  { transform: rotateY(-80deg); }
-	    	100% { transform: rotateY(0deg); }
+            0%   { transform: rotateY(0deg); }
+                50%  { transform: rotateY(-80deg); }
+            100% { transform: rotateY(0deg); }
 }
 
 @keyframes flapleft {
-    		0%   { transform: rotateY(0deg); }
-				50%  { transform: rotateY(80deg); }
-	    	100% { transform: rotateY(0deg); }
+            0%   { transform: rotateY(0deg); }
+                50%  { transform: rotateY(80deg); }
+            100% { transform: rotateY(0deg); }
 }
 
 @keyframes body {
-    		0%   { width: 20px; margin-left: 190px;}
-				50%  { width: 15px;	margin-left: 192px;}
-	    	100% { width: 20px; margin-left: 190px;}
+            0%   { width: 20px; margin-left: 190px;}
+                50%  { width: 15px; margin-left: 192px;}
+            100% { width: 20px; margin-left: 190px;}
 }
 
 #fav_color{
-	width: 70px;
-	height: 60px;
-	border: none;
-	padding: 0;
+    width: 70px;
+    height: 60px;
+    border: none;
+    padding: 0;
 }
 
 #background_color{
-	width: 70px;
-	height: 60px;
-	border: none;
-	padding: 0;
+    width: 70px;
+    height: 60px;
+    border: none;
+    padding: 0;
 }
 
 #font_color{
-	width: 70px;
-	height: 60px;
-	border: none;
-	padding: 0;
+    width: 70px;
+    height: 60px;
+    border: none;
+    padding: 0;
 }
 
 #font-size{
-	display: block;
-	position: relative;
-	left: 45%;
+    display: block;
+    position: relative;
+    left: 45%;
 }
 
 .font_size button {
-	vertical-align: bottom;
-	margin: 0 0.3125em;
-	padding: 0 0.3125em;
-	border: 1px solid #000;
-	background-color: #fff;
-	font-weight: bold;
+    vertical-align: bottom;
+    margin: 0 0.3125em;
+    padding: 0 0.3125em;
+    border: 1px solid #000;
+    background-color: #fff;
+    font-weight: bold;
 }
 
 .font_size button #increasetext {
-	font-size: 1.50em;
+    font-size: 1.50em;
 }
 
 .font_size button #resettext {
-	font-size: 1.25em;
+    font-size: 1.25em;
 }
 
 .font_size button #decreasetext {
-	font-size: 1.125em;
+    font-size: 1.125em;
 }
 
 #alert_button{
-	position: absolute;
-	right: 0;
-	background-color: #e7302a;
-	color: #fff;
-	padding: 20px;
-	border-radius: 10px;
+    position: absolute;
+    right: 0;
+    background-color: #e7302a;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 #progressBar {
-	width: 90%;
-	margin: 10px auto;
-	height: 22px;
-	background-color: #B8C3C3;
+    width: 90%;
+    margin: 10px auto;
+    height: 22px;
+    background-color: #B8C3C3;
   }
   #progressBar div {
-	height: 100%;
-	text-align: center;
-	width: 0;
-	background-color: #4B5863;
-	box-sizing: border-box;
+    height: 100%;
+    text-align: center;
+    width: 0;
+    background-color: #4B5863;
+    box-sizing: border-box;
   }
   p{
-	text-align: center
+    text-align: center
   }
   /* Do not take in account */
-  html{padding-top:30px}a.solink{position:fixed;top:0;width:100%;text-align:center;background:#f3f5f6;color:#cfd6d9;border:1px solid #cfd6d9;line-height:30px;text-decoration:none;transition:all .3s;z-index:999}a.solink::first-letter{text-transform:capitalize}a.solink:hover{color:#428bca}
-
+  /* html{padding-top:30px}a.solink{position:fixed;top:0;width:100%;text-align:center;background:#f3f5f6;color:#cfd6d9;border:1px solid #cfd6d9;line-height:30px;text-decoration:none;transition:all .3s;z-index:999}a.solink::first-letter{text-transform:capitalize}a.solink:hover{color:#428bca} */

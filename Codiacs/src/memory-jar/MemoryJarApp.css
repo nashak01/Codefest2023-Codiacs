@@ -1,4 +1,4 @@
-.container {
+.memory-container {
   position: relative;
   width: 100%;
   max-width: 200px;
@@ -59,6 +59,6 @@
     background: rgba(8, 31, 183, 0.5); /* See-through */
 }
 
-.container:hover .overlay {
+.memory-container:hover .overlay {
   opacity: 1;
 }

@@ -81,13 +81,13 @@ function VolcanoApp(props) {
               <img
                 src={volcanoImage}
                 alt="Erupting volcano"
-                style={{ height: "400px", marginTop: "10%" }}
+                style={{ height: "380px", marginTop: "10%" }}
               />
             ) : (
               <img
                 src={eruptingVolcanoImage}
                 alt="Erupting volcano"
-                style={{ height: "400px", marginTop: "10%" }}
+                style={{ height: "380px", marginTop: "10%" }}
               />
             )}
           </div>
