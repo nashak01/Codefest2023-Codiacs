@@ -1,6 +1,5 @@
 import { useState } from "react";
 import LandingPage from "./landing-page/landing";
-import "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js";
 import Canvas from "./canvas-app/canvas";
 import "./App.css";
 import "./canvas-app/canvas_script.js";
