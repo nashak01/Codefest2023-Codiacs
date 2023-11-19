@@ -8,6 +8,7 @@ import "./MemoryJarApp.css";
 function MemoryJarApp(props) {
   const [memories, setMemories] = useState([]);
   var amounts = [];
+  const [memoryToAdd, setMemoryToAdd] = useState("");
 
   const [percentages, setPercentages] = useState([]);
   const [cumulativePercentages, setCumulativePercentages] = useState([]);
@@ -39,15 +40,17 @@ function MemoryJarApp(props) {
   }
 
   function handleClick() {
-    setMemories([...memories, document.getElementById("memory-input").value]);
-    document.getElementById("memory-input").value = "";
+    setMemories([...memories, memoryToAdd]);
+    setMemoryToAdd("");
   }
 
   useEffect(() => {
-    if (memories.length === 5) {
+    if (memories.length === 5 || memoryToAdd === "") {
       document.getElementById("memory-input-button").disabled = true;
+    } else {
+      document.getElementById("memory-input-button").disabled = false;
     }
-  }, [memories]);
+  }, [memories, memoryToAdd]);
 
   return (
     <>
@@ -83,7 +86,12 @@ function MemoryJarApp(props) {
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <textarea id="memory-input" rows="4"></textarea>
+          <textarea
+            id="memory-input"
+            rows="4"
+            value={memoryToAdd}
+            onChange={(e) => setMemoryToAdd(e.target.value)}
+          ></textarea>
           <button id="memory-input-button" type="submit" onClick={handleClick}>
             Add
           </button>
