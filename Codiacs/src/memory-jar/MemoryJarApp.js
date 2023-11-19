@@ -9,22 +9,6 @@ function MemoryJarApp(props) {
   const [memories, setMemories] = useState([]);
   var amounts = [];
 
-  //   function handleOnDrop(e) {
-  //     const memory = e.dataTransfer.getData("memory");
-  //     const memoryIndex = memories.indexOf(memory);
-  //     memories.splice(memoryIndex, 1);
-  //   }
-
-  //   function handleDragOver(e) {
-  //     e.preventDefault();
-  //   }
-
-  //   useEffect(() => {
-  //     console.log(amounts);
-  //   }, [amounts]);
-
-  //const percentage = "65%";
-
   const [percentages, setPercentages] = useState([]);
   const [cumulativePercentages, setCumulativePercentages] = useState([]);
 
@@ -52,7 +36,6 @@ function MemoryJarApp(props) {
         item.style.bottom = cumulativePercentages[i - 1];
       }
     }
-    console.log(cumulativePercentages);
   }
 
   function handleClick() {
@@ -61,7 +44,6 @@ function MemoryJarApp(props) {
   }
 
   useEffect(() => {
-    console.log(memories);
     if (memories.length === 5) {
       document.getElementById("memory-input-button").disabled = true;
     }
@@ -96,7 +78,7 @@ function MemoryJarApp(props) {
         </div>
         <div className="col-sm-4">
           {memories.slice(3, 5).map((memory, index) => (
-            <Memory memory={memory} amounts={amounts} counter={index} />
+            <Memory memory={memory} amounts={amounts} counter={index + 3} />
           ))}
         </div>
 

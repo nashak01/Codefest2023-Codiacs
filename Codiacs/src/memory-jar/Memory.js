@@ -4,16 +4,12 @@ import { React, useState } from "react";
 function Memory(props) {
   const [amount, setAmount] = useState(0);
 
-  console.log(props.amounts);
-
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <div
         key={props.counter}
         id={props.counter}
         className="box"
-        // draggable
-        // onDragStart={(e) => handleOnDrag(e, word)}
         style={{ height: "80px" }}
       >
         {props.memory}
