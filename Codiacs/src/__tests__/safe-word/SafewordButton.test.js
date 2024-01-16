@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import SafewordButton from "../safe-word/SafewordButton";
+import SafewordButton from "../../safe-word/SafewordButton";
 
 describe("Safeword button", () => {
   it("renders a button", () => {
