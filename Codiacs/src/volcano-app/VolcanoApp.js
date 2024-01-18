@@ -9,6 +9,7 @@ import UsedEmotions from "./UsedEmotions";
 import UnusedEmojiEmotions from "./UnusedEmojiEmotions";
 import UsedEmojiEmotions from "./UsedEmojiEmotions";
 import AppHeader from "../AppHeader";
+import Textbox from "../components/Textbox/Textbox.tsx";
 
 function VolcanoApp(props) {
   const [selectedEmotions, setSelectedEmotions] = useState([]);
@@ -77,15 +78,26 @@ function VolcanoApp(props) {
       <AppHeader setPageValue={props.setPageValue} title="Emotion Volcano" />
 
       {/* then we add the main page content here, using the grid system to allocate space */}
-      <div className="row align-items-center">
+      <div className="row align-items-center" style={{ height: "80vh" }}>
         {/* the first two columns of this row are occupied by the word emotion list */}
-        <div className="col-sm-2" style={{ paddingLeft: "2%" }}>
-          <UnusedEmotions emotions={unusedEmotions} />
-        </div>
+        <div className="col-sm-3 row" style={{ paddingLeft: "2%" }}>
+          <div className="col-sm-8">
+            <UnusedEmotions emotions={unusedEmotions} />
+          </div>
 
-        {/* the next column of this row is occupied by the emoji emotion list */}
-        <div className="col-sm-1">
-          <UnusedEmojiEmotions emotions={unusedEmojiEmotions} />
+          {/* the next column of this row is occupied by the emoji emotion list */}
+          <div className="col-sm-2">
+            <UnusedEmojiEmotions emotions={unusedEmojiEmotions} />
+          </div>
+
+          <div
+            style={{
+              paddingTop: "10%",
+            }}
+          >
+            <label id="textbox-label">Add your own emotions!</label>
+            <Textbox size="lg" labelledBy="textbox-label" />
+          </div>
         </div>
 
         {/* the next 6 columns of this row are occupied by the volcano image */}
@@ -108,22 +120,20 @@ function VolcanoApp(props) {
               />
             )}
           </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <ProgressBar progress={progress} />
+          </div>
         </div>
 
-        {/* then we have two columns which display the word emotions which have been selected */}
-        <div className="col-sm-2">
-          <UsedEmotions emotions={selectedEmotions} />
-        </div>
+        <div className="col-sm-3 row">
+          <div className="col-sm-8">
+            <UsedEmotions emotions={selectedEmotions} />
+          </div>
 
-        {/* and the last column displays the emoji emotions which have been selected */}
-        <div className="col-sm-1">
-          <UsedEmojiEmotions emotions={selectedEmojiEmotions} />
+          <div className="col-sm-2">
+            <UsedEmojiEmotions emotions={selectedEmojiEmotions} />
+          </div>
         </div>
-      </div>
-
-      {/* underneath we have the progress bar, which is on its own row */}
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <ProgressBar progress={progress} />
       </div>
     </>
   );

@@ -1,0 +1,14 @@
+.textbox {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #3e6eb4;
+    border-radius: 10px;
+    outline: none;
+    resize: none;
+}
+
+.textbox:focus {
+    border: 4px solid #3e6eb4;
+}
