@@ -10,6 +10,7 @@ import UnusedEmojiEmotions from "./UnusedEmojiEmotions";
 import UsedEmojiEmotions from "./UsedEmojiEmotions";
 import AppHeader from "../AppHeader";
 import Textbox from "../components/Textbox/Textbox.tsx";
+import Button from "../components/Button/Button.tsx";
 
 function VolcanoApp(props) {
   const [selectedEmotions, setSelectedEmotions] = useState([]);
@@ -97,6 +98,9 @@ function VolcanoApp(props) {
           >
             <label id="textbox-label">Add your own emotions!</label>
             <Textbox size="lg" labelledBy="textbox-label" />
+            <Button media="&#43;" onClick={() => console.log("add")}>
+              Add emotion
+            </Button>
           </div>
         </div>
 
