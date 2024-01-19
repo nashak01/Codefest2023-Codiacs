@@ -16,6 +16,7 @@ function VolcanoApp(props) {
   const [selectedEmotions, setSelectedEmotions] = useState([]);
   const [selectedEmojiEmotions, setSelectedEmojiEmotions] = useState([]);
   const [progress, setProgress] = useState(0);
+  const [customEmotion, setCustomEmotion] = useState("");
 
   // sets the initial word emotions on the left hand side
   const [unusedEmotions, setUnusedEmotions] = useState([
@@ -73,6 +74,12 @@ function VolcanoApp(props) {
     e.preventDefault();
   }
 
+  function handleAdd() {
+    const newUnusedEmotions = [...unusedEmotions, customEmotion];
+    setUnusedEmotions(newUnusedEmotions);
+    setCustomEmotion("");
+  }
+
   return (
     <>
       {/* first we add the page header, and pass the page title as "Emotion Volcano" */}
@@ -97,8 +104,14 @@ function VolcanoApp(props) {
             }}
           >
             <label id="textbox-label">Add your own emotions!</label>
-            <Textbox size="lg" labelledBy="textbox-label" />
-            <Button media="&#43;" onClick={() => console.log("add")}>
+            <Textbox
+              id="textbox"
+              size="lg"
+              labelledBy="textbox-label"
+              value={customEmotion}
+              onChange={(e) => setCustomEmotion(e.target.value)}
+            />
+            <Button media="&#43;" onClick={handleAdd}>
               Add emotion
             </Button>
           </div>
