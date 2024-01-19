@@ -20,15 +20,13 @@ function Textbox({
     <input
       className="textbox"
       type="text"
-      aria-multiline={false}
       aria-labelledby={labelledBy}
       value={value}
       onChange={onChange}
     />
   ) : labelledBy && size === "lg" ? (
     <textarea
-      className="textbox"
-      aria-multiline={true}
+      className="textarea"
       aria-labelledby={labelledBy}
       value={value}
       onChange={onChange}
@@ -37,15 +35,13 @@ function Textbox({
     <input
       className="textbox"
       type="text"
-      aria-multiline={false}
       aria-label={label}
       value={value}
       onChange={onChange}
     />
   ) : size === "lg" ? (
     <textarea
-      className="textbox"
-      aria-multiline={true}
+      className="textarea"
       aria-label={label}
       value={value}
       onChange={onChange}
