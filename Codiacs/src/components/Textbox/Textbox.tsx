@@ -1,23 +1,37 @@
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 import "./Textbox.css";
 
-function Textbox(props: { size: string; label?: string; labelledBy?: string }) {
-  const size: string = props.size;
-  const label: string | undefined = props.label;
-  const labelledBy: string | undefined = props.labelledBy;
+export interface TextboxComponentProps {
+  size: string;
+  label?: string;
+  labelledBy?: string;
+  onChange?: ChangeEventHandler<any>;
+  value?: string;
+}
 
+function Textbox({
+  size,
+  label,
+  labelledBy,
+  onChange,
+  value,
+}: TextboxComponentProps) {
   return labelledBy && size === "sm" ? (
     <input
       className="textbox"
       type="text"
       aria-multiline={false}
       aria-labelledby={labelledBy}
+      value={value}
+      onChange={onChange}
     />
   ) : labelledBy && size === "lg" ? (
     <textarea
       className="textbox"
       aria-multiline={true}
       aria-labelledby={labelledBy}
+      value={value}
+      onChange={onChange}
     />
   ) : size === "sm" ? (
     <input
@@ -25,9 +39,17 @@ function Textbox(props: { size: string; label?: string; labelledBy?: string }) {
       type="text"
       aria-multiline={false}
       aria-label={label}
+      value={value}
+      onChange={onChange}
     />
   ) : size === "lg" ? (
-    <textarea className="textbox" aria-multiline={true} aria-label={label} />
+    <textarea
+      className="textbox"
+      aria-multiline={true}
+      aria-label={label}
+      value={value}
+      onChange={onChange}
+    />
   ) : (
     <></>
   );
