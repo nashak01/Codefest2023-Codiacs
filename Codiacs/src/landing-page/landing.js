@@ -30,7 +30,7 @@ function LandingPage(props) {
           </div>
         </div>
         <div>
-          <div id="profile_page" className="modal">
+          {/* <div id="profile_page" className="modal">
             <div class="modal-content">
               <span class="close">&times;</span>
 
@@ -70,7 +70,7 @@ function LandingPage(props) {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           <img
             src="img/LISTENING EAR CMYK.jpg"
             alt="Listening Ear logo"

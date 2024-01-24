@@ -11,12 +11,14 @@ import UsedEmojiEmotions from "./UsedEmojiEmotions";
 import AppHeader from "../AppHeader";
 import Textbox from "../components/Textbox/Textbox.tsx";
 import Button from "../components/Button/Button.tsx";
+import Modal from "../components/Modal/Modal.tsx";
 
 function VolcanoApp(props) {
   const [selectedEmotions, setSelectedEmotions] = useState([]);
   const [selectedEmojiEmotions, setSelectedEmojiEmotions] = useState([]);
   const [progress, setProgress] = useState(0);
   const [customEmotion, setCustomEmotion] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   // sets the initial word emotions on the left hand side
   const [unusedEmotions, setUnusedEmotions] = useState([
@@ -65,6 +67,8 @@ function VolcanoApp(props) {
       setSelectedEmojiEmotions([...selectedEmojiEmotions, chosenEmoji]);
     }
 
+    setShowModal(true);
+
     // this increases the progress of the progress bar
     setProgress(progress + 15);
   }
@@ -81,7 +85,7 @@ function VolcanoApp(props) {
   }
 
   return (
-    <>
+    <div id="volcano-app">
       {/* first we add the page header, and pass the page title as "Emotion Volcano" */}
       <AppHeader setPageValue={props.setPageValue} title="Emotion Volcano" />
 
@@ -152,7 +156,19 @@ function VolcanoApp(props) {
           </div>
         </div>
       </div>
-    </>
+
+      {showModal && (
+        <Modal
+          heading="Rate the Emotion"
+          noClose
+          onClose={() => {
+            setShowModal(false);
+          }}
+        >
+          <div>*Insert star rating here*</div>
+        </Modal>
+      )}
+    </div>
   );
 }
 
