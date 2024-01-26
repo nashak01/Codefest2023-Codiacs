@@ -1,0 +1,21 @@
+.rating-circle {
+    width: 50px;
+    height: 50px;
+    border: 2px solid white;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition effect */
+  }
+  
+  .rating-circle:hover {
+    background-color: #808588; /* Darken the background on hover */
+  }
+
+  .circle-container {
+    padding: 1%;
+  }
+
+  .filled {
+    background-color: #808588;
+  }

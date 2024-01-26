@@ -12,6 +12,7 @@ import AppHeader from "../AppHeader";
 import Textbox from "../components/Textbox/Textbox.tsx";
 import Button from "../components/Button/Button.tsx";
 import Modal from "../components/Modal/Modal.tsx";
+import Rating from "../components/Rating/Rating.tsx";
 
 function VolcanoApp(props) {
   const [selectedEmotions, setSelectedEmotions] = useState([]);
@@ -19,6 +20,7 @@ function VolcanoApp(props) {
   const [progress, setProgress] = useState(0);
   const [customEmotion, setCustomEmotion] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [emotionRating, setEmotionRating] = useState(0);
 
   // sets the initial word emotions on the left hand side
   const [unusedEmotions, setUnusedEmotions] = useState([
@@ -68,6 +70,7 @@ function VolcanoApp(props) {
     }
 
     setShowModal(true);
+    setEmotionRating(0);
 
     // this increases the progress of the progress bar
     setProgress(progress + 15);
@@ -165,6 +168,7 @@ function VolcanoApp(props) {
               light
               onClick={() => {
                 setShowModal(false);
+                console.log(emotionRating);
               }}
             >
               Submit
@@ -175,7 +179,11 @@ function VolcanoApp(props) {
             setShowModal(false);
           }}
         >
-          <div>*Insert star rating here*</div>
+          <Rating
+            amount={10}
+            selectedAmount={emotionRating}
+            setSelectedAmount={setEmotionRating}
+          />
         </Modal>
       )}
     </div>
