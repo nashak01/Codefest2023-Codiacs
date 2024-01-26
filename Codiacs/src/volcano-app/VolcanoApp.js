@@ -21,6 +21,7 @@ function VolcanoApp(props) {
   const [customEmotion, setCustomEmotion] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [emotionRating, setEmotionRating] = useState(0);
+  const progressUnit = 4;
 
   // sets the initial word emotions on the left hand side
   const [unusedEmotions, setUnusedEmotions] = useState([
@@ -71,9 +72,6 @@ function VolcanoApp(props) {
 
     setShowModal(true);
     setEmotionRating(0);
-
-    // this increases the progress of the progress bar
-    setProgress(progress + 15);
   }
 
   // this ensures the default behaviour is ignored in favour of the behaviour you have coded
@@ -85,6 +83,13 @@ function VolcanoApp(props) {
     const newUnusedEmotions = [...unusedEmotions, customEmotion];
     setUnusedEmotions(newUnusedEmotions);
     setCustomEmotion("");
+  }
+
+  function handleSubmit() {
+    setShowModal(false);
+
+    // this increases the progress of the progress bar
+    setProgress(progress + progressUnit * emotionRating);
   }
 
   return (
@@ -164,20 +169,11 @@ function VolcanoApp(props) {
         <Modal
           heading="Rate the Emotion"
           footer={
-            <Button
-              light
-              onClick={() => {
-                setShowModal(false);
-                console.log(emotionRating);
-              }}
-            >
-              Submit
+            <Button light onClick={handleSubmit}>
+              Go
             </Button>
           }
           noClose
-          onClose={() => {
-            setShowModal(false);
-          }}
         >
           <Rating
             amount={10}
