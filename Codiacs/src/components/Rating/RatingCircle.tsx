@@ -22,6 +22,7 @@ function RatingCircle({
       <div
         className={circleClass}
         onMouseEnter={() => setSelectedAmount(index + 1)}
+        onClick={() => setSelectedAmount(index + 1)}
       />
     </div>
   );
