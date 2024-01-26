@@ -9,11 +9,9 @@ export interface ButtonComponentProps {
 }
 
 function Button({ media, children, onClick, light }: ButtonComponentProps) {
-  var buttonClass: string;
+  var buttonClass: string = "button";
   if (light) {
-    buttonClass = "button light";
-  } else {
-    buttonClass = "button";
+    buttonClass = buttonClass + " light";
   }
 
   return (
