@@ -20,7 +20,9 @@ function VolcanoApp(props) {
   const [progress, setProgress] = useState(0);
   const [customEmotion, setCustomEmotion] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [triggerModalOpen, setTriggerModalOpen] = useState(true);
   const [emotionRating, setEmotionRating] = useState(0);
+  const [triggerPoint, setTriggerPoint] = useState(null);
   const progressUnit = 4;
 
   // sets the initial word emotions on the left hand side
@@ -83,6 +85,11 @@ function VolcanoApp(props) {
     const newUnusedEmotions = [...unusedEmotions, customEmotion];
     setUnusedEmotions(newUnusedEmotions);
     setCustomEmotion("");
+  }
+
+  function handleTriggerEnter() {
+    setTriggerModalOpen(false);
+    console.log(triggerPoint);
   }
 
   function handleSubmit() {
@@ -164,6 +171,25 @@ function VolcanoApp(props) {
           </div>
         </div>
       </div>
+
+      {triggerModalOpen && (
+        <Modal
+          heading="How are you feeling today?"
+          subheading="(1 = very bad, 10 = very good)"
+          footer={
+            <Button light onClick={handleTriggerEnter}>
+              Enter
+            </Button>
+          }
+          noClose
+        >
+          <Rating
+            amount={10}
+            selectedAmount={triggerPoint}
+            setSelectedAmount={setTriggerPoint}
+          />
+        </Modal>
+      )}
 
       {showModal && (
         <Modal
