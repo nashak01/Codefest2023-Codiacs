@@ -4,6 +4,7 @@ import "./ModalContent.css";
 
 export interface ModalContentProps {
   heading: string;
+  subheading?: string;
   children: React.ReactNode;
   footer: React.ReactNode;
   noClose?: true | undefined;
@@ -12,6 +13,7 @@ export interface ModalContentProps {
 
 function ModalContent({
   heading,
+  subheading,
   children,
   footer,
   noClose,
@@ -26,7 +28,10 @@ function ModalContent({
           onClick={() => onClose()}
         />
       )}
-      <h1>{heading}</h1>
+      <div className="headings">
+        <h1>{heading}</h1>
+        <h2>{subheading}</h2>
+      </div>
       {children}
       <div className="modal-footer">{footer}</div>
     </div>
