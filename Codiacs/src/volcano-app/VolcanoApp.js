@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 
 // importing all of the custom components needed for the page
 import ProgressBar from "./ProgressBar";
@@ -23,7 +23,13 @@ function VolcanoApp(props) {
   const [triggerModalOpen, setTriggerModalOpen] = useState(true);
   const [emotionRating, setEmotionRating] = useState(0);
   const [triggerPoint, setTriggerPoint] = useState(null);
-  const progressUnit = 4;
+  const [progressUnit, setProgressUnit] = useState(null);
+
+  useEffect(() => {
+    if (triggerPoint !== null) {
+      setProgressUnit((15 - triggerPoint) / 2);
+    }
+  }, [triggerPoint]);
 
   // sets the initial word emotions on the left hand side
   const [unusedEmotions, setUnusedEmotions] = useState([
