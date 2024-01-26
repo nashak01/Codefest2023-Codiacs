@@ -167,7 +167,7 @@ function VolcanoApp(props) {
 
       {showModal && (
         <Modal
-          heading="Rate the Emotion"
+          heading="Rate Your Emotion"
           footer={
             <Button light onClick={handleSubmit}>
               Go
