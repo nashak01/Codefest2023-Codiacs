@@ -116,7 +116,7 @@ function VolcanoApp(props) {
               onChange={(e) => setCustomEmotion(e.target.value)}
             />
             <Button media="&#43;" onClick={handleAdd}>
-              Add emotion
+              <nobr>Add emotion</nobr>
             </Button>
           </div>
         </div>
@@ -160,6 +160,16 @@ function VolcanoApp(props) {
       {showModal && (
         <Modal
           heading="Rate the Emotion"
+          footer={
+            <Button
+              light
+              onClick={() => {
+                setShowModal(false);
+              }}
+            >
+              Submit
+            </Button>
+          }
           noClose
           onClose={() => {
             setShowModal(false);

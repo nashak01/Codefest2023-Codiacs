@@ -4,17 +4,29 @@ import ModalContent from "./ModalContent.tsx";
 import "./Modal.css";
 
 export interface ModalComponentProps {
-  heading: React.ReactNode;
+  heading: string;
   children: React.ReactNode;
+  footer?: React.ReactNode;
   noClose?: true | undefined;
-  onClose: Function;
+  onClose?: Function;
 }
 
-function Modal({ heading, children, noClose, onClose }: ModalComponentProps) {
+function Modal({
+  heading,
+  children,
+  footer,
+  noClose,
+  onClose,
+}: ModalComponentProps) {
   return (
     <div className="modal-overlay">
       {createPortal(
-        <ModalContent heading={heading} noClose={noClose} onClose={onClose}>
+        <ModalContent
+          heading={heading}
+          footer={footer}
+          noClose={noClose}
+          onClose={onClose}
+        >
           {children}
         </ModalContent>,
         document.body
