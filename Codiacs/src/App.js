@@ -7,7 +7,7 @@ import "./canvas-app/canvas_script.js";
 import "./modal.css";
 //import "./alertButton"
 import React from "react";
-import $ from "jquery";
+//import $ from "jquery";
 import VolcanoApp from "./volcano-app/VolcanoApp";
 import EMDRPage from "./emdr-app/EMDRPage";
 import MemoryJarApp from "./memory-jar/MemoryJarApp";
