@@ -13,7 +13,7 @@ function LandingPage(props) {
             </div>
           </div>
 
-          <div class="wing wingr">
+          <div className="wing wingr">
             <div id="rightwing" className="">
               <div id="rwtop"></div>
               <div id="rwbottom"></div>
@@ -30,9 +30,9 @@ function LandingPage(props) {
           </div>
         </div>
         <div>
-          {/* <div id="profile_page" className="modal">
-            <div class="modal-content">
-              <span class="close">&times;</span>
+          <div id="profile_page" className="modal">
+            <div className="modal-content">
+              <span className="close">&times;</span>
 
               <div className="favourite_color">
                 <h1>Pick Your Favourite Color</h1>
@@ -48,29 +48,33 @@ function LandingPage(props) {
                 <h1>Font Color</h1>
                 <input type="color" id="font_color"></input>
                 <h1>Font Size</h1>
-                <div class="font_size">
+                <div className="font_size">
                   <button
                     role="button"
                     id="decreasetext"
-                    onclick="decreaseText()"
+                    // onClick={decreaseText}
                   >
                     {" "}
                     <span>smaller</span>
                   </button>
-                  <button role="button" id="resettext" onclick="resetText()">
+                  <button
+                    role="button"
+                    id="resettext"
+                    // onClick={resetText}
+                  >
                     <span>normal</span>
                   </button>
                   <button
                     role="button"
                     id="increasetext"
-                    onclick="increaseText()"
+                    //  onClick={increaseText}
                   >
                     <span>bigger</span>
                   </button>
                 </div>
               </div>
             </div>
-          </div> */}
+          </div>{" "}
           <img
             src="img/LISTENING EAR CMYK.jpg"
             alt="Listening Ear logo"
