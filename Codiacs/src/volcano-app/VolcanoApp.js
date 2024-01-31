@@ -6,8 +6,8 @@ import volcanoImage from "../images/volcano.png";
 import eruptingVolcanoImage from "../images/erupting-volcano.png";
 import UnusedEmotions from "./UnusedEmotions";
 import UsedEmotions from "./UsedEmotions";
-import UnusedEmojiEmotions from "./UnusedEmojiEmotions";
-import UsedEmojiEmotions from "./UsedEmojiEmotions";
+//import UnusedEmojiEmotions from "./UnusedEmojiEmotions";
+//import UsedEmojiEmotions from "./UsedEmojiEmotions";
 import AppHeader from "../AppHeader";
 import Textbox from "../components/Textbox/Textbox.tsx";
 import Button from "../components/Button/Button.tsx";
@@ -16,7 +16,7 @@ import Rating from "../components/Rating/Rating.tsx";
 
 function VolcanoApp(props) {
   const [selectedEmotions, setSelectedEmotions] = useState([]);
-  const [selectedEmojiEmotions, setSelectedEmojiEmotions] = useState([]);
+  //const [selectedEmojiEmotions, setSelectedEmojiEmotions] = useState([]);
   const [progress, setProgress] = useState(0);
   const [customEmotion, setCustomEmotion] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -36,16 +36,16 @@ function VolcanoApp(props) {
   ]);
 
   // sets the initial emoji emotions on the left hand side
-  const [unusedEmojiEmotions, setUnusedEmojiEmotions] = useState([
-    { symbol: "😀", label: "happy" },
-    { symbol: "😢", label: "sad" },
-    { symbol: "😕", label: "confused" },
-    { symbol: "😃", label: "excited" },
-    { symbol: "😟", label: "worried" },
-    { symbol: "😨", label: "scared" },
-    { symbol: "😠", label: "angry" },
-    { symbol: "😴", label: "tired" },
-  ]);
+  //   const [unusedEmojiEmotions, setUnusedEmojiEmotions] = useState([
+  //     { symbol: "😀", label: "happy" },
+  //     { symbol: "😢", label: "sad" },
+  //     { symbol: "😕", label: "confused" },
+  //     { symbol: "😃", label: "excited" },
+  //     { symbol: "😟", label: "worried" },
+  //     { symbol: "😨", label: "scared" },
+  //     { symbol: "😠", label: "angry" },
+  //     { symbol: "😴", label: "tired" },
+  //   ]);
 
   // function defining behaviour when a feeling is dropped into the volcano
   function handleOnDrop(e) {
@@ -55,20 +55,20 @@ function VolcanoApp(props) {
     const wordIndex = unusedEmotions.indexOf(emotion);
     // if the dropped item is a word, then it gets removed from the left hand side word array
     // and added to the right hand side word array
-    if (wordIndex > -1) {
-      unusedEmotions.splice(wordIndex, 1);
-      setSelectedEmotions([...selectedEmotions, emotion]);
-    }
+    // if (wordIndex > -1) {
+    unusedEmotions.splice(wordIndex, 1);
+    setSelectedEmotions([...selectedEmotions, emotion]);
+    // }
     // else the dropped emoji gets removed from the left hand side emoji array and
     // added to the right hand side emoji array
-    else {
-      const chosenEmoji = JSON.parse(emotion);
-      const emojiIndex = unusedEmojiEmotions.findIndex(
-        (emoji) => emoji.symbol === chosenEmoji.symbol
-      );
-      unusedEmojiEmotions.splice(emojiIndex, 1);
-      setSelectedEmojiEmotions([...selectedEmojiEmotions, chosenEmoji]);
-    }
+    // else {
+    //   const chosenEmoji = JSON.parse(emotion);
+    //   const emojiIndex = unusedEmojiEmotions.findIndex(
+    //     (emoji) => emoji.symbol === chosenEmoji.symbol
+    //   );
+    //   unusedEmojiEmotions.splice(emojiIndex, 1);
+    //   setSelectedEmojiEmotions([...selectedEmojiEmotions, chosenEmoji]);
+    // }
 
     setShowModal(true);
     setEmotionRating(0);
@@ -83,6 +83,10 @@ function VolcanoApp(props) {
     const newUnusedEmotions = [...unusedEmotions, customEmotion];
     setUnusedEmotions(newUnusedEmotions);
     setCustomEmotion("");
+  }
+
+  function handleChange(e) {
+    setCustomEmotion(e.target.value);
   }
 
   function handleSubmit() {
@@ -106,9 +110,9 @@ function VolcanoApp(props) {
           </div>
 
           {/* the next column of this row is occupied by the emoji emotion list */}
-          <div className="col-sm-2">
+          {/* <div className="col-sm-2">
             <UnusedEmojiEmotions emotions={unusedEmojiEmotions} />
-          </div>
+          </div> */}
 
           <div
             style={{
@@ -121,7 +125,7 @@ function VolcanoApp(props) {
               size="lg"
               labelledBy="textbox-label"
               value={customEmotion}
-              onChange={(e) => setCustomEmotion(e.target.value)}
+              onChange={handleChange}
             />
             <Button media="&#43;" onClick={handleAdd}>
               <nobr>Add emotion</nobr>
@@ -159,9 +163,9 @@ function VolcanoApp(props) {
             <UsedEmotions emotions={selectedEmotions} />
           </div>
 
-          <div className="col-sm-2">
+          {/* <div className="col-sm-2">
             <UsedEmojiEmotions emotions={selectedEmojiEmotions} />
-          </div>
+          </div> */}
         </div>
       </div>
 
