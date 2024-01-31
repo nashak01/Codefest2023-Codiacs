@@ -21,7 +21,7 @@ function UnusedEmojiEmotions(props) {
             <span
               className="emoji"
               role="img"
-              aria-label={emoji.label ? emoji.label : ""}
+              aria-label={emoji.label ? emoji.label : "emoji"}
               aria-hidden={emoji.label ? "false" : "true"}
             >
               {emoji.symbol}
