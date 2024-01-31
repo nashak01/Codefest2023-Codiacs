@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import Textbox from "../../../components/Textbox/Textbox.tsx";
 
 function MockLabelledBy(props) {
@@ -65,5 +65,15 @@ describe("Textbox", () => {
   it("renders an empty tag if no size is given", () => {
     const { container } = render(<Textbox />);
     expect(container.firstChild).toBeEmptyDOMElement;
+  });
+
+  it("runs the onChange function once when text is changed", () => {
+    const mockChange = jest.fn();
+    render(<Textbox size="sm" onChange={mockChange} />);
+
+    const textbox = screen.getByRole("textbox");
+    fireEvent.change(textbox, { target: { value: "a" } });
+
+    expect(mockChange.mock.calls).toHaveLength(1);
   });
 });
