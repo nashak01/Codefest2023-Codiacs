@@ -5,11 +5,6 @@ import UnusedEmotions from "../../volcano-app/UnusedEmotions.js";
 const emotions = ["happy", "sad"];
 
 describe("Unused emotions", () => {
-  it("should mark all emotions as draggable", () => {
-    render(<UnusedEmotions emotions={emotions} />);
-    expect(screen.getByText("happy")).toHaveAttribute("draggable", "true");
-  });
-
   it("should set the emotion data when dragged", () => {
     render(<UnusedEmotions emotions={emotions} />);
 

@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 
 // importing all of the custom components needed for the page
 import ProgressBar from "./ProgressBar";
@@ -18,6 +18,7 @@ function VolcanoApp(props) {
   const [customEmotion, setCustomEmotion] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [emotionRating, setEmotionRating] = useState(0);
+  const [clickedEmotion, setClickedEmotion] = useState("");
   const progressUnit = 4;
 
   // sets the initial word emotions on the left hand side
@@ -45,9 +46,7 @@ function VolcanoApp(props) {
   //   ]);
 
   // function defining behaviour when a feeling is dropped into the volcano
-  function handleOnDrop(e) {
-    const emotion = e.dataTransfer.getData("emotion");
-
+  function handleItemEnter(emotion) {
     // this adds the word to the relevant list on the right hand side
     const wordIndex = unusedEmotions.indexOf(emotion);
     unusedEmotions.splice(wordIndex, 1);
@@ -56,6 +55,17 @@ function VolcanoApp(props) {
     setShowModal(true);
     setEmotionRating(0);
   }
+
+  function handleOnDrop(e) {
+    const emotion = e.dataTransfer.getData("emotion");
+    handleItemEnter(emotion);
+  }
+
+  useEffect(() => {
+    if (clickedEmotion) {
+      handleItemEnter(clickedEmotion);
+    }
+  }, [clickedEmotion]);
 
   // this ensures the default behaviour is ignored in favour of the behaviour you have coded
   function handleDragOver(e) {
@@ -89,7 +99,10 @@ function VolcanoApp(props) {
         {/* the first two columns of this row are occupied by the word emotion list */}
         <div className="col-sm-3 row" style={{ paddingLeft: "2%" }}>
           <div className="col-sm-8">
-            <UnusedEmotions emotions={unusedEmotions} />
+            <UnusedEmotions
+              emotions={unusedEmotions}
+              setClickedEmotion={setClickedEmotion}
+            />
           </div>
 
           <div

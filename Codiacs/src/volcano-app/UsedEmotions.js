@@ -1,5 +1,5 @@
 import { React } from "react";
-import "./WordEmotion.css";
+import "../components/Button/Button.css";
 
 function UsedEmotions(props) {
   const words = props.emotions;
@@ -8,7 +8,7 @@ function UsedEmotions(props) {
     <>
       {words.map((word) => {
         return (
-          <div key={word} className="used-emotion box">
+          <div key={word} className="used-emotion button">
             {word}
           </div>
         );
