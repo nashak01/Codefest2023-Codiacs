@@ -8,7 +8,7 @@ function UsedEmotions(props) {
     <>
       {words.map((word) => {
         return (
-          <div key={word} className="box">
+          <div key={word} className="used-emotion box">
             {word}
           </div>
         );

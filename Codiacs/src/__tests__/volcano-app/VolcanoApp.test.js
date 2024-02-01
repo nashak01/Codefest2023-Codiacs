@@ -28,4 +28,26 @@ describe("Volcano app page", () => {
 
     expect(screen.getByText("Custom emotion").toBeTruthy);
   });
+
+  it("should transfer the emotion when dropped", () => {
+    render(<VolcanoApp />);
+
+    const emotion = screen.getByText("happy");
+    expect(emotion.classList.contains("unused-emotion"));
+
+    const volcano = screen.getByTestId("volcano-image");
+    fireEvent.drop(volcano, { dataTransfer: { getData: () => "happy" } });
+
+    expect(emotion.classList.contains("used-emotion"));
+  });
+
+  it("should prevent default behaviour when emotion is dragged over volcano", () => {
+    render(<VolcanoApp />);
+
+    const volcano = screen.getByTestId("volcano-image");
+    const dragEvent = { preventDefault: jest.fn() };
+    fireEvent.dragOver(volcano, dragEvent);
+
+    expect(dragEvent.preventDefault.toHaveBeenCalled);
+  });
 });

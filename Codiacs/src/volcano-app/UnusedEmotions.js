@@ -14,7 +14,7 @@ function UnusedEmotions(props) {
         return (
           <div
             key={word}
-            className="box"
+            className="unused-emotion box"
             draggable
             onDragStart={(e) => handleOnDrag(e, word)}
           >
