@@ -23,11 +23,11 @@ function ProgressBar(props) {
   }, [progressValue, progressBar]);
 
   return (
-    <div className="progress">
+    <div data-testid="progress" className="progress">
       <div
         id="progressBar"
         className="progress-bar progress-bar-striped progress-bar-animated"
-        role="progressbar"
+        role="progress-bar"
         style={{ width: progress }}
         aria-valuenow="25"
         aria-valuemin="0"

@@ -6,12 +6,7 @@ function UnusedEmojiEmotions(props) {
 
   function handleOnDrag(e, emoji) {
     e.dataTransfer.setData("emotion", JSON.stringify(emoji));
-    //console.log(emoji.symbol);
-    //console.log(emoji);
-    console.log(e.dataTransfer.getData("emotion"));
   }
-
-  //console.log(emojis);
 
   return (
     <>
@@ -26,7 +21,7 @@ function UnusedEmojiEmotions(props) {
             <span
               className="emoji"
               role="img"
-              aria-label={emoji.label ? emoji.label : ""}
+              aria-label={emoji.label ? emoji.label : "emoji"}
               aria-hidden={emoji.label ? "false" : "true"}
             >
               {emoji.symbol}

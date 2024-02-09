@@ -7,10 +7,9 @@ function Memory(props) {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <div
-        key="1"
+        key={props.counter}
+        id={props.counter}
         className="box"
-        // draggable
-        // onDragStart={(e) => handleOnDrag(e, word)}
         style={{ height: "80px" }}
       >
         {props.memory}
@@ -20,13 +19,16 @@ function Memory(props) {
             className="form-control-range"
             id="amountSlider"
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            onChange={(e) => {
+              setAmount(e.target.value);
+              props.amounts[props.counter] = e.target.value;
+            }}
           />
         </div>
       </div>
-      <div>
+      {/* <div>
         <input type="color" style={{ height: "80px" }} />
-      </div>
+      </div> */}
     </div>
   );
 }
