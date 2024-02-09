@@ -74,7 +74,7 @@ function LandingPage(props) {
                 </div>
               </div>
             </div>
-          </div>
+          </div>{" "}
           <img
             src="img/LISTENING EAR CMYK.jpg"
             alt="Listening Ear logo"

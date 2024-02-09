@@ -28,4 +28,46 @@ describe("Volcano app page", () => {
 
     expect(screen.getByText("Custom emotion").toBeTruthy);
   });
+
+  it("should transfer the emotion when dropped", () => {
+    render(<VolcanoApp />);
+
+    const emotion = screen.getByText("happy");
+    expect(emotion.classList.contains("unused-emotion").toBeTruthy);
+
+    const volcano = screen.getByTestId("volcano-image");
+    fireEvent.drop(volcano, { dataTransfer: { getData: () => "happy" } });
+
+    expect(emotion.classList.contains("used-emotion").toBeTruthy);
+  });
+
+  it("should prevent default behaviour when emotion is dragged over volcano", () => {
+    render(<VolcanoApp />);
+
+    const volcano = screen.getByTestId("volcano-image");
+    const dragEvent = { preventDefault: jest.fn() };
+    fireEvent.dragOver(volcano, dragEvent);
+
+    expect(dragEvent.preventDefault.toHaveBeenCalled);
+  });
+
+  it("should transfer the focused emotion when enter button is clicked", () => {
+    render(<VolcanoApp />);
+
+    const emotion = screen.getByText("happy");
+    expect(emotion.classList.contains("unused-emotion").toBeTruthy);
+    fireEvent.keyDown(emotion, { key: "Enter" });
+
+    expect(emotion.classList.contains("used-emotion").toBeTruthy);
+  });
+
+  it("should not transfer the focused emotion when a button other than enter is clicked", () => {
+    render(<VolcanoApp />);
+
+    const emotion = screen.getByText("happy");
+    expect(emotion.classList.contains("unused-emotion").toBeTruthy);
+    fireEvent.keyDown(emotion, { key: "Tab" });
+
+    expect(emotion.classList.contains("used-emotion").toBeFalsy);
+  });
 });
