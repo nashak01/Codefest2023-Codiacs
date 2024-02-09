@@ -181,7 +181,6 @@ function LandingPage(props) {
         </div>
       </div>
     </div>
-    </div>
   );
 }
 export default LandingPage;
