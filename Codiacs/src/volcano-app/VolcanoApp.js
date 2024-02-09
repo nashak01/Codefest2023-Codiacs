@@ -104,7 +104,6 @@ function VolcanoApp(props) {
               setClickedEmotion={setClickedEmotion}
             />
           </div>
-
           <div
             style={{
               paddingTop: "10%",
