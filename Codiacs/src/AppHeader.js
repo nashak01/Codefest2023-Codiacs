@@ -16,7 +16,12 @@ function AppHeader(props) {
           style={{ borderRadius: "15px", height: "40px" }}
           onClick={() => props.setPageValue("landing")}
         >
-          <img src={backArrow} alt="back arrow" style={{ height: "25px" }} />
+          <img
+            src={backArrow}
+            alt="back arrow"
+            style={{ height: "25px" }}
+            draggable="false"
+          />
           Back
         </button>
       </div>
@@ -30,6 +35,7 @@ function AppHeader(props) {
             alt="Listening Ear logo"
             style={{ width: "100%" }}
             className="mb-3"
+            draggable="false"
           />
         </div>
       </div>
