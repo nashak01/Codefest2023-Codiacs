@@ -1,25 +1,34 @@
 import { React } from "react";
-import "./WordEmotion.css";
+import Button from "../components/Button/Button.tsx";
 
 function UnusedEmotions(props) {
   const words = props.emotions;
+  const setClickedEmotion = props.setClickedEmotion;
 
   function handleOnDrag(e, emotion) {
     e.dataTransfer.setData("emotion", emotion);
+  }
+
+  function handleClick(e, emotion) {
+    if (e.key === "Enter") {
+      setClickedEmotion(emotion);
+    }
   }
 
   return (
     <>
       {words.map((word) => {
         return (
-          <div
+          <Button
             key={word}
-            className="box"
+            className="unused-emotion"
             draggable
             onDragStart={(e) => handleOnDrag(e, word)}
+            onKeyDown={(e) => handleClick(e, word)}
+            aria-label="Press enter to add this emotion to the volcano"
           >
             {word}
-          </div>
+          </Button>
         );
       })}
     </>
