@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import AppHeader from "../AppHeader";
+import AppBackground from "../AppBackground";
 
 function MonsterPage(props) {
   const [isEating, setIsEating] = useState(false);
@@ -79,9 +79,9 @@ function MonsterPage(props) {
 
   return (
     <>
-      <AppHeader setPageValue={props.setPageValue} title={"Worry Monster"} />
+      <AppBackground setPageValue={props.setPageValue} />
       <div className="container">
-        <div className="row">
+        <div className="row" style={{position: "relative", top: "22vh"}}>
           <div className="col-md-6" style={{ border: "1px black solid" }}>
             <input type="color" class="js-color-picker  color-picker" />
             <input
@@ -135,6 +135,13 @@ function MonsterPage(props) {
             )}
           </div>
         </div>
+        <button
+          class="button back_button"
+          onClick={() => props.setPageValue("landing")}
+          >
+            <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
+            Back
+        </button>
       </div>
     </>
   );

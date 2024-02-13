@@ -12,12 +12,15 @@ import VolcanoApp from "./volcano-app/VolcanoApp";
 import EMDRPage from "./emdr-app/EMDRPage";
 import MemoryJarApp from "./memory-jar/MemoryJarApp";
 import MonsterPage from "./monster-app/MonsterPage";
+import LoginPage from "./login/login.js";
 function App() {
-  const [pageValue, setPageValue] = useState("landing");
+  const [pageValue, setPageValue] = useState("login");
 
   return (
     <div className="App">
-      {pageValue === "landing" ? (
+      {pageValue === "login" ? (
+        <LoginPage setPageValue={setPageValue} />
+      ) : pageValue === "landing" ? (
         <LandingPage setPageValue={setPageValue} />
       ) : pageValue === "canvas" ? (
         <Canvas setPageValue={setPageValue} />
