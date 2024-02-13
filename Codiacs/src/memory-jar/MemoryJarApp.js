@@ -93,7 +93,7 @@ function MemoryJarApp(props) {
             onChange={(e) => setMemoryToAdd(e.target.value)}
           ></textarea>
           <div className="memory_buttons">
-            <button id="memory-input-button" type="submit" class="button" onClick={handleClick}>
+            <button id="memory-input-button" class="button" onClick={handleClick}>
               Add
             </button>
 

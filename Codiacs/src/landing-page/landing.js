@@ -14,7 +14,7 @@ function LandingPage(props) {
         <div><img src={listetingEarLogoTopRight} class="logo_top_right" alt="Listening Ear Logo" aria-label="Listening Ear Logo"/></div>
       </div> */}
 
-      <div class="menu">
+        <div class="menu">
             <div>
                 <h2>Welcome Matt</h2>
             </div>
@@ -75,14 +75,14 @@ function LandingPage(props) {
                     </button>
                 </div>
             </div>
+            <button
+            class="button back_button"
+            onClick={() => props.setPageValue("login")}
+            >
+            <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
+            Back
+            </button>
         </div>
-        <button
-          class="button back_button"
-          onClick={() => props.setPageValue("login")}
-        >
-          <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
-          Back
-        </button>
     </>
   );
 }

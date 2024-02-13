@@ -386,10 +386,6 @@ body{
     width: 500px;
 }
 
-.background_branding{
-    overflow-y: scroll;
-}
-
 .login_top_branding{
     top: -4px !important;
     width: 60% !important;
@@ -401,7 +397,7 @@ body{
 }
 
 .top_branding{
-    position: absolute;
+    position: fixed;
     left: 0;
     top: -4px;
     width: 50%;
