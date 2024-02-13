@@ -13,13 +13,13 @@ function MonsterPage(props) {
   let burp = new Audio("burp-37726.mp3");
   const lightBlueHex = "#50c7f2";
   const darkBlueHex = "#3b6db4";
-  const monsterMessages = [
-    "That was tasty",
-    "More please!",
-    "Thank you!",
-    "Delicious!",
-    "Yummy!",
-  ];
+  // const monsterMessages = [
+  //   "That was tasty",
+  //   "More please!",
+  //   "Thank you!",
+  //   "Delicious!",
+  //   "Yummy!",
+  // ];
 
   useEffect(() => {
     if (nameSubmitted) {
@@ -218,12 +218,12 @@ function MonsterPage(props) {
                       width="800"
                       height="380"
                       draggable={isDraggable}
-                      onDragStart={(event) =>
-                        event.dataTransfer.setData(
-                          "monster-canvas",
-                          event.target.id
-                        )
-                      }
+                      // onDragStart={(event) =>
+                      //   event.dataTransfer.setData(
+                      //     "monster-canvas",
+                      //     event.target.id
+                      //   )
+                      // }
                       style={{ cursor: isDraggable ? "pointer" : "default" }}
                     ></canvas>
                   </div>
