@@ -2,7 +2,7 @@ import "./canvas.css";
 // import canvas_script from "./canvas_script.js";
 
 import AppHeader from "../AppHeader";
-import { useEffect } from "react";
+//import { useEffect } from "react";
 
 function Canvas(props) {
   window.onload = function () {
