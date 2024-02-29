@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 
 // importing all of the custom components needed for the page
 import ProgressBar from "./ProgressBar";
@@ -21,7 +21,7 @@ function VolcanoApp(props) {
   const [clickedEmotion, setClickedEmotion] = useState("");
   const progressUnit = 4;
 
-  let bubbling = new Audio("volcano-bubbling.mp3");
+  const bubbling = useRef(new Audio("volcano-bubbling.mp3"));
   let erupting = new Audio("volcano-erupting.wav");
 
   // sets the initial word emotions on the left hand side
@@ -93,12 +93,17 @@ function VolcanoApp(props) {
   }
 
   useEffect(() => {
-    if (progress >= 100) {
+    if (progress < 100) {
+      bubbling.current.volume = progress * 0.01 * 0.2;
+      bubbling.current.loop = true; // Loops bubbling audio
+      bubbling.current.play();
+    } else if (progress >= 100) {
+      bubbling.current.pause(); // Stops bubbling audio
       erupting.currentTime = 0; // Reset audio to beginning
       erupting.volume = 0.2;
       erupting.play();
     }
-  })
+  }, [progress])
 
   return (
     <div id="volcano-app">
