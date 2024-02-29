@@ -21,6 +21,9 @@ function VolcanoApp(props) {
   const [clickedEmotion, setClickedEmotion] = useState("");
   const progressUnit = 4;
 
+  let bubbling = new Audio("volcano-bubbling.mp3");
+  let erupting = new Audio("volcano-erupting.wav");
+
   // sets the initial word emotions on the left hand side
   const [unusedEmotions, setUnusedEmotions] = useState([
     "happy",
@@ -88,6 +91,14 @@ function VolcanoApp(props) {
     // this increases the progress of the progress bar
     setProgress(progress + progressUnit * emotionRating);
   }
+
+  useEffect(() => {
+    if (progress >= 100) {
+      erupting.currentTime = 0; // Reset audio to beginning
+      erupting.volume = 0.2;
+      erupting.play();
+    }
+  })
 
   return (
     <div id="volcano-app">
