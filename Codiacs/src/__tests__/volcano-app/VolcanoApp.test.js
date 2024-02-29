@@ -70,4 +70,44 @@ describe("Volcano app page", () => {
 
     expect(emotion.classList.contains("used-emotion").toBeFalsy);
   });
+
+  it("should start the bubbling audio when emotion dropped", () => {
+    const mockAudioPlay = jest
+      .spyOn(window.HTMLMediaElement.prototype, 'play')
+      .mockImplementation(() => Promise.resolve())
+
+    render(<VolcanoApp />);
+
+    const volcano = screen.getByTestId("volcano-image");
+    fireEvent.drop(volcano, { dataTransfer: { getData: () => "happy" } });
+
+    expect(mockAudioPlay).toHaveBeenCalledTimes(1);
+  });
+
+  it("should stop the bubbling audio and trigger erupting audio when progress bar full", () => {
+    const mockAudioPlay = jest
+      .spyOn(window.HTMLMediaElement.prototype, 'play')
+      .mockImplementation(() => Promise.resolve())
+
+    const mockAudioPause = jest
+      .spyOn(window.HTMLMediaElement.prototype, 'pause')
+      .mockImplementation(() => Promise.resolve())
+
+    render(<VolcanoApp />);
+
+    const volcano = screen.getByTestId("volcano-image");
+    const emotions = ["happy", "sad", "confused"]
+
+    for (const emotion of emotions) {
+      fireEvent.drop(volcano, { dataTransfer: { getData: () => emotion } });
+
+      const submitButton = screen.getByText("Go")
+      const rating = screen.getByTestId("rating-10");
+      fireEvent.click(rating);
+      fireEvent.click(submitButton);
+    }
+    
+    expect(mockAudioPlay).toHaveBeenCalledTimes(4);
+    expect(mockAudioPause).toHaveBeenCalledTimes(1);
+  });
 });

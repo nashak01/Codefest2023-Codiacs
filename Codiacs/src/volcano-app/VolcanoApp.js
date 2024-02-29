@@ -97,7 +97,7 @@ function VolcanoApp(props) {
       bubbling.current.volume = progress * 0.01 * 0.2;
       bubbling.current.loop = true; // Loops bubbling audio
       bubbling.current.play();
-    } else if (progress >= 100) {
+    } else {
       bubbling.current.pause(); // Stops bubbling audio
       erupting.currentTime = 0; // Reset audio to beginning
       erupting.volume = 0.2;
