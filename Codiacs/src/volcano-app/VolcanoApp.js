@@ -2,8 +2,7 @@ import { React, useState, useEffect, useRef } from "react";
 
 // importing all of the custom components needed for the page
 import ProgressBar from "./ProgressBar";
-import volcanoImage from "../images/volcano.png";
-import eruptingVolcanoImage from "../images/erupting-volcano.png";
+import volcanoAnimation from "../images/volcano-animation.mp4";
 import UnusedEmotions from "./UnusedEmotions";
 import UsedEmotions from "./UsedEmotions";
 import AppHeader from "../AppHeader";
@@ -23,6 +22,7 @@ function VolcanoApp(props) {
 
   const bubbling = useRef(new Audio("volcano-bubbling.mp3"));
   let erupting = new Audio("volcano-erupting.wav");
+  const videoRef = useRef(null);
 
   // sets the initial word emotions on the left hand side
   const [unusedEmotions, setUnusedEmotions] = useState([
@@ -102,6 +102,7 @@ function VolcanoApp(props) {
       erupting.currentTime = 0; // Reset audio to beginning
       erupting.volume = 0.2;
       erupting.play();
+      videoRef.current.play();
     }
   }, [progress])
 
@@ -146,24 +147,9 @@ function VolcanoApp(props) {
             onDrop={handleOnDrop}
             onDragOver={handleDragOver}
           >
-            {/* if the progress bar is not full, it shows the unexploded volcano image */}
-            {/* else if the progress bar is full, it shows the exploding volcano image */}
-            {/* this is called conditional rendering */}
-            {progress < 100 ? (
-              <img
-                src={volcanoImage}
-                alt="Non-erupting volcano"
-                style={{ height: "380px", marginTop: "10%" }}
-                draggable="false"
-              />
-            ) : (
-              <img
-                src={eruptingVolcanoImage}
-                alt="Erupting volcano"
-                style={{ height: "380px", marginTop: "10%" }}
-                draggable="false"
-              />
-            )}
+            <video width="750" height="500" ref={videoRef}>
+              <source src={volcanoAnimation} type="video/mp4"/>
+            </video>
           </div>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <ProgressBar progress={progress} />
