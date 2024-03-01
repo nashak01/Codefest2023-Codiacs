@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event"
 import Rating from "../../../components/Rating/Rating.tsx";
 
 describe("Rating", () => {
@@ -27,4 +28,21 @@ describe("Rating", () => {
     expect(circles[3].classList.contains("filled")).toBeFalsy;
     expect(circles[4].classList.contains("filled")).toBeFalsy;
   });
+
+  it("should be keyboard accessible", () => {
+    render(<Rating amount={5} />);
+
+    for (let i = 0; i < 3; i++) {
+      userEvent.tab();
+    }
+    expect(screen.getByTestId("rating-3")).toHaveFocus()
+
+    userEvent.tab();
+    
+    expect(screen.getByTestId("rating-1").classList.contains("filled")).toBeTruthy;
+    expect(screen.getByTestId("rating-2").classList.contains("filled")).toBeTruthy;
+    expect(screen.getByTestId("rating-3").classList.contains("filled")).toBeTruthy;
+    expect(screen.getByTestId("rating-4").classList.contains("filled")).toBeFalsy;
+    expect(screen.getByTestId("rating-5").classList.contains("filled")).toBeFalsy;
+  })
 });

@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import userEvent from '@testing-library/user-event';
 import VolcanoApp from "../../volcano-app/VolcanoApp.js";
 
 describe("Volcano app page", () => {
@@ -69,5 +70,89 @@ describe("Volcano app page", () => {
     fireEvent.keyDown(emotion, { key: "Tab" });
 
     expect(emotion.classList.contains("used-emotion").toBeFalsy);
+  });
+
+  it("should trigger the 'Rate Your Emotion' modal when an item is dropped into the volcano", () => {
+    render(<VolcanoApp />);
+
+    const volcano = screen.getByTestId("volcano-image");
+    fireEvent.drop(volcano, { dataTransfer: { getData: () => "happy" } });
+
+    expect(screen.getByText("Rate Your Emotion")).toBeTruthy();
+  });
+
+  it("should increase the progress bar a little when emotions are rated low", () => {
+    render(<VolcanoApp />);
+
+    const volcano = screen.getByTestId("volcano-image");
+    fireEvent.drop(volcano, { dataTransfer: { getData: () => "happy" } });
+
+    const rating = screen.getByTestId("rating-1");
+    const submitButton = screen.getByText("Go");
+    fireEvent.click(rating);
+    fireEvent.click(submitButton);
+
+    expect(screen.getByTestId("progress").classList.contains("bg-success")).toBeTruthy;
+    expect(screen.getByTestId("progress").classList.contains("bg-warning")).toBeFalsy;
+  });
+
+  it("should increase the progress bar a lot when emotions are rated highly", () => {
+    render(<VolcanoApp />);
+
+    const volcano = screen.getByTestId("volcano-image");
+    fireEvent.drop(volcano, { dataTransfer: { getData: () => "happy" } });
+
+    const rating = screen.getByTestId("rating-10");
+    const submitButton = screen.getByText("Go");
+    fireEvent.click(rating);
+    fireEvent.click(submitButton);
+
+    expect(screen.getByTestId("progress").classList.contains("bg-warning")).toBeTruthy;
+    expect(screen.getByTestId("progress").classList.contains("bg-success")).toBeFalsy;
+  });
+
+  it("should set the rating on mouse enter", () => {
+    render(<VolcanoApp />);
+
+    const volcano = screen.getByTestId("volcano-image");
+    fireEvent.drop(volcano, { dataTransfer: { getData: () => "happy" } });
+
+    const rating = screen.getByTestId("rating-10");
+    const submitButton = screen.getByText("Go");
+    fireEvent.mouseEnter(rating);
+    fireEvent.mouseLeave(rating);
+    fireEvent.click(submitButton);
+
+    expect(screen.getByTestId("progress").classList.contains("bg-warning")).toBeTruthy;
+    expect(screen.getByTestId("progress").classList.contains("bg-success")).toBeFalsy;
+  });
+
+  it("should be usable via keyboard", () => {
+    render(<VolcanoApp />);
+
+    const emotion = screen.getByText("happy");
+    fireEvent.keyDown(emotion, { key: "Enter" });
+
+    const rating = screen.getByTestId("rating-1");
+    rating.focus();
+    userEvent.keyboard('[Enter]')
+
+    for (let i = 0; i < 5; ++i) {
+      userEvent.tab();
+    }
+    
+    const newRating = screen.getByTestId("rating-6")
+    expect(newRating).toHaveFocus();
+
+    for (let i = 0; i < 5; ++i) {
+      userEvent.tab();
+    }
+
+    const submitButton = screen.getByTestId("Go");
+    expect(submitButton).toHaveFocus();
+    userEvent.keyboard('[Enter]')
+
+    expect(screen.getByTestId("progress").classList.contains("bg-success")).toBeTruthy;
+    expect(screen.getByTestId("progress").classList.contains("bg-warning")).toBeFalsy;
   });
 });

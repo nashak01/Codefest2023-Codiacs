@@ -21,6 +21,7 @@ function RatingCircle({
     <div className="circle-container">
       <input
         type="button"
+        data-testid={"rating-" + (index+1)}
         className={circleClass}
         onMouseEnter={() => setSelectedAmount(index + 1)}
         onClick={() => setSelectedAmount(index + 1)}
