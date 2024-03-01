@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 import VolcanoApp from "../../volcano-app/VolcanoApp.js";
 
@@ -130,12 +130,13 @@ describe("Volcano app page", () => {
   it("should be usable via keyboard", () => {
     render(<VolcanoApp />);
 
-    const emotion = screen.getByText("happy");
-    fireEvent.keyDown(emotion, { key: "Enter" });
+    const emotion = screen.getByTestId("happy");
+    emotion.focus();
+    act(() => userEvent.keyboard('[Enter]'))
 
     const rating = screen.getByTestId("rating-1");
     rating.focus();
-    userEvent.keyboard('[Enter]')
+    act(() => userEvent.keyboard('[Enter]'))
 
     for (let i = 0; i < 5; ++i) {
       userEvent.tab();
@@ -150,7 +151,7 @@ describe("Volcano app page", () => {
 
     const submitButton = screen.getByTestId("Go");
     expect(submitButton).toHaveFocus();
-    userEvent.keyboard('[Enter]')
+    act(() => userEvent.keyboard('[Enter]'))
 
     expect(screen.getByTestId("progress").classList.contains("bg-success")).toBeTruthy;
     expect(screen.getByTestId("progress").classList.contains("bg-warning")).toBeFalsy;
