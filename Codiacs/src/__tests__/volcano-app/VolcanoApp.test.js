@@ -73,7 +73,7 @@ describe("Volcano app page", () => {
 
   it("should start the bubbling audio when emotion dropped", () => {
     const mockAudioPlay = jest
-      .spyOn(window.HTMLMediaElement.prototype, 'play')
+      .spyOn(window.HTMLAudioElement.prototype, 'play')
       .mockImplementation(() => Promise.resolve())
 
     render(<VolcanoApp />);
@@ -81,16 +81,25 @@ describe("Volcano app page", () => {
     const volcano = screen.getByTestId("volcano-image");
     fireEvent.drop(volcano, { dataTransfer: { getData: () => "happy" } });
 
+    const submitButton = screen.getByText("Go")
+    const rating = screen.getByTestId("rating-10");
+    fireEvent.click(rating);
+    fireEvent.click(submitButton);
+
     expect(mockAudioPlay).toHaveBeenCalledTimes(1);
   });
 
-  it("should stop the bubbling audio and trigger erupting audio when progress bar full", () => {
+  it("should stop the bubbling audio, trigger erupting audio and play erupting animation when progress bar full", () => {
     const mockAudioPlay = jest
-      .spyOn(window.HTMLMediaElement.prototype, 'play')
+      .spyOn(window.HTMLAudioElement.prototype, 'play')
       .mockImplementation(() => Promise.resolve())
 
     const mockAudioPause = jest
-      .spyOn(window.HTMLMediaElement.prototype, 'pause')
+      .spyOn(window.HTMLAudioElement.prototype, 'pause')
+      .mockImplementation(() => Promise.resolve())
+
+    const mockVideoPlay = jest
+      .spyOn(window.HTMLVideoElement.prototype, 'play')
       .mockImplementation(() => Promise.resolve())
 
     render(<VolcanoApp />);
@@ -107,7 +116,25 @@ describe("Volcano app page", () => {
       fireEvent.click(submitButton);
     }
     
-    expect(mockAudioPlay).toHaveBeenCalledTimes(4);
+    // we expect the bubbling audio to be played twice (for the first two emotions entered),
+    // and the erupting audio to be played once, hence the count of 3 here
+    expect(mockAudioPlay).toHaveBeenCalledTimes(3);
     expect(mockAudioPause).toHaveBeenCalledTimes(1);
+    expect(mockVideoPlay).toHaveBeenCalledTimes(1);
+  });
+
+  it("should render the volcano image", () => {
+    render(<VolcanoApp />);
+    expect(screen.getByTestId("volcano-image")).toBeTruthy();
+  });
+
+  it("should not play the audio or animation on page load", () => {
+    const mockAudioPlay = jest
+      .spyOn(window.HTMLMediaElement.prototype, 'play')
+      .mockImplementation(() => Promise.resolve())
+
+    render(<VolcanoApp />);
+
+    expect(mockAudioPlay).toHaveBeenCalledTimes(0);
   });
 });

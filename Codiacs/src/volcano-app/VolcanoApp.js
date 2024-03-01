@@ -93,11 +93,11 @@ function VolcanoApp(props) {
   }
 
   useEffect(() => {
-    if (progress < 100) {
+    if (progress && 0 < progress && progress < 100) {
       bubbling.current.volume = progress * 0.01 * 0.2;
       bubbling.current.loop = true; // Loops bubbling audio
       bubbling.current.play();
-    } else {
+    } else if (progress && progress >= 100) {
       bubbling.current.pause(); // Stops bubbling audio
       erupting.currentTime = 0; // Reset audio to beginning
       erupting.volume = 0.2;
