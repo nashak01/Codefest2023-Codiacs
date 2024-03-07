@@ -22,11 +22,13 @@ function ModalContent({
     <FocusTrap>
       <div className="modal-content">
         {noClose === undefined && onClose && (
-          <CloseButton
-            className="close"
-            aria-label="Close modal"
-            onClick={() => onClose()}
-          />
+          <div data-testid="close-button">
+            <CloseButton
+              className="close"
+              aria-label="Close modal"
+              onClick={() => onClose()}
+            />
+          </div>
         )}
         <h1>{heading}</h1>
         {children}
