@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AppHeader from "../AppHeader";
+import "./MonsterPage.css";
+import Button from "../components/Button/Button.tsx";
 
 function MonsterPage(props) {
   const [isEating, setIsEating] = useState(false);
@@ -23,6 +25,12 @@ function MonsterPage(props) {
 
   useEffect(() => {
     if (nameSubmitted) {
+      // Initial call to set canvas size based on initial window size
+      updateCanvasSize();
+
+      // Add event listener to window's resize event
+      window.addEventListener("resize", updateCanvasSize);
+
       const paintCanvas = document.querySelector(".js-paint");
       const context = paintCanvas.getContext("2d");
       if (context) {
@@ -86,6 +94,7 @@ function MonsterPage(props) {
           paintCanvas.removeEventListener("mousemove", drawLine);
           paintCanvas.removeEventListener("mouseup", stopDrawing);
           paintCanvas.removeEventListener("mouseout", stopDrawing);
+          window.removeEventListener("resize", updateCanvasSize);
         };
       }
     }
@@ -112,6 +121,48 @@ function MonsterPage(props) {
       }, 3000);
     }
   }, [isEating]);
+
+  // Function to update canvas size based on CSS width and height
+  function updateCanvasSize() {
+    if (isDrawing && !isDraggable) {
+      // Get the canvas element
+      const canvas = document.getElementById("monster-canvas");
+
+      // Store the current drawing state
+      const context = canvas.getContext("2d");
+      const lineWidth = context.lineWidth;
+      const strokeStyle = context.strokeStyle;
+
+      // Get the computed styles of the canvas element
+      const computedStyles = window.getComputedStyle(canvas);
+
+      // Get the CSS height and width in pixels
+      const cssWidth = computedStyles.getPropertyValue("width");
+      const cssHeight = computedStyles.getPropertyValue("height");
+
+      // Remove "px" from the values to get only the numeric part
+      const widthInPixels = parseInt(cssWidth, 10);
+      const heightInPixels = parseInt(cssHeight, 10);
+
+      // Set the width and height HTML attributes of the canvas element
+      canvas.setAttribute("width", widthInPixels.toString());
+      canvas.setAttribute("height", heightInPixels.toString());
+
+      // Redraw the canvas content
+      context.lineWidth = lineWidth;
+      context.strokeStyle = strokeStyle;
+    }
+  }
+
+  const clearCanvas = () => {
+    const canvas = document.getElementById("monster-canvas");
+    const context = canvas.getContext("2d");
+
+    // Clear the entire canvas
+    if (context) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  };
 
   const handleButtonLeave = (e) => {
     e.target.style.backgroundColor = lightBlueHex;
@@ -159,10 +210,12 @@ function MonsterPage(props) {
                         id="drawCheckbox"
                         checked={isDrawing}
                         onChange={() => setIsDrawing(!isDrawing)}
+                        aria-labelledby="drawCheckboxLabel"
                       />
                       <label
                         className="form-check-label"
                         htmlFor="drawCheckbox"
+                        id="drawCheckboxLabel"
                       >
                         Draw
                       </label>
@@ -174,10 +227,12 @@ function MonsterPage(props) {
                         id="textCheckbox"
                         checked={isText}
                         onChange={() => setIsText(!isText)}
+                        aria-labelledby="textCheckboxLabel"
                       />
                       <label
                         className="form-check-label"
                         htmlFor="textCheckbox"
+                        id="textCheckboxLabel"
                       >
                         Text
                       </label>
@@ -187,7 +242,8 @@ function MonsterPage(props) {
                     <input
                       data-testid="color-picker"
                       type="color"
-                      className="js-color-picker  color-picker me-1"
+                      className="js-color-picker  color-picker me-2"
+                      aria-label="Select color"
                     />
                     <input
                       type="range"
@@ -196,35 +252,29 @@ function MonsterPage(props) {
                       min="1"
                       max="80"
                       defaultValue={"1"}
+                      aria-label="Select pixel size"
                     />
                     <label
-                      className="js-range-value ms-1"
+                      className="js-range-value ms-1 me-3"
                       htmlFor="pixel-size-picker"
                     >
-                      1
+                      1 px
                     </label>
-                    px
+                    <Button children={"Clear"} onClick={clearCanvas} />
                   </div>
                 </div>
                 <div className="row p-0" hidden={!isDrawing}>
-                  <div
-                    className="col-md-12 p-0"
-                    style={{ border: "2px #3b6db4 solid" }}
-                  >
+                  <div className="col-md-12 p-0">
                     <canvas
                       id="monster-canvas"
                       data-testid="monster-canvas"
                       className="js-paint  paint-canvas"
-                      width="800"
-                      height="380"
                       draggable={isDraggable}
-                      // onDragStart={(event) =>
-                      //   event.dataTransfer.setData(
-                      //     "monster-canvas",
-                      //     event.target.id
-                      //   )
-                      // }
-                      style={{ cursor: isDraggable ? "pointer" : "default" }}
+                      aria-label="Monster drawing area"
+                      role="img"
+                      style={{
+                        cursor: isDraggable ? "pointer" : "crosshair",
+                      }}
                     ></canvas>
                   </div>
                 </div>
@@ -233,10 +283,6 @@ function MonsterPage(props) {
                     <div
                       className="col-md-12 p-0"
                       style={{
-                        borderLeft: "2px #3b6db4 solid",
-                        borderRight: "2px #3b6db4 solid",
-                        borderBottom: "2px #3b6db4 solid",
-                        borderTop: isDrawing ? "" : "2px #3b6db4 solid",
                         cursor: isDraggable ? "pointer" : "text",
                       }}
                       draggable={isDraggable}
@@ -244,42 +290,41 @@ function MonsterPage(props) {
                       <textarea
                         className="form-control"
                         placeholder="Enter your worry here"
+                        rows={isDrawing ? "3" : "10"}
                         value={textEntered}
                         onChange={(e) => setTextEntered(e.target.value)}
                         style={{
                           textAlign: "center",
                           pointerEvents: isDraggable ? "none" : "auto",
                           fontFamily: "Comic Sans MS, Comic Sans, cursive",
+                          marginLeft: "0.5rem",
+                          marginRight: "0.5rem",
+                          marginTop: isDrawing ? "" : "0.5rem",
+                          marginBottom: "0.5rem",
+                          border: "2px #3b6db4 solid",
                         }}
+                        aria-label="Enter your worry"
                       ></textarea>
                     </div>
                   </div>
                 )}
                 {(isDrawing || isText) && !isEating ? (
                   <div className="text-center">
-                    <button
-                      className="btn btn-danger my-2"
-                      style={{
-                        color: "black",
-                        backgroundColor: lightBlueHex,
-                        border: lightBlueHex,
-                      }}
-                      onMouseEnter={(e) => handleButtonHover(e)}
-                      onMouseLeave={(e) => handleButtonLeave(e)}
+                    <Button
+                      className="my-2"
+                      children={
+                        isDraggable
+                          ? `Now drag your worry to ${monstersName}!`
+                          : `Click here when you're ready to feed ${monstersName}!`
+                      }
                       onClick={handleButtonClick}
                       disabled={isDraggable}
-                    >
-                      {isDraggable
-                        ? `Now drag your worry to ${monstersName}!`
-                        : `Click here when you're ready to feed ${monstersName}!`}
-                    </button>
-                    {/* <div
-                className="alert mt-2"
-                style={{ backgroundColor: lightBlueHex }}
-                role="alert"
-              >
-                When you are ready, drag your worry to the monster!
-              </div> */}
+                      aria-label={
+                        isDraggable
+                          ? `Now drag your worry to ${monstersName}!`
+                          : `Click here when you're ready to feed ${monstersName}!`
+                      }
+                    />
                   </div>
                 ) : (
                   <></>
@@ -311,6 +356,7 @@ function MonsterPage(props) {
                     id="button-addon2"
                     disabled={!monstersName}
                     onClick={() => setNameSubmitted(true)}
+                    aria-label="Submit monster name"
                   >
                     Submit
                   </button>
@@ -337,35 +383,28 @@ function MonsterPage(props) {
               )}
             </div>
             {isEating ? (
-              <>
-                {/* <div className="alert alert-success" role="alert">
-                  "<b>{monsterMessages[Math.floor(Math.random() * 5)]}</b>"
-                </div> */}
-                <img
-                  src="img/worry-eater-mouth-closed.jpeg"
-                  alt="Worrying Monster"
-                  className="img-fluid"
-                  draggable="false"
-                  style={{ maxHeight: "405px" }}
-                />
-              </>
+              <img
+                id=""
+                src="img/worry-eater-mouth-closed.jpeg"
+                alt="Worry Monster Eating"
+                className="img-fluid"
+                draggable="false"
+                style={{ width: "80%" }}
+                aria-label="Worrying Monster Eating"
+              />
             ) : (
-              <>
-                {/* <div className="alert alert-primary" role="alert">
-                  "<b>I'm hungry</b>"
-                </div> */}
-                <img
-                  id="dropzone"
-                  data-testid="monster-hungry-img"
-                  src="img/worry-eater-mouth-open.jpg"
-                  alt="Worry Monster"
-                  className="img-fluid"
-                  draggable="false"
-                  style={{ maxHeight: "405px" }}
-                  onDrop={handleDrop}
-                  onDragOver={handleDragOver}
-                />
-              </>
+              <img
+                id="dropzone"
+                data-testid="monster-hungry-img"
+                src="img/worry-eater-mouth-open.jpg"
+                alt="Worry Monster Hungry"
+                className="img-fluid"
+                draggable="false"
+                style={{ width: "70%" }}
+                onDrop={handleDrop}
+                onDragOver={handleDragOver}
+                aria-label="Worry Monster Hungry"
+              />
             )}
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React from "react";
-import CloseButton from "react-bootstrap/CloseButton";
 import "./ModalContent.css";
+import Button from "../Button/Button.tsx";
 
 export interface ModalContentProps {
   heading: string;
@@ -20,9 +20,10 @@ function ModalContent({
   return (
     <div className="modal-content">
       {noClose === undefined && onClose && (
-        <CloseButton
+        <Button
           className="close"
           aria-label="Close modal"
+          children="Close"
           onClick={() => onClose()}
         />
       )}

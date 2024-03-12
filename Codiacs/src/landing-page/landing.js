@@ -5,7 +5,7 @@ function LandingPage(props) {
     <div className="container">
       <div className="profile">
         {/* <img className="butterfly_speech" src="img/butterfly_speech.jpg"></img> */}
-        <div id="butterfly">
+        {/* <div id="butterfly">
           <div className="wing wingl">
             <div id="leftwing">
               <div id="lwtop"></div>
@@ -28,7 +28,7 @@ function LandingPage(props) {
           <div id="rightant">
             <div className="ball"></div>
           </div>
-        </div>
+        </div> */}
         <div>
           <div id="profile_page" className="modal">
             <div className="modal-content">
