@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./EMDR.css";
 import AppBackground from "../AppBackground";
 
@@ -8,6 +10,8 @@ const EMDRPage = () => {
   const [theme, setTheme] = useState("light");
   const [fullScreen, setFullScreen] = useState(false);
   const [isMoving, setIsMoving] = useState(true);
+
+  const navigate = useNavigate();
 
   const handleStartStop = () => {
     setIsMoving(!isMoving);
@@ -132,7 +136,7 @@ const EMDRPage = () => {
           </div>
           <button
           class="button back_button"
-          onClick={() => props.setPageValue("landing")}
+          onClick={() => navigate("/")}
           >
             <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
             Back

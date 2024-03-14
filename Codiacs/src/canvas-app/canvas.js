@@ -1,9 +1,11 @@
-import "./canvas.css";
-// import canvas_script from "./canvas_script.js";
+import { useNavigate } from "react-router-dom"
 
+import "./canvas.css";
 import AppBackground from "../AppBackground";
 
 function Canvas() {
+  const navigate = useNavigate();
+  
   window.onload = function () {
     // Definitions
     var canvas = document.getElementById("paint-canvas");
@@ -149,7 +151,7 @@ function Canvas() {
         </div>
         <button
         class="button back_button"
-        onClick={() => props.setPageValue("landing")}
+        onClick={() => navigate("/")}
         >
           <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
           Back

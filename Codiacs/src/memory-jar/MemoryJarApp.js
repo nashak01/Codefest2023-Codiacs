@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import memoryJarImage from "../images/memory-jar.jpg";
 import AppBackground from "../AppBackground";
@@ -12,6 +13,8 @@ function MemoryJarApp() {
 
   const [percentages, setPercentages] = useState([]);
   const [cumulativePercentages, setCumulativePercentages] = useState([]);
+
+  const navigate = useNavigate();
 
   function createPercentages() {
     const total = amounts.reduce((partialSum, a) => partialSum + +a, 0);

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./landing.css";
 import AppBackground from "../AppBackground";
 
-function LandingPage(props) {
+function LandingPage() {
   const navigate = useNavigate();
 
   return (

@@ -5,7 +5,7 @@ import listetingEarLogoBottom from "./images/LISTENING_EAR_ICON_CMYK_BOTTOM.jpg"
 import listetingEarLogoTopRight from "./images/LISTENING EAR MAIN.jpg";
 import "./fontawesome-free-6.5.1-web/css/all.css";
 
-function AppBackground(props) {
+function AppBackground() {
   return (
     <>
       <div class="background_branding">
