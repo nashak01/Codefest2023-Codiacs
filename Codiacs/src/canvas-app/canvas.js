@@ -1,8 +1,7 @@
 import "./canvas.css";
 // import canvas_script from "./canvas_script.js";
 
-import AppHeader from "../AppHeader";
-//import { useEffect } from "react";
+import AppBackground from "../AppBackground";
 
 function Canvas(props) {
   window.onload = function () {
@@ -92,7 +91,7 @@ function Canvas(props) {
 
   return (
     <>
-      <AppHeader setPageValue={props.setPageValue} title="Drawing Canvas" />
+      <AppBackground setPageValue={props.setPageValue} />
 
       <main style={{ marginTop: "3%" }}>
         <div className="left-block">
@@ -148,6 +147,13 @@ function Canvas(props) {
           <canvas id="paint-canvas" width="100000" height="100000"></canvas>
           {/* <script src={canvas_script} defer></script> */}
         </div>
+        <button
+        class="button back_button"
+        onClick={() => props.setPageValue("landing")}
+        >
+          <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
+          Back
+        </button>
       </main>
 
       {/* {document.getElementById("paint-canvas") !== null ? (

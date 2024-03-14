@@ -5,7 +5,7 @@ import ProgressBar from "./ProgressBar";
 import volcanoAnimation from "../images/volcano-animation.mp4";
 import UnusedEmotions from "./UnusedEmotions";
 import UsedEmotions from "./UsedEmotions";
-import AppHeader from "../AppHeader";
+import AppBackground from "../AppBackground.js";
 import Textbox from "../components/Textbox/Textbox.tsx";
 import Button from "../components/Button/Button.tsx";
 import Modal from "../components/Modal/Modal.tsx";
@@ -109,7 +109,7 @@ function VolcanoApp(props) {
   return (
     <div id="volcano-app">
       {/* first we add the page header, and pass the page title as "Emotion Volcano" */}
-      <AppHeader setPageValue={props.setPageValue} title="Emotion Volcano" />
+      <AppBackground setPageValue={props.setPageValue}/>
 
       {/* then we add the main page content here, using the grid system to allocate space */}
       <div className="row align-items-center" style={{ height: "80vh" }}>
@@ -161,6 +161,13 @@ function VolcanoApp(props) {
             <UsedEmotions emotions={selectedEmotions} />
           </div>
         </div>
+        <button
+          class="button back_button"
+          onClick={() => props.setPageValue("landing")}
+          >
+            <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
+            Back
+          </button>
       </div>
 
       {showModal && (
