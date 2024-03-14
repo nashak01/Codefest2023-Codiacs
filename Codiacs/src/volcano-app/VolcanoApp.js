@@ -1,11 +1,12 @@
 import { React, useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 // importing all of the custom components needed for the page
 import ProgressBar from "./ProgressBar";
 import volcanoAnimation from "../images/volcano-animation.mp4";
 import UnusedEmotions from "./UnusedEmotions";
 import UsedEmotions from "./UsedEmotions";
-import AppHeader from "../AppHeader";
+import AppBackground from "../AppBackground.js";
 import Textbox from "../components/Textbox/Textbox.tsx";
 import Button from "../components/Button/Button.tsx";
 import Modal from "../components/Modal/Modal.tsx";
@@ -19,6 +20,8 @@ function VolcanoApp() {
   const [emotionRating, setEmotionRating] = useState(0);
   const [clickedEmotion, setClickedEmotion] = useState("");
   const progressUnit = 4;
+
+  const navigate = useNavigate();
 
   const bubbling = useRef(new Audio("volcano-bubbling.mp3"));
   let erupting = new Audio("volcano-erupting.wav");
@@ -109,7 +112,7 @@ function VolcanoApp() {
   return (
     <div id="volcano-app">
       {/* first we add the page header, and pass the page title as "Emotion Volcano" */}
-      <AppHeader title="Emotion Volcano" />
+      <AppBackground />
 
       {/* then we add the main page content here, using the grid system to allocate space */}
       <div className="row align-items-center" style={{ height: "80vh" }}>
@@ -161,6 +164,13 @@ function VolcanoApp() {
             <UsedEmotions emotions={selectedEmotions} />
           </div>
         </div>
+        <button
+          class="button back_button"
+          onClick={() => navigate("/")}
+          >
+            <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
+            Back
+          </button>
       </div>
 
       {showModal && (

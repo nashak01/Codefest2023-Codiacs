@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 
 import memoryJarImage from "../images/memory-jar.jpg";
-import AppHeader from "../AppHeader";
+import AppBackground from "../AppBackground";
 import Memory from "./Memory";
 import "./MemoryJarApp.css";
 
@@ -54,9 +54,7 @@ function MemoryJarApp() {
 
   return (
     <>
-      <AppHeader
-        title="Add memories, thoughts and feelings to the jar below"
-      />
+      <AppBackground />
 
       <div className="row align-items-center">
         <div className="col-sm-5" style={{ paddingLeft: "2%" }}>
@@ -84,27 +82,38 @@ function MemoryJarApp() {
           ))}
         </div>
 
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div class="memory_inputs">
           <textarea
             id="memory-input"
             rows="4"
+            class="user_input"
             value={memoryToAdd}
             onChange={(e) => setMemoryToAdd(e.target.value)}
           ></textarea>
-          <button id="memory-input-button" type="submit" onClick={handleClick}>
-            Add
-          </button>
+          <div className="memory_buttons">
+            <button id="memory-input-button" class="button" onClick={handleClick}>
+              Add
+            </button>
 
-          <button
-            id="create-jar-button"
-            type="submit"
-            onClick={createPercentages}
-          >
-            Fill your jar!
-          </button>
+            <button
+              id="create-jar-button"
+              type="submit"
+              onClick={createPercentages}
+              class="button"
+            >
+              Fill your jar!
+            </button>
+          </div>
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}></div>
+        <button
+          class="button back_button"
+          onClick={() => navigate("/")}
+          >
+            <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
+            Back
+        </button>
       </div>
     </>
   );

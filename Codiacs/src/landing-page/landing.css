@@ -312,14 +312,6 @@
     font-size: 1.125em;
 }
 
-#alert_button{
-    position: absolute;
-    right: 0;
-    background-color: #e7302a;
-    color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-}
 
 #progressBar {
     width: 90%;
@@ -337,5 +329,282 @@
   p{
     text-align: center
   }
+
+  #alert_button{
+    position: absolute;
+    right: 0;
+    background-color: #e7302a;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
   /* Do not take in account */
   /* html{padding-top:30px}a.solink{position:fixed;top:0;width:100%;text-align:center;background:#f3f5f6;color:#cfd6d9;border:1px solid #cfd6d9;line-height:30px;text-decoration:none;transition:all .3s;z-index:999}a.solink::first-letter{text-transform:capitalize}a.solink:hover{color:#428bca} */
+
+
+  /* new styling */
+
+  *{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root{
+    --primary: #3e6eb4;
+    --secondary: #3abff0;
+    --tertiary: #6dc6da;
+    --input_color: #BFE3EE;
+}
+
+body{
+    background: white;
+}
+
+
+/* Login Page */
+.login{
+    position: absolute;
+    top: 30vh;
+    justify-content: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.logo_centeral{
+    position: relative;
+    width: 500px;
+    right: 40px;
+    margin-bottom: 40px;
+}
+
+.logo_top_right{
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    width: 500px;
+}
+
+.login_top_branding{
+    top: -4px !important;
+    width: 60% !important;
+    height: 42% !important;
+}
+
+.login_bottom_branding{
+    bottom: -75px !important;
+}
+
+.top_branding{
+    position: fixed;
+    left: 0;
+    top: -4px;
+    width: 50%;
+    height: 28%;
+    opacity: 0.15;
+}
+
+.bottom_branding{
+    position: fixed;
+    right: 0;
+    bottom: 1px;
+    width: 62%;
+    opacity: 0.15;
+}
+
+.fas_back_arrow{
+    margin-right: 10px;
+}
+
+.fas_back_arrow:hover{
+    cursor: pointer;
+}
+
+.input_display{
+    display: grid;
+    margin-bottom: 20px;
+}
+
+.input_display label{
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.user_input{
+    padding: 20px;
+    background-color: var(--input_color);
+    border: none;
+    border-radius: 10px;
+    width: 400px;
+
+}
+
+.login_buttons{
+    display: flex;
+    min-width: 100%;
+}
+
+.button{
+    padding: 15px;
+    color: #fff;
+    background-color: var(--primary);
+    border-radius: 10px;
+    border: none;
+    margin-right: 20px;
+    margin-top: 30px;
+    min-width: 208px;
+    font-size: 20px;
+}
+
+.button:hover{
+    cursor: pointer;
+}
+
+/* Menu Page */
+
+.menu{
+    max-height: 100vh;
+}
+
+.menu h2{
+    position: relative;
+    text-align: center;
+    top: 20vh;
+    justify-content: center;
+    font-size: 2.5rem;
+}
+
+.menu_row{
+    position: relative;
+    top: 20vh;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 30px;
+    margin: 50px 35px 0px 0px;
+}
+
+.col button{
+    width: 100%;
+    border: none;
+    margin: 20px;
+    background: transparent;
+}
+
+
+.game_card{
+    min-height: 35vh;
+    /* border: 7px solid var(--primary); */
+    background-color: var(--secondary);
+    border-radius: 10px;
+}
+
+.game_card:hover{
+    min-height: 50vh;
+    background-color: var(--secondary);
+    opacity: 0.75;
+    background-image: none;
+    cursor: pointer;
+    top: -4vh;
+    position: relative;
+    transition: 0.25s;
+}
+
+.game_card:hover + h3{
+    display: none;
+}
+
+.card_contents{
+    opacity: 0;
+    color: #fff;
+    text-align: center;
+    max-height: 35vh;
+}
+
+.card_contents h3{
+    position: relative;
+    font-size: 2.5rem !important;
+    margin-bottom: 20px;
+    max-width: 80%;
+    left: 35px;
+    top: 10px;
+}
+
+.card_contents p{
+    position: relative;
+    font-size: 1.25rem;
+    max-width: 80%;
+    max-height: 80%;
+    left: 35px;
+    top: 50px;
+}
+
+.game_card:hover > .card_contents{
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.game_card_button button{
+    width: 40%;
+    height: 50px;
+    transform: skew(-20deg);
+    background: var(--tertiary);
+    color: #fff;
+    border: none;
+    text-align: center;
+    left: 29%;
+    position: relative;
+    font-size: 1.5rem;
+    top: 65vh;
+}
+
+.game_card_button button:hover{
+    cursor: pointer;
+}
+
+.worry_monster{
+    background-image: url(../images/worry\ monster.jpg);
+    object-position: center;
+}
+
+.worry_monster p{
+    top: 15px !important;
+}
+
+.volcano{
+    background-image: url(../images/volcano.jpg);
+    object-position: center;
+}
+
+.memory_jar{
+    background-image: url(../images/memory_jar.jpg);
+    object-position: center;
+}
+
+.emdr{
+    background-image: url(../images/emdr.jpg);
+    object-position: center;
+}
+
+.canvas{
+    background-image: url(../images/canvas.jpg);
+    object-position: center;
+}
+
+.col h3{
+    margin-top: 42px;
+    font-size: 2rem;
+}
+
+.safeword{
+    position: absolute;
+    right: 16%;
+    top: 1%;
+}
+
+.back_button{
+    position: absolute;
+    max-width: 100px;
+    bottom: 5%;
+    left: 1%;
+}

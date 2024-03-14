@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./EMDR.css";
-import AppHeader from "../AppHeader";
+import AppBackground from "../AppBackground";
 
 const EMDRPage = () => {
   const [speed, setSpeed] = useState(5);
@@ -36,12 +36,12 @@ const EMDRPage = () => {
 
   return (
     <>
-      <AppHeader title={"EMDR"} />
+      <AppBackground />
       <div
         data-testid="emdrPage"
         className={`${theme === "dark" ? " bg-dark text-light" : ""}`}
       >
-        <div className="row">
+        <div className="row" style={{marginTop: "22vh"}}>
           <div className="col-sm-6 offset-sm-3">
             {!fullScreen && (
               <>
@@ -130,6 +130,13 @@ const EMDRPage = () => {
               </div>
             </div>
           </div>
+          <button
+          class="button back_button"
+          onClick={() => props.setPageValue("landing")}
+          >
+            <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
+            Back
+          </button>
         </div>
       </div>
     </>
