@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
-import "./EMDR.css";
-import AppHeader from "../AppHeader";
+import { useNavigate } from "react-router-dom";
 
-const EMDRPage = (props) => {
+import "./EMDR.css";
+import AppBackground from "../AppBackground";
+
+const EMDRPage = () => {
   const [speed, setSpeed] = useState(5);
   const [size, setSize] = useState(50);
   const [theme, setTheme] = useState("light");
   const [fullScreen, setFullScreen] = useState(false);
   const [isMoving, setIsMoving] = useState(true);
+
+  const navigate = useNavigate();
 
   const handleStartStop = () => {
     setIsMoving(!isMoving);
@@ -36,12 +40,12 @@ const EMDRPage = (props) => {
 
   return (
     <>
-      <AppHeader setPageValue={props.setPageValue} title={"EMDR"} />
+      <AppBackground />
       <div
         data-testid="emdrPage"
         className={`${theme === "dark" ? " bg-dark text-light" : ""}`}
       >
-        <div className="row">
+        <div className="row" style={{marginTop: "22vh"}}>
           <div className="col-sm-6 offset-sm-3">
             {!fullScreen && (
               <>
@@ -130,6 +134,13 @@ const EMDRPage = (props) => {
               </div>
             </div>
           </div>
+          <button
+          className="button back_button"
+          onClick={() => navigate("/")}
+          >
+            <i className="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
+            Back
+          </button>
         </div>
       </div>
     </>

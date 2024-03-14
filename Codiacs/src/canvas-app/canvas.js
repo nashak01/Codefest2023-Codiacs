@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import "./canvas.css";
 // import canvas_script from "./canvas_script.js";
 import AppHeader from "../AppHeader";
@@ -186,7 +188,7 @@ function Canvas(props) {
 
   return (
     <>
-      <AppHeader setPageValue={props.setPageValue} title="Drawing Canvas" />
+      <AppBackground />
       <div classname="row">
         <div className="col-md-12">
           <input
@@ -229,6 +231,13 @@ function Canvas(props) {
             role="img"
           ></canvas>
         </div>
+        <button className="button back_button" onClick={() => navigate("/")}>
+          <i
+            className="fas_back_arrow fa-solid fa-arrow-left"
+            alt="back button"
+          ></i>
+          Back
+        </button>
       </div>
       {showModal && (
         <Modal

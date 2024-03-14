@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import AppHeader from "../AppHeader";
+import { useNavigate } from "react-router-dom";
+import AppBackground from "../AppBackground";
 import "./MonsterPage.css";
 import Button from "../components/Button/Button.tsx";
 
-function MonsterPage(props) {
+function MonsterPage() {
   const [isEating, setIsEating] = useState(false);
   const [isText, setIsText] = useState(false);
   const [isDrawing, setIsDrawing] = useState(true);
@@ -11,6 +12,8 @@ function MonsterPage(props) {
   const [monstersName, setMonstersName] = useState("");
   const [isDraggable, setIsDraggable] = useState(false);
   const [nameSubmitted, setNameSubmitted] = useState(false);
+
+  const navigate = useNavigate();
 
   let burp = new Audio("burp-37726.mp3");
   const lightBlueHex = "#50c7f2";
@@ -195,9 +198,9 @@ function MonsterPage(props) {
 
   return (
     <>
-      <AppHeader setPageValue={props.setPageValue} title={"Worry Monster"} />
+      <AppBackground />
       <div className="m-4">
-        <div className="row">
+        <div className="row" style={{ position: "relative", top: "22vh" }}>
           <div className="col-md-8 p-1">
             {nameSubmitted ? (
               <>
@@ -408,6 +411,13 @@ function MonsterPage(props) {
             )}
           </div>
         </div>
+        <button className="button back_button" onClick={() => navigate("/")}>
+          <i
+            className="fas_back_arrow fa-solid fa-arrow-left"
+            alt="back button"
+          ></i>
+          Back
+        </button>
       </div>
     </>
   );
