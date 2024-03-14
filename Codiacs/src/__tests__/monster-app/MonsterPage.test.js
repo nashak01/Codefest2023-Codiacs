@@ -3,10 +3,10 @@ import { render, fireEvent, waitFor } from "@testing-library/react";
 import MonsterPage from "../../monster-app/MonsterPage";
 import "jest-canvas-mock";
 
-const mockUsedNavigate = jest.fn();
+const mockUseNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
    ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockUsedNavigate,
+  useNavigate: () => mockUseNavigate,
 }));
 
 describe("MonsterPage", () => {

@@ -1,10 +1,10 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import VolcanoApp from "../../volcano-app/VolcanoApp.js";
 
-const mockUsedNavigate = jest.fn();
+const mockUseNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
    ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockUsedNavigate,
+  useNavigate: () => mockUseNavigate,
 }));
 
 describe("Volcano app page", () => {

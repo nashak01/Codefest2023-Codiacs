@@ -14,7 +14,7 @@ import LoginPage from "./login/login.js";
 function App() {
 
   return (
-    <div className="App">
+    <div className="App" data-testid="app">
       <Routes>
         <Route path="/">
           <Route index element={<LandingPage />}/>

@@ -2,10 +2,10 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import EMDRPage from "../../emdr-app/EMDRPage";
 
-const mockUsedNavigate = jest.fn();
+const mockUseNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
    ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockUsedNavigate,
+  useNavigate: () => mockUseNavigate,
 }));
 
 describe("EMDRPage Component", () => {
