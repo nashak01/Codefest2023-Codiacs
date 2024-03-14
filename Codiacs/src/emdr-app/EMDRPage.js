@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./EMDR.css";
 import AppHeader from "../AppHeader";
 
-const EMDRPage = (props) => {
+const EMDRPage = () => {
   const [speed, setSpeed] = useState(5);
   const [size, setSize] = useState(50);
   const [theme, setTheme] = useState("light");
@@ -36,7 +36,7 @@ const EMDRPage = (props) => {
 
   return (
     <>
-      <AppHeader setPageValue={props.setPageValue} title={"EMDR"} />
+      <AppHeader title={"EMDR"} />
       <div
         data-testid="emdrPage"
         className={`${theme === "dark" ? " bg-dark text-light" : ""}`}

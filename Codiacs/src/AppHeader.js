@@ -1,8 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import backArrow from "./images/back-arrow.png";
 import SafewordButton from "./safe-word/SafewordButton";
 
 function AppHeader(props) {
+  const navigate = useNavigate();
+
   return (
     <div
       className="row"
@@ -14,7 +17,7 @@ function AppHeader(props) {
       <div className="col-2">
         <button
           style={{ borderRadius: "15px", height: "40px" }}
-          onClick={() => props.setPageValue("landing")}
+          onClick={() => navigate("/")}
         >
           <img
             src={backArrow}

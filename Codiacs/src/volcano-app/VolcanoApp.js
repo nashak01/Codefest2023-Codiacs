@@ -11,7 +11,7 @@ import Button from "../components/Button/Button.tsx";
 import Modal from "../components/Modal/Modal.tsx";
 import Rating from "../components/Rating/Rating.tsx";
 
-function VolcanoApp(props) {
+function VolcanoApp() {
   const [selectedEmotions, setSelectedEmotions] = useState([]);
   const [progress, setProgress] = useState(0);
   const [customEmotion, setCustomEmotion] = useState("");
@@ -109,7 +109,7 @@ function VolcanoApp(props) {
   return (
     <div id="volcano-app">
       {/* first we add the page header, and pass the page title as "Emotion Volcano" */}
-      <AppHeader setPageValue={props.setPageValue} title="Emotion Volcano" />
+      <AppHeader title="Emotion Volcano" />
 
       {/* then we add the main page content here, using the grid system to allocate space */}
       <div className="row align-items-center" style={{ height: "80vh" }}>

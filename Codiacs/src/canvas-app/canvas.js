@@ -4,7 +4,7 @@ import "./canvas.css";
 import AppHeader from "../AppHeader";
 //import { useEffect } from "react";
 
-function Canvas(props) {
+function Canvas() {
   window.onload = function () {
     // Definitions
     var canvas = document.getElementById("paint-canvas");
@@ -92,7 +92,7 @@ function Canvas(props) {
 
   return (
     <>
-      <AppHeader setPageValue={props.setPageValue} title="Drawing Canvas" />
+      <AppHeader title="Drawing Canvas" />
 
       <main style={{ marginTop: "3%" }}>
         <div className="left-block">

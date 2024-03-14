@@ -1,6 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 import "./landing.css";
-// import "./font_size.js";
-function LandingPage(props) {
+
+function LandingPage() {
+  const navigate = useNavigate();
+
   return (
     <div className="container">
       <div className="profile">
@@ -91,7 +95,7 @@ function LandingPage(props) {
         <div className="row">
           <div
             className="Game col"
-            onClick={() => props.setPageValue("memory-jar")}
+            onClick={() => navigate("memory-jar")}
           >
             <div href="">
               <div className="content">
@@ -114,7 +118,7 @@ function LandingPage(props) {
           <div
             className="Game col"
             id="canvas_load"
-            onClick={() => props.setPageValue("canvas")}
+            onClick={() => navigate("canvas")}
           >
             <div href="">
               <div className="content">
@@ -134,7 +138,7 @@ function LandingPage(props) {
           </div>
           <div
             className="Game col"
-            onClick={() => props.setPageValue("volcano")}
+            onClick={() => navigate("emotion-volcano")}
           >
             <div href="">
               <div className="content">
@@ -154,7 +158,7 @@ function LandingPage(props) {
           </div>
           <div
             className="Game col"
-            onClick={() => props.setPageValue("monster")}
+            onClick={() => navigate("worry-monster")}
           >
             <div href="">
               <div className="content">
@@ -172,7 +176,7 @@ function LandingPage(props) {
               </div>
             </div>
           </div>
-          <div className="Game col" onClick={() => props.setPageValue("emdr")}>
+          <div className="Game col" onClick={() => navigate("emdr")}>
             <div href="">
               <div className="content">
                 <div className="image">

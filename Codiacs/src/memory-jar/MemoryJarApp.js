@@ -5,7 +5,7 @@ import AppHeader from "../AppHeader";
 import Memory from "./Memory";
 import "./MemoryJarApp.css";
 
-function MemoryJarApp(props) {
+function MemoryJarApp() {
   const [memories, setMemories] = useState([]);
   var amounts = [];
   const [memoryToAdd, setMemoryToAdd] = useState("");
@@ -55,7 +55,6 @@ function MemoryJarApp(props) {
   return (
     <>
       <AppHeader
-        setPageValue={props.setPageValue}
         title="Add memories, thoughts and feelings to the jar below"
       />
 

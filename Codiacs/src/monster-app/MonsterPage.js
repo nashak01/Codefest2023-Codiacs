@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AppHeader from "../AppHeader";
 
-function MonsterPage(props) {
+function MonsterPage() {
   const [isEating, setIsEating] = useState(false);
   const [isText, setIsText] = useState(false);
   const [isDrawing, setIsDrawing] = useState(true);
@@ -144,7 +144,7 @@ function MonsterPage(props) {
 
   return (
     <>
-      <AppHeader setPageValue={props.setPageValue} title={"Worry Monster"} />
+      <AppHeader title={"Worry Monster"} />
       <div className="m-4">
         <div className="row">
           <div className="col-md-8 p-1">
