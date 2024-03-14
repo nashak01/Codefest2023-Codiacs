@@ -1,8 +1,13 @@
 import React from "react";
-import { render, fireEvent, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import MonsterPage from "./MonsterPage";
+import { render, fireEvent, waitFor } from "@testing-library/react";
+import MonsterPage from "../../monster-app/MonsterPage";
 import "jest-canvas-mock";
+
+const mockUsedNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+   ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockUsedNavigate,
+}));
 
 describe("MonsterPage", () => {
   test("renders name input and submit button when nameSubmitted is false", () => {

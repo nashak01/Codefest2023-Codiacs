@@ -135,10 +135,10 @@ const EMDRPage = () => {
             </div>
           </div>
           <button
-          class="button back_button"
+          className="button back_button"
           onClick={() => navigate("/")}
           >
-            <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
+            <i className="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
             Back
           </button>
         </div>

@@ -1,6 +1,12 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import VolcanoApp from "../../volcano-app/VolcanoApp.js";
 
+const mockUsedNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+   ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockUsedNavigate,
+}));
+
 describe("Volcano app page", () => {
   it("renders a textbox for adding emotions", () => {
     render(<VolcanoApp />);

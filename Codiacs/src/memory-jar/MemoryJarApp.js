@@ -66,7 +66,7 @@ function MemoryJarApp() {
           ))}
         </div>
         <div className="col-sm-3">
-          <div class="memory-container">
+          <div className="memory-container">
             <img
               src={memoryJarImage}
               alt="Memory Jar"
@@ -85,16 +85,16 @@ function MemoryJarApp() {
           ))}
         </div>
 
-        <div class="memory_inputs">
+        <div className="memory_inputs">
           <textarea
             id="memory-input"
             rows="4"
-            class="user_input"
+            className="user_input"
             value={memoryToAdd}
             onChange={(e) => setMemoryToAdd(e.target.value)}
           ></textarea>
           <div className="memory_buttons">
-            <button id="memory-input-button" class="button" onClick={handleClick}>
+            <button id="memory-input-button" className="button" onClick={handleClick}>
               Add
             </button>
 
@@ -102,7 +102,7 @@ function MemoryJarApp() {
               id="create-jar-button"
               type="submit"
               onClick={createPercentages}
-              class="button"
+              className="button"
             >
               Fill your jar!
             </button>
@@ -111,10 +111,10 @@ function MemoryJarApp() {
 
         <div style={{ display: "flex", justifyContent: "center" }}></div>
         <button
-          class="button back_button"
+          className="button back_button"
           onClick={() => navigate("/")}
           >
-            <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
+            <i className="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
             Back
         </button>
       </div>
