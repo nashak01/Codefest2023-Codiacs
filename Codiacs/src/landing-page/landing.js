@@ -1,13 +1,14 @@
+import { useNavigate } from "react-router-dom";
+
 import "./landing.css";
-// import listetingEarLogoTop from "../images/LISTENING EAR ICON CMYK TOP.jpg";
-// import listetingEarLogoBottom from "../images/LISTENING_EAR_ICON_CMYK_BOTTOM.jpg";
-// import listetingEarLogoTopRight from "../images/LISTENING EAR MAIN.jpg";
 import AppBackground from "../AppBackground";
 
-function LandingPage(props) {
+function LandingPage() {
+  const navigate = useNavigate();
+
   return (
     <>
-      <AppBackground setPageValue={props.setPageValue} />
+      <AppBackground />
       {/* <div class="background_branding">
         <div><img src={listetingEarLogoTop} class="top_branding" alt="Listening Ear Logo" aria-label="Listening Ear Logo"/></div>
         <div><img src={listetingEarLogoBottom} class="bottom_branding" alt="Listening Ear Logo" aria-label="Listening Ear Logo"/></div>
@@ -20,7 +21,7 @@ function LandingPage(props) {
             </div>
             <div class="menu_row">
                 <div class="col">
-                    <button onClick={() => props.setPageValue("memory-jar")}>
+                    <button onClick={() => navigate("memory-jar")}>
                         <div class="game_card memory_jar">
                             <div class="card_contents">
                                 <h3>Memory Jar</h3>
@@ -31,7 +32,7 @@ function LandingPage(props) {
                     </button>
                 </div>
                 <div class="col">
-                    <button onClick={() => props.setPageValue("canvas")}>
+                    <button onClick={() => navigate("canvas")}>
                         <div class="game_card canvas">
                             <div class="card_contents">
                                 <h3>Canvas</h3>
@@ -42,7 +43,7 @@ function LandingPage(props) {
                     </button>
                 </div>
                 <div class="col">
-                    <button onClick={() => props.setPageValue("volcano")}>
+                    <button onClick={() => navigate("emotion-volcano")}>
                         <div class="game_card volcano">
                             <div class="card_contents">
                                 <h3>Volcano</h3>
@@ -53,7 +54,7 @@ function LandingPage(props) {
                     </button>
                 </div>
                 <div class="col">
-                    <button onClick={() => props.setPageValue("monster")}>
+                    <button onClick={() => navigate("worry-monster")}>
                         <div class="game_card worry_monster">
                             <div class="card_contents">
                                 <h3>Worry Monster</h3>
@@ -64,7 +65,7 @@ function LandingPage(props) {
                     </button>
                 </div>
                 <div class="col">
-                    <button onClick={() => props.setPageValue("emdr")}>
+                    <button onClick={() => navigate("emdr")}>
                         <div class="game_card emdr">
                             <div class="card_contents">
                                 <h3>Cloud EMDR</h3>
@@ -76,11 +77,11 @@ function LandingPage(props) {
                 </div>
             </div>
             <button
-            class="button back_button"
-            onClick={() => props.setPageValue("login")}
-            >
-            <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
-            Back
+              className="button back_button"
+              onClick={() => navigate("login")}
+              >
+              <i className="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
+              Back
             </button>
         </div>
     </>

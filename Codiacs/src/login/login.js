@@ -1,9 +1,15 @@
+import { useNavigate } from "react-router-dom";
+
 import "./login.css";
+
 import listetingEarLogoTop from "../images/LISTENING EAR ICON CMYK TOP.jpg";
 import listetingEarLogoBottom from "../images/LISTENING_EAR_ICON_CMYK_BOTTOM.jpg";
 import listetingEarLogoMain from "../images/LISTENING EAR MAIN.jpg";
-function LoginPage(props) {
-  return (
+
+function LoginPage() {
+    const navigate = useNavigate();
+
+    return (
         <>
         <div class="background_branding">
             <div><img src={listetingEarLogoTop} class="top_branding login_top_branding" alt="Listening Ear Logo" aria-label="Listening Ear Logo"/></div>
@@ -25,7 +31,7 @@ function LoginPage(props) {
                 </div>
                 <div class="login_buttons">
                     <button type="button" class="button" aria-label="Retry Button">Retry</button>
-                    <button type="button" class="button" aria-label="Confirm Button" onClick={() => props.setPageValue("landing")}>Confirm</button>
+                    <button type="button" class="button" aria-label="Confirm Button" onClick={() => navigate("/")}>Confirm</button>
                 </div>
             </form>
         </div>
