@@ -84,11 +84,19 @@ function MonsterPage() {
           paintCanvas.addEventListener("mousemove", drawLine);
           paintCanvas.addEventListener("mouseup", stopDrawing);
           paintCanvas.addEventListener("mouseout", stopDrawing);
+          paintCanvas.addEventListener("touchstart", startDrawing);
+          paintCanvas.addEventListener("touchmove", drawLine);
+          paintCanvas.addEventListener("touchend", stopDrawing);
+          paintCanvas.addEventListener("touchcancel", stopDrawing);
         } else {
           paintCanvas.removeEventListener("mousedown", startDrawing);
           paintCanvas.removeEventListener("mousemove", drawLine);
           paintCanvas.removeEventListener("mouseup", stopDrawing);
           paintCanvas.removeEventListener("mouseout", stopDrawing);
+          paintCanvas.removeEventListener("touchstart", startDrawing);
+          paintCanvas.removeEventListener("touchmove", drawLine);
+          paintCanvas.removeEventListener("touchend", stopDrawing);
+          paintCanvas.removeEventListener("touchcancel", stopDrawing);
         }
 
         // Clean up event listeners when the component unmounts
@@ -97,6 +105,10 @@ function MonsterPage() {
           paintCanvas.removeEventListener("mousemove", drawLine);
           paintCanvas.removeEventListener("mouseup", stopDrawing);
           paintCanvas.removeEventListener("mouseout", stopDrawing);
+          paintCanvas.removeEventListener("touchstart", startDrawing);
+          paintCanvas.removeEventListener("touchmove", drawLine);
+          paintCanvas.removeEventListener("touchend", stopDrawing);
+          paintCanvas.removeEventListener("touchcancel", stopDrawing);
           window.removeEventListener("resize", updateCanvasSize);
         };
       }
@@ -200,12 +212,12 @@ function MonsterPage() {
     <>
       <AppBackground />
       <div className="m-4">
-        <div className="row" style={{ position: "relative", top: "22vh" }}>
+        <div className="row" style={{ position: "relative", top: "20vh" }}>
           <div className="col-md-8 p-1">
             {nameSubmitted ? (
               <>
                 <div className="row">
-                  <div className="col-md-6">
+                  <div className="col-md-4">
                     <div className="form-check form-check-inline">
                       <input
                         className="form-check-input"
@@ -241,7 +253,7 @@ function MonsterPage() {
                       </label>
                     </div>
                   </div>
-                  <div className="col-md-6" hidden={!isDrawing}>
+                  <div className="col-md-8" hidden={!isDrawing}>
                     <input
                       data-testid="color-picker"
                       type="color"
@@ -263,7 +275,11 @@ function MonsterPage() {
                     >
                       1 px
                     </label>
-                    <Button children={"Clear"} onClick={clearCanvas} />
+                    <Button
+                      children={"Clear"}
+                      onClick={clearCanvas}
+                      style={{ marginTop: "0px" }}
+                    />
                   </div>
                 </div>
                 <div className="row p-0" hidden={!isDrawing}>

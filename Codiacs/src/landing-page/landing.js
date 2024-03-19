@@ -107,7 +107,7 @@ function LandingPage() {
             className="fas_back_arrow fa-solid fa-arrow-left"
             alt="back button"
           ></i>
-          Back
+          Logout
         </button>
       </div>
     </>
