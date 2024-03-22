@@ -2,6 +2,12 @@ import { render, screen, fireEvent, act } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 import VolcanoApp from "../../volcano-app/VolcanoApp.js";
 
+const mockUseNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+   ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockUseNavigate,
+}));
+
 describe("Volcano app page", () => {
   it("renders a textbox for adding emotions", () => {
     render(<VolcanoApp />);
@@ -70,6 +76,73 @@ describe("Volcano app page", () => {
     fireEvent.keyDown(emotion, { key: "Tab" });
 
     expect(emotion.classList.contains("used-emotion").toBeFalsy);
+  });
+
+  it("should start the bubbling audio when emotion dropped", () => {
+    const mockAudioPlay = jest
+      .spyOn(window.HTMLAudioElement.prototype, 'play')
+      .mockImplementation(() => Promise.resolve())
+
+    render(<VolcanoApp />);
+
+    const volcano = screen.getByTestId("volcano-image");
+    fireEvent.drop(volcano, { dataTransfer: { getData: () => "happy" } });
+
+    const submitButton = screen.getByText("Go")
+    const rating = screen.getByTestId("rating-10");
+    fireEvent.click(rating);
+    fireEvent.click(submitButton);
+
+    expect(mockAudioPlay).toHaveBeenCalledTimes(1);
+  });
+
+  it("should stop the bubbling audio, trigger erupting audio and play erupting animation when progress bar full", () => {
+    const mockAudioPlay = jest
+      .spyOn(window.HTMLAudioElement.prototype, 'play')
+      .mockImplementation(() => Promise.resolve())
+
+    const mockAudioPause = jest
+      .spyOn(window.HTMLAudioElement.prototype, 'pause')
+      .mockImplementation(() => Promise.resolve())
+
+    const mockVideoPlay = jest
+      .spyOn(window.HTMLVideoElement.prototype, 'play')
+      .mockImplementation(() => Promise.resolve())
+
+    render(<VolcanoApp />);
+
+    const volcano = screen.getByTestId("volcano-image");
+    const emotions = ["happy", "sad", "confused"]
+
+    for (const emotion of emotions) {
+      fireEvent.drop(volcano, { dataTransfer: { getData: () => emotion } });
+
+      const submitButton = screen.getByText("Go")
+      const rating = screen.getByTestId("rating-10");
+      fireEvent.click(rating);
+      fireEvent.click(submitButton);
+    }
+    
+    // we expect the bubbling audio to be played twice (for the first two emotions entered),
+    // and the erupting audio to be played once, hence the count of 3 here
+    expect(mockAudioPlay).toHaveBeenCalledTimes(3);
+    expect(mockAudioPause).toHaveBeenCalledTimes(1);
+    expect(mockVideoPlay).toHaveBeenCalledTimes(1);
+  });
+
+  it("should render the volcano image", () => {
+    render(<VolcanoApp />);
+    expect(screen.getByTestId("volcano-image")).toBeTruthy();
+  });
+
+  it("should not play the audio or animation on page load", () => {
+    const mockAudioPlay = jest
+      .spyOn(window.HTMLMediaElement.prototype, 'play')
+      .mockImplementation(() => Promise.resolve())
+
+    render(<VolcanoApp />);
+
+    expect(mockAudioPlay).toHaveBeenCalledTimes(0);
   });
 
   it("should trigger the 'Rate Your Emotion' modal when an item is dropped into the volcano", () => {

@@ -1,18 +1,18 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 // importing all of the custom components needed for the page
 import ProgressBar from "./ProgressBar";
-import volcanoImage from "../images/volcano.png";
-import eruptingVolcanoImage from "../images/erupting-volcano.png";
+import volcanoAnimation from "../images/volcano-animation.mp4";
 import UnusedEmotions from "./UnusedEmotions";
 import UsedEmotions from "./UsedEmotions";
-import AppHeader from "../AppHeader";
+import AppBackground from "../AppBackground.js";
 import Textbox from "../components/Textbox/Textbox.tsx";
 import Button from "../components/Button/Button.tsx";
 import Modal from "../components/Modal/Modal.tsx";
 import Rating from "../components/Rating/Rating.tsx";
 
-function VolcanoApp(props) {
+function VolcanoApp() {
   const [selectedEmotions, setSelectedEmotions] = useState([]);
   const [progress, setProgress] = useState(0);
   const [customEmotion, setCustomEmotion] = useState("");
@@ -20,6 +20,12 @@ function VolcanoApp(props) {
   const [emotionRating, setEmotionRating] = useState(0);
   const [clickedEmotion, setClickedEmotion] = useState("");
   const progressUnit = 4;
+
+  const navigate = useNavigate();
+
+  const bubbling = useRef(new Audio("volcano-bubbling.mp3"));
+  let erupting = new Audio("volcano-erupting.wav");
+  const videoRef = useRef(null);
 
   // sets the initial word emotions on the left hand side
   const [unusedEmotions, setUnusedEmotions] = useState([
@@ -89,10 +95,24 @@ function VolcanoApp(props) {
     setProgress(progress + progressUnit * emotionRating);
   }
 
+  useEffect(() => {
+    if (progress && 0 < progress && progress < 100) {
+      bubbling.current.volume = progress * 0.01 * 0.2;
+      bubbling.current.loop = true; // Loops bubbling audio
+      bubbling.current.play();
+    } else if (progress && progress >= 100) {
+      bubbling.current.pause(); // Stops bubbling audio
+      erupting.currentTime = 0; // Reset audio to beginning
+      erupting.volume = 0.2;
+      erupting.play();
+      videoRef.current.play();
+    }
+  }, [progress])
+
   return (
     <div id="volcano-app">
       {/* first we add the page header, and pass the page title as "Emotion Volcano" */}
-      <AppHeader setPageValue={props.setPageValue} title="Emotion Volcano" />
+      <AppBackground />
 
       {/* then we add the main page content here, using the grid system to allocate space */}
       <div className="row align-items-center" style={{ height: "80vh" }}>
@@ -130,24 +150,9 @@ function VolcanoApp(props) {
             onDrop={handleOnDrop}
             onDragOver={handleDragOver}
           >
-            {/* if the progress bar is not full, it shows the unexploded volcano image */}
-            {/* else if the progress bar is full, it shows the exploding volcano image */}
-            {/* this is called conditional rendering */}
-            {progress < 100 ? (
-              <img
-                src={volcanoImage}
-                alt="Non-erupting volcano"
-                style={{ height: "380px", marginTop: "10%" }}
-                draggable="false"
-              />
-            ) : (
-              <img
-                src={eruptingVolcanoImage}
-                alt="Erupting volcano"
-                style={{ height: "380px", marginTop: "10%" }}
-                draggable="false"
-              />
-            )}
+            <video width="750" height="500" ref={videoRef}>
+              <source src={volcanoAnimation} type="video/mp4"/>
+            </video>
           </div>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <ProgressBar progress={progress} />
@@ -159,6 +164,13 @@ function VolcanoApp(props) {
             <UsedEmotions emotions={selectedEmotions} />
           </div>
         </div>
+        <button
+          className="button back_button"
+          onClick={() => navigate("/")}
+          >
+            <i className="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
+            Back
+          </button>
       </div>
 
       {showModal && (

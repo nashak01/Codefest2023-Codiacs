@@ -1,10 +1,11 @@
+import { useNavigate } from "react-router-dom"
+
 import "./canvas.css";
-// import canvas_script from "./canvas_script.js";
+import AppBackground from "../AppBackground";
 
-import AppHeader from "../AppHeader";
-//import { useEffect } from "react";
-
-function Canvas(props) {
+function Canvas() {
+  const navigate = useNavigate();
+  
   window.onload = function () {
     // Definitions
     var canvas = document.getElementById("paint-canvas");
@@ -92,7 +93,7 @@ function Canvas(props) {
 
   return (
     <>
-      <AppHeader setPageValue={props.setPageValue} title="Drawing Canvas" />
+      <AppBackground />
 
       <main style={{ marginTop: "3%" }}>
         <div className="left-block">
@@ -148,6 +149,13 @@ function Canvas(props) {
           <canvas id="paint-canvas" width="100000" height="100000"></canvas>
           {/* <script src={canvas_script} defer></script> */}
         </div>
+        <button
+        className="button back_button"
+        onClick={() => navigate("/")}
+        >
+          <i className="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
+          Back
+        </button>
       </main>
 
       {/* {document.getElementById("paint-canvas") !== null ? (
