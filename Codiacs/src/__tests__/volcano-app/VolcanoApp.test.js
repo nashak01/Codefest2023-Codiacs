@@ -156,4 +156,33 @@ describe("Volcano app page", () => {
     expect(screen.getByTestId("progress").classList.contains("bg-success")).toBeTruthy;
     expect(screen.getByTestId("progress").classList.contains("bg-warning")).toBeFalsy;
   });
+
+  it("should trap keyboard focus on modal content", async () => {
+    render(<VolcanoApp />);
+
+    const emotion = screen.getByTestId("happy");
+    emotion.focus();
+    act(() => userEvent.keyboard('[Enter]'))
+
+    const rating = screen.getByTestId("rating-1");
+    expect(rating).toBeTruthy();
+    // the first rating circle does automatically get focus in the browser but the test isn't picking this up
+    // so I have manually focused the content
+    rating.focus();
+
+    for (let i = 0; i < 9; i++) {
+      userEvent.tab();
+    }
+    
+    const newRating = screen.getByTestId("rating-10")
+    expect(newRating).toHaveFocus();
+
+    userEvent.tab();
+    const submitButton = screen.getByTestId("Go");
+    expect(submitButton).toHaveFocus();
+
+    // here we show that the keyboard focus is trapped within the modal
+    userEvent.tab();
+    expect(rating).toHaveFocus();
+  });
 });
