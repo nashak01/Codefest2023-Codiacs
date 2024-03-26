@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import "./canvas.css";
-// import canvas_script from "./canvas_script.js";
 import { useEffect, useState } from "react";
 import Button from "../components/Button/Button.tsx";
 import html2canvas from "html2canvas";
@@ -10,10 +9,19 @@ import AppBackground from "../AppBackground";
 
 function Canvas(props) {
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
+  const [showBackgroundModal, setShowBackgroundModal] = useState(false);
+  const [showSaveModal, setShowSaveModal] = useState(false);
+  const [fileName, setFileName] = useState("");
   const [selectedFileType, setSelectedFileType] = useState("jpeg");
   const [drawingStack, setDrawingStack] = useState([]);
   const [undoStack, setUndoStack] = useState([]);
+  const [isErasing, setIsErasing] = useState(false);
+  const [backgroundColour, setBackgroundColour] = useState("#FFFFFF");
+  const [backgroundImage, setBackgroundImage] = useState("");
+  const [isBackgroundImage, setIsBackgroundImage] = useState(false);
+  const [canvasHeight, setCanvasHeight] = useState("");
+  const [strokeStyle, setStrokeStyle] = useState("");
+  const [lineWidth, setLineWidth] = useState("");
 
   const handleFileTypeChange = (event) => {
     setSelectedFileType(event.target.value);
@@ -132,11 +140,89 @@ function Canvas(props) {
       canvas.setAttribute("width", widthInPixels.toString());
       canvas.setAttribute("height", heightInPixels.toString());
 
-      // Redraw the canvas content
       context.lineWidth = lineWidth;
       context.strokeStyle = strokeStyle;
     }
   }
+
+  const handleEraserClick = () => {
+    const canvas = document.getElementById("paint-canvas");
+    const context = canvas.getContext("2d");
+    if (context) {
+      context.globalCompositeOperation = isErasing
+        ? "source-over"
+        : "destination-out";
+      setIsErasing(!isErasing);
+    }
+  };
+
+  const handleBackgroundColourChange = (value) => {
+    setBackgroundColour(value);
+    setIsBackgroundImage(false);
+  };
+
+  const handleBackgroundImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        const img = new Image();
+        img.onload = function () {
+          setBackgroundImage(event.target.result);
+          const canvas = document.getElementById("paint-canvas");
+          const context = canvas.getContext("2d");
+          setLineWidth(context.lineWidth);
+          setStrokeStyle(context.strokeStyle);
+
+          // Calculate new width and height while maintaining aspect ratio
+          const aspectRatio = img.width / img.height;
+          const canvasWidth = canvas.getAttribute("width");
+          // const canvasHeight = canvas.getAttribute("height");
+          // const canvasAspectRatio = canvasWidth / canvasHeight;
+          setCanvasHeight((canvasWidth / aspectRatio).toString());
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+      setIsBackgroundImage(true);
+    }
+  };
+
+  const applyBackground = () => {
+    const canvas = document.getElementById("paint-canvas");
+    // const ctx = canvas.getContext("2d");
+    // if (ctx) {
+    //   ctx.globalCompositeOperation = "destination-over";
+    //   ctx.fillStyle = backgroundColour;
+    //   ctx.fillRect(0, 0, canvas.width, canvas.height);
+    //   ctx.globalCompositeOperation = "source-over";
+    //   setDrawingStack((prevDrawingStack) => [
+    //     ...prevDrawingStack,
+    //     ctx.getImageData(0, 0, canvas.width, canvas.height),
+    //   ]);
+    //   setUndoStack([]);
+    // }
+    if (canvas) {
+      if (isBackgroundImage) {
+        canvas.style.backgroundImage = `url(${backgroundImage})`;
+        canvas.style.backgroundSize = "cover";
+        const context = canvas.getContext("2d");
+        canvas.setAttribute("height", canvasHeight);
+        context.lineWidth = lineWidth;
+        context.strokeStyle = strokeStyle;
+      } else {
+        if (
+          canvas.style.backgroundImage &&
+          canvas.style.backgroundImage !== "none"
+        ) {
+          canvas.style.backgroundImage = "none";
+          updateCanvasSize();
+        }
+        canvas.style.backgroundColor = backgroundColour;
+      }
+    }
+    setShowBackgroundModal(false);
+  };
 
   const clearCanvas = () => {
     const canvas = document.getElementById("paint-canvas");
@@ -192,7 +278,7 @@ function Canvas(props) {
   };
 
   const saveCanvas = () => {
-    setShowModal(false);
+    setShowSaveModal(false);
     const canvas = document.getElementById("paint-canvas");
 
     // Use html2canvas library to capture the canvas content as an image
@@ -204,7 +290,9 @@ function Canvas(props) {
       const year = today.getFullYear();
 
       // Construct the filename with today's date in DD_MM_YYYY format
-      const filename = `canvas_image_${day}_${month}_${year}.${selectedFileType}`;
+      const filename = `${
+        fileName || "canvas_image"
+      }_${day}_${month}_${year}.${selectedFileType}`;
 
       // Convert the canvas to a data URL representing the image
       if (selectedFileType === "pdf") {
@@ -244,23 +332,25 @@ function Canvas(props) {
         document.body.removeChild(link);
       }
     });
+    setFileName("");
   };
 
   const printCanvas = () => {
     const canvas = document.getElementById("paint-canvas");
-
-    // Print canvas content
-    var printWindow = window.open("", "_blank");
-    printWindow.document.open();
-    printWindow.document.write(
-      "<html><head><title>DTR Canvas</title></head><body>"
-    );
-    printWindow.document.write(
-      '<img src="' + canvas.toDataURL() + '" style="width:100%;">'
-    );
-    printWindow.document.write("</body></html>");
-    printWindow.document.close();
-    setTimeout(() => printWindow.print(), 500);
+    html2canvas(canvas).then((canvas) => {
+      // Print canvas content
+      var printWindow = window.open("", "_blank");
+      printWindow.document.open();
+      printWindow.document.write(
+        "<html><head><title>DTR Canvas</title></head><body>"
+      );
+      printWindow.document.write(
+        '<img src="' + canvas.toDataURL() + '" style="width:100%;">'
+      );
+      printWindow.document.write("</body></html>");
+      printWindow.document.close();
+      setTimeout(() => printWindow.print(), 500);
+    });
   };
 
   return (
@@ -290,12 +380,41 @@ function Canvas(props) {
             >
               1 px
             </label>
-            <Button children={<>Clear &#128465;</>} onClick={clearCanvas} />
-            <Button children={<>Undo &#8617;</>} onClick={undoCanvas} />
-            <Button children={<>Redo &#8618;</>} onClick={redoCanvas} />
+            <Button
+              children={
+                isErasing ? <>Pen &#x1F58C;&#xFE0F;</> : <>Eraser &#x1F9F9;</>
+              }
+              onClick={handleEraserClick}
+            />
+            <Button
+              children={<>Set background &#128444;&#65039;</>}
+              onClick={() => setShowBackgroundModal(true)}
+            />
+            <Button
+              children={<>Clear &#128465;</>}
+              onClick={clearCanvas}
+              disabled={drawingStack.length === 0}
+              style={{
+                cursor: drawingStack.length === 0 ? "default" : "pointer",
+              }}
+            />
+            <Button
+              children={<>Undo &#8617;</>}
+              onClick={undoCanvas}
+              disabled={drawingStack.length === 0}
+              style={{
+                cursor: drawingStack.length === 0 ? "default" : "pointer",
+              }}
+            />
+            <Button
+              children={<>Redo &#8618;</>}
+              onClick={redoCanvas}
+              disabled={undoStack.length === 0}
+              style={{ cursor: undoStack.length === 0 ? "default" : "pointer" }}
+            />
             <Button
               children={<>Save &#128190;</>}
-              onClick={() => setShowModal(true)}
+              onClick={() => setShowSaveModal(true)}
             />
             <Button children={<>Print &#128424;</>} onClick={printCanvas} />
           </div>
@@ -320,19 +439,72 @@ function Canvas(props) {
           </button>
         </div>
       </div>
-      {showModal && (
+      {showBackgroundModal && (
         <Modal
-          heading="Select file type"
+          heading="Set canvas background"
+          footer={
+            <Button light onClick={applyBackground}>
+              Apply changes
+            </Button>
+          }
+          noClose={undefined}
+          onClose={() => setShowBackgroundModal(false)}
+        >
+          <label htmlFor="backgroundColourInput" className="form-label">
+            Choose a background colour
+          </label>
+          <div className="text-center">
+            <input
+              type="color"
+              className="mb-2"
+              id="backgroundColourInput"
+              aria-label="Select background colour"
+              value={backgroundColour}
+              onChange={(e) => handleBackgroundColourChange(e.target.value)}
+            />
+          </div>
+          <label htmlFor="backgroundImageInput" className="form-label">
+            Or upload a background image
+          </label>
+          <div className="text-center">
+            <input
+              type="file"
+              accept="image/*"
+              className="form-control"
+              id="backgroundImageInput"
+              aria-label="Select background image"
+              onChange={handleBackgroundImageUpload}
+            />
+          </div>
+        </Modal>
+      )}
+      {showSaveModal && (
+        <Modal
+          heading="Save drawing"
           footer={
             <Button light onClick={saveCanvas}>
               Download
             </Button>
           }
           noClose={undefined}
-          onClose={() => setShowModal(false)}
+          onClose={() => setShowSaveModal(false)}
         >
+          <label htmlFor="fileNameInput" className="form-label">
+            Name your drawing
+          </label>
+          <input
+            type="text"
+            className="form-control mb-2"
+            id="fileNameInput"
+            value={fileName}
+            onChange={(e) => setFileName(e.target.value)}
+          />
+          <label htmlFor="fileTypeSelect" className="form-label">
+            Select file type
+          </label>
           <select
             className="form-select"
+            id="fileTypeSelect"
             value={selectedFileType}
             onChange={handleFileTypeChange}
           >
