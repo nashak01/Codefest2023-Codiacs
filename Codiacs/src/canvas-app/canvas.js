@@ -142,6 +142,7 @@ function Canvas(props) {
 
       context.lineWidth = lineWidth;
       context.strokeStyle = strokeStyle;
+      context.lineCap = "round";
     }
   }
 
@@ -210,6 +211,7 @@ function Canvas(props) {
         canvas.setAttribute("height", canvasHeight);
         context.lineWidth = lineWidth;
         context.strokeStyle = strokeStyle;
+        context.lineCap = "round";
       } else {
         if (
           canvas.style.backgroundImage &&
@@ -370,7 +372,7 @@ function Canvas(props) {
               id="pixel-size-picker"
               className="js-line-range"
               min="1"
-              max="80"
+              max="100"
               defaultValue={"1"}
               aria-label="Select pixel size"
             />
