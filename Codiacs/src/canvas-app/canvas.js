@@ -1,16 +1,36 @@
 import { useNavigate } from "react-router-dom";
 import "./canvas.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Button from "../components/Button/Button.tsx";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import Modal from "../components/Modal/Modal.tsx";
 import AppBackground from "../AppBackground";
 
-function Canvas(props) {
+const fontFamilies = [
+  "Arial",
+  "Comic Sans MS",
+  "Courier New",
+  "Garamond",
+  "Georgia",
+  "Helvetica",
+  "Impact",
+  "Palatino",
+  "Times New Roman",
+  "Verdana",
+];
+
+function Canvas() {
   const navigate = useNavigate();
+  const canvasRef = useRef(null);
+  const [penColour, setPenColour] = useState("#000000");
   const [showBackgroundModal, setShowBackgroundModal] = useState(false);
   const [showSaveModal, setShowSaveModal] = useState(false);
+  const [showTextModal, setShowTextModal] = useState(false);
+  const [text, setText] = useState("");
+  const [fontSize, setFontSize] = useState(16);
+  const [fontFamily, setFontFamily] = useState("Comic Sans MS");
+  const [isApplyingText, setIsApplyingText] = useState(false);
   const [fileName, setFileName] = useState("");
   const [selectedFileType, setSelectedFileType] = useState("jpeg");
   const [drawingStack, setDrawingStack] = useState([]);
@@ -61,11 +81,22 @@ function Canvas(props) {
       const stopDrawing = () => {
         isMouseDown = false;
 
-        const paintCanvas = document.querySelector(".js-paint");
-        const context = paintCanvas.getContext("2d");
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext("2d");
+
+        // if (isApplyingText) {
+        //   const x = event.nativeEvent.offsetX;
+        //   const y = event.nativeEvent.offsetY;
+
+        //   ctx.font = `${fontSize}px ${fontFamily}`;
+        //   ctx.fillText(text, x, y);
+
+        //   setIsApplyingText(false);
+        // }
+
         setDrawingStack((prevDrawingStack) => [
           ...prevDrawingStack,
-          context.getImageData(0, 0, paintCanvas.width, paintCanvas.height),
+          ctx.getImageData(0, 0, canvas.width, canvas.height),
         ]);
         setUndoStack([]);
       };
@@ -114,10 +145,37 @@ function Canvas(props) {
     }
   }, []);
 
+  const handleCanvasClick = (event) => {
+    if (isApplyingText) {
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
+
+      const x = event.nativeEvent.offsetX;
+      const y = event.nativeEvent.offsetY;
+
+      ctx.font = `${fontSize}px ${fontFamily}`;
+      ctx.fillStyle = penColour;
+      ctx.fillText(text, x, y);
+
+      setDrawingStack((prevDrawingStack) => [
+        ...prevDrawingStack,
+        ctx.getImageData(0, 0, canvas.width, canvas.height),
+      ]);
+      setUndoStack([]);
+
+      setIsApplyingText(false);
+    }
+  };
+
+  const handlePenColourChange = (event) => {
+    handleEraserClick(false);
+    setPenColour(event.target.value);
+  };
+
   // Function to update canvas size based on CSS width and height
   function updateCanvasSize() {
     // Get the canvas element
-    const canvas = document.getElementById("paint-canvas");
+    const canvas = canvasRef.current;
 
     // Store the current drawing state
     if (canvas) {
@@ -146,14 +204,13 @@ function Canvas(props) {
     }
   }
 
-  const handleEraserClick = () => {
-    const canvas = document.getElementById("paint-canvas");
+  const handleEraserClick = (value = null) => {
+    const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
     if (context) {
-      context.globalCompositeOperation = isErasing
-        ? "source-over"
-        : "destination-out";
-      setIsErasing(!isErasing);
+      context.globalCompositeOperation =
+        value ?? !isErasing ? "destination-out" : "source-over";
+      setIsErasing(value ?? !isErasing);
     }
   };
 
@@ -170,7 +227,7 @@ function Canvas(props) {
         const img = new Image();
         img.onload = function () {
           setBackgroundImage(event.target.result);
-          const canvas = document.getElementById("paint-canvas");
+          const canvas = canvasRef.current;
           const context = canvas.getContext("2d");
           setLineWidth(context.lineWidth);
           setStrokeStyle(context.strokeStyle);
@@ -190,7 +247,7 @@ function Canvas(props) {
   };
 
   const applyBackground = () => {
-    const canvas = document.getElementById("paint-canvas");
+    const canvas = canvasRef.current;
     // const ctx = canvas.getContext("2d");
     // if (ctx) {
     //   ctx.globalCompositeOperation = "destination-over";
@@ -226,8 +283,30 @@ function Canvas(props) {
     setShowBackgroundModal(false);
   };
 
+  const handleInsertTextClick = () => {
+    setShowTextModal(true);
+  };
+
+  const handleTextChange = (event) => {
+    setText(event.target.value);
+  };
+
+  const handleFontSizeChange = (event) => {
+    setFontSize(parseInt(event.target.value));
+  };
+
+  const handleFontFamilyChange = (event) => {
+    setFontFamily(event.target.value);
+  };
+
+  const handleTextModalApply = () => {
+    handleEraserClick(false);
+    setShowTextModal(false);
+    setIsApplyingText(true);
+  };
+
   const clearCanvas = () => {
-    const canvas = document.getElementById("paint-canvas");
+    const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
 
     // Clear the entire canvas
@@ -281,7 +360,7 @@ function Canvas(props) {
 
   const saveCanvas = () => {
     setShowSaveModal(false);
-    const canvas = document.getElementById("paint-canvas");
+    const canvas = canvasRef.current;
 
     // Use html2canvas library to capture the canvas content as an image
     html2canvas(canvas).then((canvas) => {
@@ -338,7 +417,7 @@ function Canvas(props) {
   };
 
   const printCanvas = () => {
-    const canvas = document.getElementById("paint-canvas");
+    const canvas = canvasRef.current;
     html2canvas(canvas).then((canvas) => {
       // Print canvas content
       var printWindow = window.open("", "_blank");
@@ -366,6 +445,8 @@ function Canvas(props) {
               type="color"
               className="js-color-picker  color-picker me-2"
               aria-label="Select color"
+              value={penColour}
+              onChange={handlePenColourChange}
             />
             <input
               type="range"
@@ -387,10 +468,17 @@ function Canvas(props) {
                 isErasing ? <>Pen &#x1F58C;&#xFE0F;</> : <>Eraser &#x1F9F9;</>
               }
               onClick={handleEraserClick}
+              aria-label={isErasing ? "Use pen tool" : "Use eraser tool"}
             />
             <Button
               children={<>Set background &#128444;&#65039;</>}
               onClick={() => setShowBackgroundModal(true)}
+              aria-label="Set canvas background"
+            />
+            <Button
+              children={<>Insert text &#x1F143;</>}
+              onClick={handleInsertTextClick}
+              aria-label="Insert text"
             />
             <Button
               children={<>Clear &#128465;</>}
@@ -399,6 +487,7 @@ function Canvas(props) {
               style={{
                 cursor: drawingStack.length === 0 ? "default" : "pointer",
               }}
+              aria-label="Clear canvas"
             />
             <Button
               children={<>Undo &#8617;</>}
@@ -407,29 +496,39 @@ function Canvas(props) {
               style={{
                 cursor: drawingStack.length === 0 ? "default" : "pointer",
               }}
+              aria-label="Undo last action"
             />
             <Button
               children={<>Redo &#8618;</>}
               onClick={redoCanvas}
               disabled={undoStack.length === 0}
               style={{ cursor: undoStack.length === 0 ? "default" : "pointer" }}
+              aria-label="Redo last action"
             />
             <Button
               children={<>Save &#128190;</>}
               onClick={() => setShowSaveModal(true)}
+              aria-label="Save drawing"
             />
-            <Button children={<>Print &#128424;</>} onClick={printCanvas} />
+            <Button
+              children={<>Print &#128424;</>}
+              onClick={printCanvas}
+              aria-label="Print drawing"
+            />
           </div>
         </div>
         <div className="row p-0">
           <div className="col-md-12 p-0">
             <canvas
+              ref={canvasRef}
               id="paint-canvas"
               data-testid="paint-canvas"
               className="js-paint  paint-canvas"
               draggable="false"
               aria-label="Monster drawing area"
               role="img"
+              onClick={handleCanvasClick}
+              tabIndex="0"
             ></canvas>
           </div>
           <button className="button back_button" onClick={() => navigate("/")}>
@@ -480,6 +579,69 @@ function Canvas(props) {
           </div>
         </Modal>
       )}
+      {showTextModal && (
+        <Modal
+          heading="Text"
+          footer={
+            <Button light onClick={handleTextModalApply}>
+              Apply
+            </Button>
+          }
+          noClose={undefined}
+          onClose={() => setShowTextModal(false)}
+        >
+          <label htmlFor="textInput" className="form-label">
+            Enter text
+          </label>
+          {/* Text input for entering text */}
+          <input
+            type="text"
+            className="form-control mb-2"
+            id="textInput"
+            value={text}
+            onChange={handleTextChange}
+            placeholder="Enter text"
+            aria-label="Enter text"
+          />
+          <label htmlFor="fontSelect" className="form-label">
+            Select font
+          </label>
+          {/* Select input for choosing font family */}
+          <select
+            className="form-select mb-2"
+            id="fontSelect"
+            value={fontFamily}
+            onChange={handleFontFamilyChange}
+            aria-label="Select font"
+          >
+            {fontFamilies.map((v) => (
+              <option style={{ fontFamily: v }} value={v}>
+                {v}
+              </option>
+            ))}
+          </select>
+          <label htmlFor="fontSizeInput" className="form-label">
+            Select font size
+          </label>
+          {/* Slider input for choosing font size */}
+          <input
+            type="range"
+            id="fontSizeInput"
+            min="1"
+            max="100"
+            value={fontSize}
+            onChange={handleFontSizeChange}
+            aria-label="Select font size"
+          />
+          <label className="mb-2" htmlFor="fontSizeInput">
+            {fontSize}
+          </label>
+          <p>
+            After clicking apply below, select somewhere on the canvas for the
+            text to appear.
+          </p>
+        </Modal>
+      )}
       {showSaveModal && (
         <Modal
           heading="Save drawing"
@@ -500,6 +662,7 @@ function Canvas(props) {
             id="fileNameInput"
             value={fileName}
             onChange={(e) => setFileName(e.target.value)}
+            aria-label="Name your drawing"
           />
           <label htmlFor="fileTypeSelect" className="form-label">
             Select file type
@@ -509,6 +672,7 @@ function Canvas(props) {
             id="fileTypeSelect"
             value={selectedFileType}
             onChange={handleFileTypeChange}
+            aria-label="Select file type"
           >
             <option value="jpeg">JPEG</option>
             <option value="png">PNG</option>
