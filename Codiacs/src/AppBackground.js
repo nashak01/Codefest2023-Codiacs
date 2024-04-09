@@ -5,13 +5,42 @@ import listetingEarLogoBottom from "./images/LISTENING_EAR_ICON_CMYK_BOTTOM.jpg"
 import listetingEarLogoTopRight from "./images/LISTENING EAR MAIN.jpg";
 import "./fontawesome-free-6.5.1-web/css/all.css";
 
-function AppBackground() {
+function AppBackground(props) {
   return (
     <>
-      <div class="background_branding">
-        <div><img src={listetingEarLogoTop} class="top_branding" alt="Listening Ear Logo" aria-label="Listening Ear Logo"/></div>
-        <div><img src={listetingEarLogoBottom} class="bottom_branding" alt="Listening Ear Logo" aria-label="Listening Ear Logo"/></div>
-        <div><img src={listetingEarLogoTopRight} class="logo_top_right" alt="Listening Ear Logo" aria-label="Listening Ear Logo"/></div>
+      <div className="background_branding">
+        {!props.EMDRTheme && (
+          <>
+            <div>
+              <img
+                src={listetingEarLogoTop}
+                className="top_branding"
+                alt="Listening Ear Logo"
+                aria-label="Listening Ear Logo"
+                draggable={false}
+              />
+            </div>
+
+            <div>
+              <img
+                src={listetingEarLogoBottom}
+                className="bottom_branding"
+                alt="Listening Ear Logo"
+                aria-label="Listening Ear Logo"
+                draggable={false}
+              />
+            </div>
+          </>
+        )}
+        <div>
+          <img
+            src={listetingEarLogoTopRight}
+            className="logo_top_right"
+            alt="Listening Ear Logo"
+            aria-label="Listening Ear Logo"
+            draggable={false}
+          />
+        </div>
       </div>
 
       <div

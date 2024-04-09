@@ -2,6 +2,7 @@ import React from "react";
 import FocusTrap from "focus-trap-react"
 import CloseButton from "react-bootstrap/CloseButton";
 import "./ModalContent.css";
+import Button from "../Button/Button.tsx";
 
 export interface ModalContentProps {
   heading: string;
