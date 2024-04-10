@@ -148,13 +148,14 @@ function Canvas(props) {
           <canvas id="paint-canvas" width="100000" height="100000"></canvas>
           {/* <script src={canvas_script} defer></script> */}
         </div>
-        <button
-        class="button back_button"
-        onClick={() => props.setPageValue("landing")}
-        >
+        <div class="back_button_container">
+          <button
+          class="back_button"
+          onClick={() => props.setPageValue("landing")}
+          >
           <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
-          Back
-        </button>
+          </button>
+        </div>
       </main>
 
       {/* {document.getElementById("paint-canvas") !== null ? (
