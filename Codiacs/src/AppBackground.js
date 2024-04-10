@@ -21,7 +21,7 @@ function AppBackground(props) {
           marginTop: "2%",
         }}
       >
-        <div className="col-2 text-center safeword">
+        <div className="circle col-2 text-center safeword">
           <SafewordButton />
         </div>
       </div>

@@ -6,7 +6,12 @@
     padding: 0% 8%;
     align-items: center;
     justify-content: center;
-    width: 80%
+    width: fit-content;
+}
+
+.light {
+    color: #3e6eb4;
+    background: white;
 }
 
 .media-span {
