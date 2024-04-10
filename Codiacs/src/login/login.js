@@ -1,7 +1,7 @@
 import "./login.css";
 import listetingEarLogoTop from "../images/LISTENING EAR ICON CMYK TOP.jpg";
 import listetingEarLogoBottom from "../images/LISTENING_EAR_ICON_CMYK_BOTTOM.jpg";
-import listetingEarLogoMain from "../images/LISTENING EAR MAIN.jpg";
+import listetingEarLogoMain from "../images/LISTENING EAR MAIN.jpg.png";
 function LoginPage(props) {
   return (
         <>

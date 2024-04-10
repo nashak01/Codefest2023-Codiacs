@@ -77,10 +77,11 @@ function LandingPage(props) {
             </div>
             <div class="back_button_container">
                 <button
-                class="back_button"
+                class="sign_out_button"
                 onClick={() => props.setPageValue("login")}
                 >
                 <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
+                <p>Sign Out</p>
                 </button>
             </div>
         </div>

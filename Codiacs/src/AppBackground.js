@@ -2,7 +2,7 @@ import React from "react";
 import SafewordButton from "./safe-word/SafewordButton";
 import listetingEarLogoTop from "./images/LISTENING EAR ICON CMYK TOP.jpg";
 import listetingEarLogoBottom from "./images/LISTENING_EAR_ICON_CMYK_BOTTOM.jpg";
-import listetingEarLogoTopRight from "./images/LISTENING EAR MAIN.jpg";
+import listetingEarLogoTopRight from "./images/LISTENING EAR MAIN.jpg.png";
 import "./fontawesome-free-6.5.1-web/css/all.css";
 
 function AppBackground(props) {
