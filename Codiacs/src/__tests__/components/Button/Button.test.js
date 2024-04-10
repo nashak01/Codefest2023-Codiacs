@@ -26,4 +26,14 @@ describe("Button component", () => {
     render(<Button>Button Text</Button>);
     expect(screen.getByRole("button")).toHaveTextContent("Button Text");
   });
+
+  it("renders a button with the 'light' css class when light prop passed in", () => {
+    const { container } = render(<Button light />);
+    expect(container.firstChild.classList.contains("light")).toBeTruthy;
+  });
+
+  it("renders a draggable button when draggable prop passed in", () => {
+    render(<Button draggable />);
+    expect(screen.getByRole("button")).toHaveAttribute("draggable", "true");
+  });
 });
