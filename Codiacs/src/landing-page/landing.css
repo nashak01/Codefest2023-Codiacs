@@ -413,13 +413,6 @@ body{
     opacity: 0.15;
 }
 
-.fas_back_arrow{
-    margin-right: 10px;
-}
-
-.fas_back_arrow:hover{
-    cursor: pointer;
-}
 
 .input_display{
     display: grid;
@@ -470,14 +463,14 @@ body{
 .menu h2{
     position: relative;
     text-align: center;
-    top: 20vh;
+    top: 10vh;
     justify-content: center;
     font-size: 2.5rem;
 }
 
 .menu_row{
     position: relative;
-    top: 20vh;
+    top: 10vh;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 30px;
@@ -563,8 +556,10 @@ body{
 }
 
 .worry_monster{
-    background-image: url(../images/worry\ monster.jpg);
+    background-image: url(../images/worry\ monster\ 2.jpeg);
     object-position: center;
+    background-position: center;
+    background-size: cover;
 }
 
 .worry_monster p{
@@ -572,23 +567,31 @@ body{
 }
 
 .volcano{
-    background-image: url(../images/volcano.jpg);
+    background-image: url(../images/volcano\ 2.jpeg);
     object-position: center;
+    background-position: center;
+    background-size: cover;
 }
 
 .memory_jar{
-    background-image: url(../images/memory_jar.jpg);
+    background-image: url(../images/memory\ jar\ 2.jpeg);
     object-position: center;
+    background-position: center;
+    background-size: cover;
 }
 
 .emdr{
     background-image: url(../images/emdr.jpg);
     object-position: center;
+    background-position: center;
+    background-size: cover;
 }
 
 .canvas{
-    background-image: url(../images/canvas.jpg);
+    background-image: url(../images/canvas\ 2.jpeg);
     object-position: center;
+    background-position: center;
+    background-size: cover;
 }
 
 .col h3{
@@ -605,6 +608,20 @@ body{
 .back_button{
     position: absolute;
     max-width: 100px;
-    bottom: 5%;
+    top: 2%;
     left: 1%;
+    border-radius: 50%;
+    padding: 10px;
+    border: none;
+    color: #fff;
+    background-color: var(--primary);
+}
+
+.fas_back_arrow{
+    margin: 10px;
+    font-size: 2rem;
+}
+
+.fas_back_arrow:hover{
+    cursor: pointer;
 }

@@ -1,0 +1,9 @@
+.scale-container {
+    display: flex;
+    justify-content: center;
+}
+
+.rating-container {
+    display: grid;
+    padding: 1%;
+}

@@ -75,13 +75,14 @@ function LandingPage(props) {
                     </button>
                 </div>
             </div>
-            <button
-            class="button back_button"
-            onClick={() => props.setPageValue("login")}
-            >
-            <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
-            Back
-            </button>
+            <div class="back_button_container">
+                <button
+                class="back_button"
+                onClick={() => props.setPageValue("login")}
+                >
+                <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
+                </button>
+            </div>
         </div>
     </>
   );

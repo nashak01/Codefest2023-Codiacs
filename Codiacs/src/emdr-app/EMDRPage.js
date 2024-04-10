@@ -3,38 +3,11 @@ import "./EMDR.css";
 import AppBackground from "../AppBackground";
 
 const EMDRPage = (props) => {
-  const [speed, setSpeed] = useState("5");
+  const [speed, setSpeed] = useState(5);
   const [size, setSize] = useState(50);
   const [theme, setTheme] = useState("light");
   const [fullScreen, setFullScreen] = useState(false);
   const [isMoving, setIsMoving] = useState(true);
-
-  // useEffect(() => {
-  // const dot = document.getElementById("dot");
-  // let direction = 1; // 1 for right, -1 for left
-  // let speed = 1; // Adjust this value for the speed
-  // function moveDot() {
-  //   const currentLeft = parseInt(getComputedStyle(dot).left, 10);
-  //   const currentRight = parseInt(getComputedStyle(dot).right, 10);
-  //   if (direction === 1) {
-  //     if (currentLeft + speed >= window.innerWidth - 75 - size * 2) {
-  //       direction = -1;
-  //       dot.style.left = window.innerWidth - 75 - size * 2 + "px";
-  //     } else {
-  //       dot.style.left = currentLeft + speed + "px";
-  //     }
-  //   } else {
-  //     if (currentLeft - speed <= 0) {
-  //       direction = 1;
-  //       dot.style.left = "0px";
-  //     } else {
-  //       dot.style.left = currentLeft - speed + "px";
-  //     }
-  //   }
-  //   requestAnimationFrame(moveDot);
-  // }
-  // moveDot();
-  // }, []);
 
   const handleStartStop = () => {
     setIsMoving(!isMoving);
@@ -47,33 +20,18 @@ const EMDRPage = (props) => {
   };
 
   useEffect(() => {
-    // Get the element by ID
     const dotElement = document.getElementById("dot");
-
-    // Change the value of --animdur
     dotElement.style.setProperty("--animdur", `${11 - speed}s`);
   }, [speed]);
 
   useEffect(() => {
     let dot = document.getElementById("dot");
-
-    // Set the size of the dot
     dot.style.setProperty("--w", `${size * 1.5}px`);
-    // dot.style.width = `${size * 1.5}px`;
-    // dot.style.height = `${size * 1.5}px`;
-
-    // Set the animation speed
-    // dot.style.animation = `moveRight ${speed}s linear infinite`;
   }, [size]);
 
   useEffect(() => {
     let dot = document.getElementById("dot");
-
-    if (theme === "dark") {
-      dot.style.backgroundColor = "white";
-    } else {
-      dot.style.backgroundColor = "black";
-    }
+    dot.style.backgroundColor = theme === "dark" ? "white" : "black";
   }, [theme]);
 
   return (
@@ -85,9 +43,7 @@ const EMDRPage = (props) => {
       >
         <div className="row" style={{marginTop: "22vh"}}>
           <div className="col-sm-6 offset-sm-3">
-            {fullScreen ? (
-              <></>
-            ) : (
+            {!fullScreen && (
               <>
                 <div className="form-group mt-2">
                   <label htmlFor="sizeSlider" className="me-2">
@@ -99,6 +55,10 @@ const EMDRPage = (props) => {
                     id="sizeSlider"
                     value={size}
                     onChange={(e) => setSize(e.target.value)}
+                    aria-label="Adjust size"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow={size}
                   />
                 </div>
                 <span>Size: {size}</span>
@@ -114,25 +74,13 @@ const EMDRPage = (props) => {
                     max="10"
                     value={speed}
                     onChange={(e) => setSpeed(e.target.value)}
+                    aria-label="Adjust speed"
+                    aria-valuemin="0"
+                    aria-valuemax="10"
+                    aria-valuenow={speed}
                   />
                 </div>
                 <span>Speed: {speed}</span>
-
-                {/* <div className="form-group my-2">
-                  <label htmlFor="speedSelect">
-                    <b>Speed</b>
-                  </label>
-                  <select
-                    className="form-control"
-                    id="speedSelect"
-                    value={speed}
-                    onChange={(e) => setSpeed(e.target.value)}
-                  >
-                    <option value="slow">Slow</option>
-                    <option value="medium">Medium</option>
-                    <option value="fast">Fast</option>
-                  </select>
-                </div> */}
 
                 <div className="form-group my-2">
                   <label htmlFor="themeSelect">
@@ -143,6 +91,7 @@ const EMDRPage = (props) => {
                     id="themeSelect"
                     value={theme}
                     onChange={(e) => setTheme(e.target.value)}
+                    aria-label="Select background theme"
                   >
                     <option value="light">Light</option>
                     <option value="dark">Dark</option>
@@ -156,12 +105,14 @@ const EMDRPage = (props) => {
                 "btn btn-" + (isMoving ? "danger" : "success") + " m-2 mb-5"
               }
               onClick={() => handleStartStop()}
+              aria-label={isMoving ? "Stop movement" : "Start movement"}
             >
               {isMoving ? "Stop" : "Start"}
             </button>
             <button
               className="btn btn-primary m-2 mb-5"
               onClick={() => setFullScreen(!fullScreen)}
+              aria-label={fullScreen ? "Show settings" : "Hide settings"}
             >
               {fullScreen ? "Show settings" : "Hide settings"}
             </button>
@@ -173,17 +124,20 @@ const EMDRPage = (props) => {
                   id="dot"
                   className="dot a-slide"
                   data-animation="stop"
+                  aria-label="Moving dot"
+                  role="img"
                 ></div>
               </div>
             </div>
           </div>
-          <button
-          class="button back_button"
-          onClick={() => props.setPageValue("landing")}
-          >
+          <div class="back_button_container">
+            <button
+            class="back_button"
+            onClick={() => props.setPageValue("landing")}
+            >
             <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
-            Back
-          </button>
+            </button>
+          </div>
         </div>
       </div>
     </>

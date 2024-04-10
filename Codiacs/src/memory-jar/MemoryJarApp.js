@@ -109,13 +109,15 @@ function MemoryJarApp(props) {
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}></div>
-        <button
-          class="button back_button"
+        
+        <div class="back_button_container">
+          <button
+          class="back_button"
           onClick={() => props.setPageValue("landing")}
           >
-            <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
-            Back
-        </button>
+          <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
+          </button>
+        </div>
       </div>
     </>
   );
