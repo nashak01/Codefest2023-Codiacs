@@ -1,12 +1,7 @@
-/* body {
-    margin: 0;
-    overflow: hidden;
-} */
-
 .dot-container {
-    width: 100%;
-    height: 100vh;
-    position: relative;
+  width: 100%;
+  /*height: 100vh;*/
+  position: relative;
 }
 
 /* .dot {
@@ -17,64 +12,70 @@
     border-radius: 50%;
 } */
 
-  .hidden {
-    clip: rect(1px 1px 1px 1px);
-    clip: rect(1px, 1px, 1px, 1px);
-    clip-path: inset(1px);
-    display: block;
-    height: 1px;
-    overflow: hidden; 
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-  }
-  #dot {
-    --w: 75px;
-    align-items: center;
-    background-color: black;
-    border-radius: 50%;
-    display: flex;
-    height: var(--w);
-    justify-content: center;
-    margin-bottom: 1rem;
-    width: var(--w);
-    --animdur: 6s;
-    --animn: slide;
-  }
-  [data-animation] {
-    animation: var(--animn, none) var(--animdur, 0s) var(--animtf, linear) var(--animdel, 0s) var(--animic, infinite) var(--animdir, alternate) var(--animfm, none) var(--animps, running);
-  }
+.hidden {
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(1px);
+  display: block;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+#dot {
+  --w: 75px;
+  align-items: center;
+  background-color: black;
+  border-radius: 50%;
+  display: flex;
+  height: var(--w);
+  justify-content: center;
+  margin-bottom: 1rem;
+  width: var(--w);
+  --animdur: 6s;
+  --animn: slide;
+}
+[data-animation] {
+  animation: var(--animn, none) var(--animdur, 0s) var(--animtf, linear)
+    var(--animdel, 0s) var(--animic, infinite) var(--animdir, alternate)
+    var(--animfm, none) var(--animps, running);
+}
 
-  /* KEYFRAMES */
-  @keyframes opacity {
-    0% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.6;
-    }
-    100% {
-      opacity: 1;
-    }
+/* KEYFRAMES */
+@keyframes opacity {
+  0% {
+    opacity: 1;
   }
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    25% {
-      transform: scale(.9);
-    }
-    50% {
-      transform: scale(1);
-    }
-    75% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1);
-    }
+  50% {
+    opacity: 0.6;
   }
-  @keyframes slide {
-    from { margin-left: 0%; }
-    to { margin-left: calc(100% - var(--w, 150px)); }
+  100% {
+    opacity: 1;
   }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes slide {
+  from {
+    margin-left: 0%;
+  }
+  to {
+    margin-left: calc(100% - var(--w, 150px));
+  }
+}

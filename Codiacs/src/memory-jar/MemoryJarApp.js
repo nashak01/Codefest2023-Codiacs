@@ -1,17 +1,20 @@
 import { React, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import memoryJarImage from "../images/memory-jar.jpg";
 import AppBackground from "../AppBackground";
 import Memory from "./Memory";
 import "./MemoryJarApp.css";
 
-function MemoryJarApp(props) {
+function MemoryJarApp() {
   const [memories, setMemories] = useState([]);
   var amounts = [];
   const [memoryToAdd, setMemoryToAdd] = useState("");
 
   const [percentages, setPercentages] = useState([]);
   const [cumulativePercentages, setCumulativePercentages] = useState([]);
+
+  const navigate = useNavigate();
 
   function createPercentages() {
     const total = amounts.reduce((partialSum, a) => partialSum + +a, 0);
@@ -54,9 +57,7 @@ function MemoryJarApp(props) {
 
   return (
     <>
-      <AppBackground
-        setPageValue={props.setPageValue}
-      />
+      <AppBackground />
 
       <div className="row align-items-center">
         <div className="col-sm-5" style={{ paddingLeft: "2%" }}>
@@ -65,7 +66,7 @@ function MemoryJarApp(props) {
           ))}
         </div>
         <div className="col-sm-3">
-          <div class="memory-container">
+          <div className="memory-container">
             <img
               src={memoryJarImage}
               alt="Memory Jar"
@@ -84,16 +85,16 @@ function MemoryJarApp(props) {
           ))}
         </div>
 
-        <div class="memory_inputs">
+        <div className="memory_inputs">
           <textarea
             id="memory-input"
             rows="4"
-            class="user_input"
+            className="user_input"
             value={memoryToAdd}
             onChange={(e) => setMemoryToAdd(e.target.value)}
           ></textarea>
           <div className="memory_buttons">
-            <button id="memory-input-button" class="button" onClick={handleClick}>
+            <button id="memory-input-button" className="button" onClick={handleClick}>
               Add
             </button>
 
@@ -101,7 +102,7 @@ function MemoryJarApp(props) {
               id="create-jar-button"
               type="submit"
               onClick={createPercentages}
-              class="button"
+              className="button"
             >
               Fill your jar!
             </button>
@@ -109,15 +110,13 @@ function MemoryJarApp(props) {
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}></div>
-        
-        <div class="back_button_container">
-          <button
-          class="back_button"
-          onClick={() => props.setPageValue("landing")}
+        <button
+          className="button back_button"
+          onClick={() => navigate("/")}
           >
-          <i class="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
-          </button>
-        </div>
+            <i className="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
+            Back
+        </button>
       </div>
     </>
   );
