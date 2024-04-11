@@ -17,7 +17,7 @@ function Button({
   className,
   ...props
 }: ButtonComponentProps) {
-  var buttonClass: string = "button";
+  var buttonClass: string = "button-component";
   if (className) {
     buttonClass += " " + className;
   }

@@ -172,7 +172,6 @@ function VolcanoApp() {
             Back
           </button>
         </div>
-      </div>
 
       {showModal && (
         <Modal
