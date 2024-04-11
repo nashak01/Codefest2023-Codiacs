@@ -1,9 +1,13 @@
-.monster-canvas {
-  border: 1px black solid;
+#monster-canvas {
+  border: 2px #3b6db4 solid;
   /* display: block; */
-  margin: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  background-color: white;
 }
 
 .color-picker {
-  margin: 1rem 1rem 0 1rem;
+  margin: 0rem 1rem 0 1rem;
 }

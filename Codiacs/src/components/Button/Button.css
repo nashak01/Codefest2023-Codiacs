@@ -1,20 +1,32 @@
 .button {
-    border-radius: 20px;
-    border: 2px solid #3e6eb4;
-    color: white;
-    background: #3e6eb4;
-    padding: 0% 8%;
-    align-items: center;
-    justify-content: center;
-    width: fit-content;
+  border-radius: 20px;
+  border: 2px solid #3e6eb4;
+  color: white;
+  background: #3e6eb4;
+  padding: 0% 8%;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
 }
 
 .light {
-    color: #3e6eb4;
-    background: white;
+  color: #3e6eb4;
+  background: white;
 }
 
 .media-span {
-    font-size: 25px;
-    margin-right: 1%;
+  font-size: 25px;
+  margin-right: 1%;
 }
+
+/* .button:enabled:hover:not(.close),
+.button:disabled:not(.close) {
+  border-radius: 20px;
+  border: 2px solid #50c7f2;
+  color: black;
+  background: #50c7f2;
+  padding: 0% 8%;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+} */
