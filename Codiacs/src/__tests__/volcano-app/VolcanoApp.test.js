@@ -335,4 +335,50 @@ describe("Volcano app page", () => {
     userEvent.tab();
     expect(rating).toHaveFocus();
   });
+
+  it("should trigger the 'How are you feeling today?' modal when the volcano activity is opened", () => {
+    render(<VolcanoApp />);
+
+    expect(screen.getByText("How are you feeling today?")).toBeTruthy();
+  });
+
+  it("should set the progress bar increases as small when the user rates how they're feeling low on the scale", () => {
+    render(<VolcanoApp />);
+    
+    const userRating = screen.getByTestId("rating-1");
+    fireEvent.click(userRating);
+    const feelingSubmit = screen.getByTestId("Enter");
+    fireEvent.click(feelingSubmit);
+
+    const volcano = screen.getByTestId("volcano-image");
+    fireEvent.drop(volcano, { dataTransfer: { getData: () => "happy" } });
+
+    const rating = screen.getByTestId("rating-5");
+    const submitButton = screen.getByText("Go");
+    fireEvent.click(rating);
+    fireEvent.click(submitButton);
+
+    expect(screen.getByTestId("progress").classList.contains("bg-success")).toBeTruthy;
+    expect(screen.getByTestId("progress").classList.contains("bg-warning")).toBeFalsy;
+  });
+
+  it("should set the progress bar increases as big when the user rates how they're feeling high on the scale", () => {
+    render(<VolcanoApp />);
+    
+    const userRating = screen.getByTestId("rating-10");
+    fireEvent.click(userRating);
+    const feelingSubmit = screen.getByTestId("Enter");
+    fireEvent.click(feelingSubmit);
+
+    const volcano = screen.getByTestId("volcano-image");
+    fireEvent.drop(volcano, { dataTransfer: { getData: () => "happy" } });
+
+    const rating = screen.getByTestId("rating-5");
+    const submitButton = screen.getByText("Go");
+    fireEvent.click(rating);
+    fireEvent.click(submitButton);
+
+    expect(screen.getByTestId("progress").classList.contains("bg-warning")).toBeTruthy;
+    expect(screen.getByTestId("progress").classList.contains("bg-success")).toBeFalsy;
+  });
 });
