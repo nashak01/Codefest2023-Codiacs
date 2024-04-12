@@ -342,7 +342,7 @@ describe("Volcano app page", () => {
     expect(screen.getByText("How are you feeling today?")).toBeTruthy();
   });
 
-  it("should set the progress bar increases as small when the user rates how they're feeling low on the scale", () => {
+  it("should set the progress bar increases as big when the user says they feel very bad", () => {
     render(<VolcanoApp />);
     
     const userRating = screen.getByTestId("rating-1");
@@ -358,11 +358,11 @@ describe("Volcano app page", () => {
     fireEvent.click(rating);
     fireEvent.click(submitButton);
 
-    expect(screen.getByTestId("progress").classList.contains("bg-success")).toBeTruthy;
-    expect(screen.getByTestId("progress").classList.contains("bg-warning")).toBeFalsy;
+    expect(screen.getByTestId("progress").classList.contains("bg-warning")).toBeTruthy;
+    expect(screen.getByTestId("progress").classList.contains("bg-success")).toBeFalsy;
   });
 
-  it("should set the progress bar increases as big when the user rates how they're feeling high on the scale", () => {
+  it("should set the progress bar increases as small when the user says they feel very good", () => {
     render(<VolcanoApp />);
     
     const userRating = screen.getByTestId("rating-10");
@@ -378,7 +378,7 @@ describe("Volcano app page", () => {
     fireEvent.click(rating);
     fireEvent.click(submitButton);
 
-    expect(screen.getByTestId("progress").classList.contains("bg-warning")).toBeTruthy;
-    expect(screen.getByTestId("progress").classList.contains("bg-success")).toBeFalsy;
+    expect(screen.getByTestId("progress").classList.contains("bg-success")).toBeTruthy;
+    expect(screen.getByTestId("progress").classList.contains("bg-warning")).toBeFalsy;
   });
 });
