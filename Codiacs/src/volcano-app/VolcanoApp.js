@@ -17,15 +17,23 @@ function VolcanoApp() {
   const [progress, setProgress] = useState(0);
   const [customEmotion, setCustomEmotion] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [triggerModalOpen, setTriggerModalOpen] = useState(true);
   const [emotionRating, setEmotionRating] = useState(0);
   const [clickedEmotion, setClickedEmotion] = useState("");
-  const progressUnit = 4;
+  const [triggerPoint, setTriggerPoint] = useState(null);
+  const [progressUnit, setProgressUnit] = useState(null);
 
   const navigate = useNavigate();
 
   const bubbling = useRef(new Audio("volcano-bubbling.mp3"));
   let erupting = new Audio("volcano-erupting.wav");
   const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (triggerPoint !== null) {
+      setProgressUnit((15 - triggerPoint) / 2);
+    }
+  }, [triggerPoint]);
 
   // sets the initial word emotions on the left hand side
   const [unusedEmotions, setUnusedEmotions] = useState([
@@ -84,6 +92,10 @@ function VolcanoApp() {
     setCustomEmotion("");
   }
 
+  function handleTriggerEnter() {
+    setTriggerModalOpen(false);
+  }
+
   function handleChange(e) {
     setCustomEmotion(e.target.value);
   }
@@ -112,7 +124,7 @@ function VolcanoApp() {
   return (
     <div id="volcano-app">
       {/* first we add the page header, and pass the page title as "Emotion Volcano" */}
-      <AppBackground />
+      {/* <AppBackground /> */}
 
       {/* then we add the main page content here, using the grid system to allocate space */}
       <div className="row align-items-center" style={{ height: "80vh" }}>
@@ -172,6 +184,25 @@ function VolcanoApp() {
             Back
           </button>
       </div>
+
+      {triggerModalOpen && (
+        <Modal
+          heading="How are you feeling today?"
+          subheading="(1 = very bad, 10 = very good)"
+          footer={
+            <Button light onClick={handleTriggerEnter}>
+              Enter
+            </Button>
+          }
+          noClose
+        >
+          <Rating
+            amount={10}
+            selectedAmount={triggerPoint}
+            setSelectedAmount={setTriggerPoint}
+          />
+        </Modal>
+      )}
 
       {showModal && (
         <Modal
