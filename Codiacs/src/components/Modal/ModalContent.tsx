@@ -1,6 +1,8 @@
 import React from "react";
+import FocusTrap from "focus-trap-react"
 import CloseButton from "react-bootstrap/CloseButton";
 import "./ModalContent.css";
+import Button from "../Button/Button.tsx";
 
 export interface ModalContentProps {
   heading: string;
@@ -18,18 +20,22 @@ function ModalContent({
   onClose,
 }: ModalContentProps) {
   return (
-    <div className="modal-content">
-      {noClose === undefined && onClose && (
-        <CloseButton
-          className="close"
-          aria-label="Close modal"
-          onClick={() => onClose()}
-        />
-      )}
-      <h1>{heading}</h1>
-      {children}
-      <div className="modal-footer">{footer}</div>
-    </div>
+    <FocusTrap>
+      <div className="modal-content">
+        {noClose === undefined && onClose && (
+          <div data-testid="close-button">
+            <CloseButton
+              className="close"
+              aria-label="Close modal"
+              onClick={() => onClose()}
+            />
+          </div>
+        )}
+        <h1>{heading}</h1>
+        {children}
+        <div className="modal-footer">{footer}</div>
+      </div>
+    </FocusTrap>
   );
 }
 
