@@ -119,7 +119,7 @@ function VolcanoApp() {
       erupting.play();
       videoRef.current.play();
     }
-  }, [progress])
+  }, [progress]);
 
   return (
     <div id="volcano-app">
@@ -163,7 +163,7 @@ function VolcanoApp() {
             onDragOver={handleDragOver}
           >
             <video width="750" height="500" ref={videoRef}>
-              <source src={volcanoAnimation} type="video/mp4"/>
+              <source src={volcanoAnimation} type="video/mp4" />
             </video>
           </div>
           <div style={{ display: "flex", justifyContent: "center" }}>
@@ -176,13 +176,14 @@ function VolcanoApp() {
             <UsedEmotions emotions={selectedEmotions} />
           </div>
         </div>
-        <button
-          className="button back_button"
-          onClick={() => navigate("/")}
-          >
-            <i className="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
-            Back
+        <div class="back_button_container">
+          <button class="back_button" onClick={() => navigate("/")}>
+            <i
+              class="fas_back_arrow fa-solid fa-arrow-left"
+              alt="back button"
+            ></i>
           </button>
+        </div>
       </div>
 
       {triggerModalOpen && (
