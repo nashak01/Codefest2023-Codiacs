@@ -15,6 +15,11 @@ const EMDRPage = (props) => {
   const location = useLocation();
 
   useEffect(() => {
+    //reset background colour if browser's forward/backward buttons are clicked
+    return () => props.onThemeChange("white");
+  }, []);
+
+  useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const urlSpeed = searchParams.get("speed");
     const urlSize = searchParams.get("size");
@@ -81,7 +86,17 @@ const EMDRPage = (props) => {
       }}
     >
       {!isPopOut ? (
-        <AppBackground EMDRTheme={theme} />
+        <>
+          <AppBackground hideBackground={theme} />
+          <div class="back_button_container">
+            <button class="back_button" onClick={handleBackButton}>
+              <i
+                class="fas_back_arrow fa-solid fa-arrow-left"
+                alt="back button"
+              ></i>
+            </button>
+          </div>
+        </>
       ) : (
         <button
           id="js-toggle"
@@ -97,7 +112,7 @@ const EMDRPage = (props) => {
       <div
         data-testid="emdrPage"
         className={`${theme === "#212529" ? " bg-dark text-light" : ""}`}
-        style={{ position: "relative", marginTop: isPopOut ? "35vh" : "20vh" }}
+        style={{ position: "relative", marginTop: isPopOut ? "35vh" : "0vh" }}
       >
         {!isPopOut && (
           <div className="row">
@@ -202,15 +217,6 @@ const EMDRPage = (props) => {
             </div>
           </div>
         </div>
-        {!isPopOut && (
-          <button className="button back_button" onClick={handleBackButton}>
-            <i
-              className="fas_back_arrow fa-solid fa-arrow-left"
-              alt="back button"
-            ></i>
-            Back
-          </button>
-        )}
       </div>
     </div>
   );

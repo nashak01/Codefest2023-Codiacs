@@ -151,13 +151,14 @@ function MemoryJarApp() {
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}></div>
-        <button className="button back_button" onClick={() => navigate("/")}>
-          <i
-            className="fas_back_arrow fa-solid fa-arrow-left"
-            alt="back button"
-          ></i>
-          Back
-        </button>
+        <div class="back_button_container">
+          <button class="back_button" onClick={() => navigate("/")}>
+            <i
+              class="fas_back_arrow fa-solid fa-arrow-left"
+              alt="back button"
+            ></i>
+          </button>
+        </div>
       </div>
     </>
   );
