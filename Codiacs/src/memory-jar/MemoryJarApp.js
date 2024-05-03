@@ -5,6 +5,7 @@ import memoryJarImage from "../images/memory-jar.jpg";
 import AppBackground from "../AppBackground";
 import Memory from "./Memory";
 import Textbox from "../components/Textbox/Textbox.tsx";
+import Button from "../components/Button/Button.tsx";
 import "./MemoryJarApp.css";
 
 function MemoryJarApp() {
@@ -59,19 +60,19 @@ function MemoryJarApp() {
     setSelectedMemory(memoryObj.memory);
   }
 
-  useEffect(() => {
-    if (memories.length === 5 || memoryToAdd === "") {
-      document.getElementById("memory-input-button").disabled = true;
-    } else {
-      document.getElementById("memory-input-button").disabled = false;
-    }
-  }, [memories, memoryToAdd]);
+  // useEffect(() => {
+  //   if (memories.length === 5 || memoryToAdd === "") {
+  //     document.getElementById("memory-input-button").disabled = true;
+  //   } else {
+  //     document.getElementById("memory-input-button").disabled = false;
+  //   }
+  // }, [memories, memoryToAdd]);
 
   return (
     <>
       <AppBackground />
 
-      <div className="row" style={{ marginTop: "10%" }}>
+      <div className="row" style={{ marginTop: "2.5%" }}>
         {/* <div className="col-sm-3">
           <div className="memory-container">
             <img
@@ -110,17 +111,37 @@ function MemoryJarApp() {
               value={memoryColour}
               onChange={(e) => setMemoryColour(e.target.value)}
             />
-            <div style={{ display: "inline-flex", alignItems: "center" }}>
-              <button
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+              }}
+            >
+              {/* <button
                 id="memory-input-button"
                 className="button"
                 style={{ marginTop: "0px" }}
                 onClick={handleClick}
               >
                 Add
-              </button>
+              </button> */}
+              <Button
+                children="Add"
+                onClick={handleClick}
+                // disabled={!isErasing && !isApplyingText}
+                aria-label="Add memory, thought or feeling"
+                style={{ marginTop: "0px" }}
+              />
 
-              <button
+              <Button
+                children="Fill your jar!"
+                onClick={createPercentages}
+                // disabled={!isErasing && !isApplyingText}
+                aria-label="Fill your jar"
+                style={{ marginTop: "0px" }}
+              />
+
+              {/* <button
                 id="create-jar-button"
                 type="submit"
                 onClick={createPercentages}
@@ -128,7 +149,7 @@ function MemoryJarApp() {
                 style={{ marginTop: "0px" }}
               >
                 Fill your jar!
-              </button>
+              </button> */}
             </div>
           </div>
 

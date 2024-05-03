@@ -81,7 +81,8 @@
   background-color: #50c7f2;
   min-height: 70vh;
   margin-left: 4%;
-  padding: 0px
+  padding: 0px;
+  z-index: 1;
 }
 
 .memory-box-inner{
@@ -89,4 +90,5 @@
   border-radius: 20px;
   background-color: #E8F5FC;
   min-height: calc(70vh - 100px);
+  z-index: 1;
 }
