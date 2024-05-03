@@ -4,12 +4,17 @@ import { useNavigate } from "react-router-dom";
 import memoryJarImage from "../images/memory-jar.jpg";
 import AppBackground from "../AppBackground";
 import Memory from "./Memory";
+import Textbox from "../components/Textbox/Textbox.tsx";
 import "./MemoryJarApp.css";
 
 function MemoryJarApp() {
   const [memories, setMemories] = useState([]);
   var amounts = [];
   const [memoryToAdd, setMemoryToAdd] = useState("");
+  const [memoryColour, setMemoryColour] = useState("#000000");
+  const [selectedMemory, setSelectedMemory] = useState(
+    "Click on a memory to read it here"
+  );
 
   const [percentages, setPercentages] = useState([]);
   const [cumulativePercentages, setCumulativePercentages] = useState([]);
@@ -43,8 +48,15 @@ function MemoryJarApp() {
   }
 
   function handleClick() {
-    setMemories([...memories, memoryToAdd]);
+    setMemories([
+      ...memories,
+      { memory: memoryToAdd, memoryColour: memoryColour },
+    ]);
     setMemoryToAdd("");
+  }
+
+  function displayMemory(memoryObj) {
+    setSelectedMemory(memoryObj.memory);
   }
 
   useEffect(() => {
@@ -59,13 +71,8 @@ function MemoryJarApp() {
     <>
       <AppBackground />
 
-      <div className="row align-items-center">
-        <div className="col-sm-5" style={{ paddingLeft: "2%" }}>
-          {memories.slice(0, 3).map((memory, index) => (
-            <Memory memory={memory} amounts={amounts} counter={index} />
-          ))}
-        </div>
-        <div className="col-sm-3">
+      <div className="row" style={{ marginTop: "10%" }}>
+        {/* <div className="col-sm-3">
           <div className="memory-container">
             <img
               src={memoryJarImage}
@@ -78,44 +85,78 @@ function MemoryJarApp() {
             <div className="overlay fourth" id="overlay3"></div>
             <div className="overlay fifth" id="overlay4"></div>
           </div>
-        </div>
-        <div className="col-sm-4">
+        </div> */}
+
+        {/* <div className="col-sm-4">
           {memories.slice(3, 5).map((memory, index) => (
             <Memory memory={memory} amounts={amounts} counter={index + 3} />
           ))}
-        </div>
+        </div> */}
 
-        <div className="memory_inputs">
-          <textarea
-            id="memory-input"
-            rows="4"
-            className="user_input"
-            value={memoryToAdd}
+        <div className="col-sm-6" style={{ paddingLeft: "5%" }}>
+          <Textbox
+            size="lg"
+            rows="8"
             onChange={(e) => setMemoryToAdd(e.target.value)}
-          ></textarea>
-          <div className="memory_buttons">
-            <button id="memory-input-button" className="button" onClick={handleClick}>
-              Add
-            </button>
+            value={memoryToAdd}
+          />
+          <div style={{ display: "inline-flex", alignItems: "center" }}>
+            <input
+              data-testid="color-picker"
+              type="color"
+              className="js-color-picker color-picker me-4"
+              style={{ height: "50px", width: "100px" }}
+              aria-label="Select colour for memory"
+              value={memoryColour}
+              onChange={(e) => setMemoryColour(e.target.value)}
+            />
+            <div style={{ display: "inline-flex", alignItems: "center" }}>
+              <button
+                id="memory-input-button"
+                className="button"
+                style={{ marginTop: "0px" }}
+                onClick={handleClick}
+              >
+                Add
+              </button>
 
-            <button
-              id="create-jar-button"
-              type="submit"
-              onClick={createPercentages}
-              className="button"
-            >
-              Fill your jar!
-            </button>
+              <button
+                id="create-jar-button"
+                type="submit"
+                onClick={createPercentages}
+                className="button"
+                style={{ marginTop: "0px" }}
+              >
+                Fill your jar!
+              </button>
+            </div>
+          </div>
+
+          <div>
+            {memories.map((memoryObj, index) => (
+              <Memory
+                memory={memoryObj.memory}
+                amounts={amounts}
+                counter={index}
+                memoryColour={memoryObj.memoryColour}
+                showSlider={false}
+                onClick={() => displayMemory(memoryObj)}
+              />
+            ))}
           </div>
         </div>
 
+        <div className="col-sm-5 memory-box-outer">
+          <div className="memory-box-inner">{selectedMemory}</div>
+        </div>
+
         <div style={{ display: "flex", justifyContent: "center" }}></div>
-        <button
-          className="button back_button"
-          onClick={() => navigate("/")}
-          >
-            <i className="fas_back_arrow fa-solid fa-arrow-left" alt="back button"></i>
-            Back
+        <button className="button back_button" onClick={() => navigate("/")}>
+          <i
+            className="fas_back_arrow fa-solid fa-arrow-left"
+            alt="back button"
+          ></i>
+          Back
         </button>
       </div>
     </>

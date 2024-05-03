@@ -74,3 +74,19 @@
   left: 30vw;
   top: 30vh;
 }
+
+.memory-box-outer{
+  border: 50px solid #50c7f2;
+  border-radius: 20px;
+  background-color: #50c7f2;
+  min-height: 70vh;
+  margin-left: 4%;
+  padding: 0px
+}
+
+.memory-box-inner{
+  border: 30px solid #E8F5FC;
+  border-radius: 20px;
+  background-color: #E8F5FC;
+  min-height: calc(70vh - 100px);
+}
