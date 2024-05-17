@@ -399,6 +399,7 @@ body {
   right: 20px;
   top: 15px;
   width: 500px;
+  z-index: 1; /* Explicitly set a higher z-index */
 }
 
 .login_top_branding {
@@ -426,14 +427,6 @@ body {
   bottom: 1px;
   width: 62%;
   opacity: 0.15;
-}
-
-.fas_back_arrow {
-  margin-right: 10px;
-}
-
-.fas_back_arrow:hover {
-  cursor: pointer;
 }
 
 .input_display {
@@ -493,22 +486,22 @@ body {
   max-height: 100vh;
 }
 
-.menu h2{
-    position: relative;
-    text-align: center;
-    top: 10vh;
-    justify-content: center;
-    font-size: 2.5rem;
+.menu h2 {
+  position: relative;
+  text-align: center;
+  top: 10vh;
+  justify-content: center;
+  font-size: 2.5rem;
 }
 
-.menu_row{
-    position: relative;
-    top: 10vh;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap: 30px;
-    margin: 50px 35px 0px 0px;
-    z-index: 5;
+.menu_row {
+  position: relative;
+  top: 10vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 30px;
+  margin: 50px 35px 0px 0px;
+  z-index: 5;
 }
 
 .col button {
@@ -547,22 +540,22 @@ body {
   max-height: 35vh;
 }
 
-.card_contents h3{
-    position: relative;
-    font-size: 2.5rem !important;
-    margin-bottom: 30px;
-    max-width: 80%;
-    left: 30px;
+.card_contents h3 {
+  position: relative;
+  font-size: 2.5rem !important;
+  margin-bottom: 30px;
+  max-width: 80%;
+  left: 30px;
 }
 
-.card_contents p{
-    position: relative;
-    font-size: calc(0.6vw + 0.6vh);
-    font-size: min(1rem);
-    margin-bottom: 20px;
-    max-width: 80%;
-    left: 10%;
-    top: 10px;
+.card_contents p {
+  position: relative;
+  font-size: calc(0.6vw + 0.6vh);
+  font-size: min(1rem);
+  margin-bottom: 20px;
+  max-width: 80%;
+  left: 10%;
+  top: 10px;
 }
 
 .game_card:hover > .card_contents {
@@ -588,51 +581,51 @@ body {
   cursor: pointer;
 }
 
-.worry_monster{
-    background-image: url(../images/worry\ monster\ 2.jpeg);
-    object-position: center;
-    background-position: center;
-    background-size: cover;
+.worry_monster {
+  background-image: url(../images/worry\ monster\ 2.jpeg);
+  object-position: center;
+  background-position: center;
+  background-size: cover;
 }
 
 .worry_monster p {
   top: 15px !important;
 }
 
-.volcano{
-    background-image: url(../images/volcano\ 2.jpeg);
-    object-position: center;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+.volcano {
+  background-image: url(../images/volcano\ 2.jpeg);
+  object-position: center;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.memory_jar{
-    background-image: url(../images/memory\ jar\ 2.jpeg);
-    object-position: center;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+.memory_jar {
+  background-image: url(../images/memory\ jar\ 2.jpeg);
+  object-position: center;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.emdr{
-    background-image: url(../images/emdr.jpg);
-    object-position: center;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+.emdr {
+  background-image: url(../images/emdr.jpg);
+  object-position: center;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.canvas{
-    background-image: url(../images/canvas\ 2.jpeg);
-    object-position: center;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+.canvas {
+  background-image: url(../images/canvas\ 2.jpeg);
+  object-position: center;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-.col h3{
-    margin-top: 42px;
-    font-size: 2rem;
+.col h3 {
+  margin-top: 42px;
+  font-size: 2rem;
 }
 
 .safeword {
@@ -641,41 +634,57 @@ body {
   top: 1%;
 }
 
-.back_button{
-    position: absolute;
-    max-width: 100px;
-    top: 2%;
-    left: 1%;
-    border-radius: 50%;
-    padding: 10px;
-    border: none;
-    color: #fff;
-    background-color: var(--primary);
-    /* z-index: -5; */
+.back_button {
+  /* position: absolute; */
+  max-width: 100px;
+  /* top: 2%;
+  left: 1%; */
+  border-radius: 50%;
+  padding: 10px;
+  border: none;
+  color: #fff;
+  background-color: var(--primary);
+  z-index: 1;
 }
 
-.fas_back_arrow{
-    margin: 10px;
-    font-size: 2rem;
+.back_button:hover {
+  cursor: pointer;
+  color: black;
+  background-color: #50c7f2;
 }
 
-.fas_back_arrow:hover{
-    cursor: pointer;
+.fas_back_arrow {
+  position: relative; /* Ensures it is positioned above the fixed element */
+  z-index: 1; /* Explicitly set a higher z-index */
+  margin: 10px;
+  font-size: 2rem;
+}
+
+.fas_back_arrow:hover {
+  cursor: pointer;
+  color: black;
+  background-color: #50c7f2;
 }
 
 .sign_out_button {
-    position: absolute;
-    display: inline-flex;
-    min-width: 9vw;
-    top: 2%;
-    left: 1%;
-    padding: 4px;
-    border-radius: 20px;
-    border: none;
-    color: #fff;
-    background-color: var(--primary);
+  /* position: absolute; */
+  display: inline-flex;
+  min-width: 9vw;
+  /* top: 2%;
+  left: 1%; */
+  padding: 4px;
+  border-radius: 20px;
+  border: none;
+  color: #fff;
+  background-color: var(--primary);
 }
 
-.sign_out_button p{
-    margin-top: 10px;
+.sign_out_button:hover {
+  cursor: pointer;
+  color: black;
+  background-color: #50c7f2;
+}
+
+.sign_out_button p {
+  margin-top: 10px;
 }
