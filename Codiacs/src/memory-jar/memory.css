@@ -44,6 +44,12 @@
   max-width: 80%;
   max-height: 50px;
   cursor: pointer;
+  align-content: center;
+  z-index: 1;
+}
+
+.with-slider {
+  max-height: 80px !important;
 }
 
 .memory-text {

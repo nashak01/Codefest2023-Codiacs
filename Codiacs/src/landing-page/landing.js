@@ -15,15 +15,15 @@ function LandingPage() {
         <div><img src={listetingEarLogoTopRight} class="logo_top_right" alt="Listening Ear Logo" aria-label="Listening Ear Logo"/></div>
       </div> */}
 
-      <div class="menu">
+      <div className="menu">
         <div>
           <h2>Welcome Matt</h2>
         </div>
-        <div class="menu_row">
-          <div class="col">
+        <div className="menu_row">
+          <div className="col">
             <button onClick={() => navigate("memory-jar")}>
-              <div class="game_card memory_jar">
-                <div class="card_contents">
+              <div className="game_card memory_jar">
+                <div className="card_contents">
                   <h3>Memory Jar</h3>
                   <p>
                     Create your own memory jar filled with memories, thoughts
@@ -36,10 +36,10 @@ function LandingPage() {
               <h3>Memory Jar</h3>
             </button>
           </div>
-          <div class="col">
+          <div className="col">
             <button onClick={() => navigate("canvas")}>
-              <div class="game_card canvas">
-                <div class="card_contents">
+              <div className="game_card canvas">
+                <div className="card_contents">
                   <h3>Canvas</h3>
                   <p>
                     Use this blank canvas to express your thoughts, feelings and
@@ -50,10 +50,10 @@ function LandingPage() {
               <h3>Canvas</h3>
             </button>
           </div>
-          <div class="col">
+          <div className="col">
             <button onClick={() => navigate("emotion-volcano")}>
-              <div class="game_card volcano">
-                <div class="card_contents">
+              <div className="game_card volcano">
+                <div className="card_contents">
                   <h3>Volcano</h3>
                   <p>
                     We all have thoughts and feelings and sometimes they can
@@ -66,10 +66,10 @@ function LandingPage() {
               <h3>Volcano</h3>
             </button>
           </div>
-          <div class="col">
+          <div className="col">
             <button onClick={() => navigate("worry-monster")}>
-              <div class="game_card worry_monster">
-                <div class="card_contents">
+              <div className="game_card worry_monster">
+                <div className="card_contents">
                   <h3>Worry Monster</h3>
                   <p>
                     Sometimes it's hard to talk about our worries and it can
@@ -83,10 +83,10 @@ function LandingPage() {
               <h3>Worry Monster</h3>
             </button>
           </div>
-          <div class="col">
+          <div className="col">
             <button onClick={() => navigate("emdr")}>
-              <div class="game_card emdr">
-                <div class="card_contents">
+              <div className="game_card emdr">
+                <div className="card_contents">
                   <h3>EMDR</h3>
                   <p>
                     This involves moving your eyes a specific way while you
@@ -99,10 +99,10 @@ function LandingPage() {
             </button>
           </div>
         </div>
-        <div class="back_button_container">
-          <button class="sign_out_button" onClick={() => navigate("login")}>
+        <div className="back_button_container">
+          <button className="sign_out_button" onClick={() => navigate("login")}>
             <i
-              class="fas_back_arrow fa-solid fa-arrow-left"
+              className="fas_back_arrow fa-solid fa-arrow-left"
               alt="back button"
             ></i>
             <p>Log out</p>
