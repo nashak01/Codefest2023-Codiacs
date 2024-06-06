@@ -151,14 +151,6 @@ function MemoryJarApp() {
             setFillingJar={setFillingJar}
           />
         )}
-        <div className="back_button_container">
-          <button className="back_button" onClick={() => navigate("/")}>
-            <i
-              className="fas_back_arrow fa-solid fa-arrow-left"
-              alt="back button"
-            ></i>
-          </button>
-        </div>
       </div>
     </>
   );

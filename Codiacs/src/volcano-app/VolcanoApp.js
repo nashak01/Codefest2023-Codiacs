@@ -23,7 +23,7 @@ function VolcanoApp() {
   const [triggerPoint, setTriggerPoint] = useState(null);
   const [progressUnit, setProgressUnit] = useState(null);
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const bubbling = useRef(new Audio("volcano-bubbling.mp3"));
   let erupting = new Audio("volcano-erupting.wav");
@@ -176,14 +176,14 @@ function VolcanoApp() {
             <UsedEmotions emotions={selectedEmotions} />
           </div>
         </div>
-        <div class="back_button_container">
+        {/* <div class="back_button_container">
           <button class="back_button" onClick={() => navigate("/")}>
             <i
               class="fas_back_arrow fa-solid fa-arrow-left"
               alt="back button"
             ></i>
           </button>
-        </div>
+        </div> */}
       </div>
 
       {triggerModalOpen && (
