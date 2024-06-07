@@ -1,5 +1,6 @@
 import { React, useState, useEffect, useRef } from "react";
 import GifPlayer from "react-gif-player";
+import EmojiPicker from "emoji-picker-react";
 
 // importing all of the custom components needed for the page
 import ProgressBar from "./ProgressBar";
@@ -24,6 +25,7 @@ function VolcanoApp() {
   const [triggerPoint, setTriggerPoint] = useState(null);
   const [progressUnit, setProgressUnit] = useState(null);
   const [volcanoFull, setVolcanoFull] = useState(false);
+  const [showNewEmotionModal, setShowNewEmotionModal] = useState(false);
 
   const bubbling = useRef(new Audio("volcano-bubbling.mp3"));
   let erupting = new Audio("volcano-erupting.wav");
@@ -36,14 +38,14 @@ function VolcanoApp() {
 
   // sets the initial word emotions on the left hand side
   const [unusedEmotions, setUnusedEmotions] = useState([
-    "happy",
-    "sad",
-    "confused",
-    "excited",
-    "worried",
-    "scared",
-    "angry",
-    "tired",
+    "happy 🙂",
+    "sad 🙁",
+    "confused 😕",
+    "excited 😁",
+    "worried 😖",
+    "scared 😨",
+    "angry 😡",
+    "tired 😴",
   ]);
 
   // function defining behaviour when a feeling is dropped into the volcano
@@ -77,15 +79,21 @@ function VolcanoApp() {
     const newUnusedEmotions = [...unusedEmotions, customEmotion];
     setUnusedEmotions(newUnusedEmotions);
     setCustomEmotion("");
+    setShowNewEmotionModal(false);
   }
 
   function handleTriggerEnter() {
     setTriggerModalOpen(false);
   }
 
-  function handleChange(e) {
+  function handleEmotionChange(e) {
     setCustomEmotion(e.target.value);
   }
+
+  const handleEmojiClick = (emojiObj) => {
+    setCustomEmotion((prevText) => prevText + emojiObj.emoji);
+    console.log(emojiObj.emoji);
+  };
 
   function handleSubmit() {
     setShowModal(false);
@@ -135,15 +143,10 @@ function VolcanoApp() {
               paddingTop: "10%",
             }}
           >
-            <label id="textbox-label">Add your own emotions!</label>
-            <Textbox
-              id="textbox"
-              size="lg"
-              labelledBy="textbox-label"
-              value={customEmotion}
-              onChange={handleChange}
-            />
-            <Button media="&#43;" onClick={handleAdd}>
+            <label id="textbox-label">
+              Use the button below to add your own emotions!
+            </label>
+            <Button media="&#43;" onClick={() => setShowNewEmotionModal(true)}>
               <nobr>Add emotion</nobr>
             </Button>
           </div>
@@ -245,6 +248,39 @@ function VolcanoApp() {
             </h2>
             <Textbox size="lg" labelledBy="Explain why you feel this way" />
           </>
+        </Modal>
+      )}
+
+      {showNewEmotionModal && (
+        <Modal
+          heading="Add New Emotion"
+          footer={
+            <Button light onClick={handleAdd}>
+              Add
+            </Button>
+          }
+          noClose={undefined}
+          onClose={() => setShowNewEmotionModal(false)}
+        >
+          <label htmlFor="textInput" className="form-label">
+            Enter your emotion below
+          </label>
+          <input
+            type="text"
+            className="form-control mb-1"
+            id="textInput"
+            value={customEmotion}
+            onChange={handleEmotionChange}
+            placeholder="Enter text"
+            aria-label="Enter text"
+          />
+          <div className="text-center mb-2">
+            <EmojiPicker
+              onEmojiClick={handleEmojiClick}
+              reactionsDefaultOpen={true}
+              emojiStyle="native"
+            />
+          </div>
         </Modal>
       )}
     </div>
