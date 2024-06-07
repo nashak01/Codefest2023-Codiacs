@@ -201,7 +201,7 @@ function VolcanoApp() {
       {triggerModalOpen && (
         <Modal
           heading="How are you feeling today?"
-          subheading="(1 = very bad, 10 = very good)"
+          subheading="(1 = not very good, 10 = very good)"
           footer={
             <Button light onClick={handleTriggerEnter}>
               Enter
