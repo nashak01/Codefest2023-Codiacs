@@ -1,8 +1,10 @@
 import { React, useState, useEffect, useRef } from "react";
+import GifPlayer from "react-gif-player";
 
 // importing all of the custom components needed for the page
 import ProgressBar from "./ProgressBar";
-import volcanoAnimation from "../images/volcano-animation.mp4";
+import volcanoAnimation from "../images/volcano-animation.gif";
+import volcanoStill from "../images/volcano-still.gif";
 import UnusedEmotions from "./UnusedEmotions";
 import UsedEmotions from "./UsedEmotions";
 import AppBackground from "../AppBackground.js";
@@ -21,10 +23,10 @@ function VolcanoApp() {
   const [clickedEmotion, setClickedEmotion] = useState("");
   const [triggerPoint, setTriggerPoint] = useState(null);
   const [progressUnit, setProgressUnit] = useState(null);
+  const [volcanoFull, setVolcanoFull] = useState(false);
 
   const bubbling = useRef(new Audio("volcano-bubbling.mp3"));
   let erupting = new Audio("volcano-erupting.wav");
-  const videoRef = useRef(null);
 
   useEffect(() => {
     if (triggerPoint !== null) {
@@ -102,7 +104,7 @@ function VolcanoApp() {
       erupting.currentTime = 0; // Reset audio to beginning
       erupting.volume = 0.2;
       erupting.play();
-      videoRef.current.play();
+      setVolcanoFull(true);
     }
   }, [progress]);
 
@@ -147,11 +149,44 @@ function VolcanoApp() {
             onDrop={handleOnDrop}
             onDragOver={handleDragOver}
           >
-            <video width="750" height="500" ref={videoRef}>
-              <source src={volcanoAnimation} type="video/mp4" />
-            </video>
+            <div>
+              <img
+                src={volcanoStill}
+                style={{
+                  position: "absolute",
+                  top: "33%",
+                  left: "calc(50% - 200px)",
+                  zIndex: 1,
+                  width: "400px",
+                }}
+              />
+              {volcanoFull && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "33%",
+                    left: "calc(50% - 200px)",
+                    zIndex: 2,
+                  }}
+                >
+                  <GifPlayer
+                    gif={volcanoAnimation}
+                    autoplay
+                    style={{ width: "400px" }}
+                  />
+                </div>
+              )}
+            </div>
           </div>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              position: "absolute",
+              top: "70%",
+              left: "calc(50% - 190px)",
+            }}
+          >
             <ProgressBar progress={progress} />
           </div>
         </div>
