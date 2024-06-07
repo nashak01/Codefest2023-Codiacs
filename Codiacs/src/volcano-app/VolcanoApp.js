@@ -108,6 +108,13 @@ function VolcanoApp() {
     }
   }, [progress]);
 
+  // this ensures the bubbling audio stops when the component unmounts
+  useEffect(() => {
+    return () => {
+      bubbling.current.pause();
+    };
+  }, []);
+
   return (
     <div id="volcano-app">
       {/* first we add the page header, and pass the page title as "Emotion Volcano" */}
