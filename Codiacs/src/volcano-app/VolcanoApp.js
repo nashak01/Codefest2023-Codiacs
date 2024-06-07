@@ -1,5 +1,4 @@
 import { React, useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 
 // importing all of the custom components needed for the page
 import ProgressBar from "./ProgressBar";
@@ -23,8 +22,6 @@ function VolcanoApp() {
   const [triggerPoint, setTriggerPoint] = useState(null);
   const [progressUnit, setProgressUnit] = useState(null);
 
-  //const navigate = useNavigate();
-
   const bubbling = useRef(new Audio("volcano-bubbling.mp3"));
   let erupting = new Audio("volcano-erupting.wav");
   const videoRef = useRef(null);
@@ -46,18 +43,6 @@ function VolcanoApp() {
     "angry",
     "tired",
   ]);
-
-  // sets the initial emoji emotions on the left hand side
-  //   const [unusedEmojiEmotions, setUnusedEmojiEmotions] = useState([
-  //     { symbol: "😀", label: "happy" },
-  //     { symbol: "😢", label: "sad" },
-  //     { symbol: "😕", label: "confused" },
-  //     { symbol: "😃", label: "excited" },
-  //     { symbol: "😟", label: "worried" },
-  //     { symbol: "😨", label: "scared" },
-  //     { symbol: "😠", label: "angry" },
-  //     { symbol: "😴", label: "tired" },
-  //   ]);
 
   // function defining behaviour when a feeling is dropped into the volcano
   function handleItemEnter(emotion) {
@@ -176,14 +161,6 @@ function VolcanoApp() {
             <UsedEmotions emotions={selectedEmotions} />
           </div>
         </div>
-        {/* <div class="back_button_container">
-          <button class="back_button" onClick={() => navigate("/")}>
-            <i
-              class="fas_back_arrow fa-solid fa-arrow-left"
-              alt="back button"
-            ></i>
-          </button>
-        </div> */}
       </div>
 
       {triggerModalOpen && (
@@ -209,17 +186,23 @@ function VolcanoApp() {
         <Modal
           heading="Rate Your Emotion"
           footer={
-            <Button light onClick={handleSubmit}>
+            <Button light onClick={handleSubmit} id="volcano-go-button">
               Go
             </Button>
           }
           noClose
         >
-          <Rating
-            amount={10}
-            selectedAmount={emotionRating}
-            setSelectedAmount={setEmotionRating}
-          />
+          <>
+            <Rating
+              amount={10}
+              selectedAmount={emotionRating}
+              setSelectedAmount={setEmotionRating}
+            />
+            <h2 style={{ fontSize: "18pt", marginTop: "5%" }}>
+              If you would like to, you can explain why in the box below.
+            </h2>
+            <Textbox size="lg" labelledBy="Explain why you feel this way" />
+          </>
         </Modal>
       )}
     </div>
