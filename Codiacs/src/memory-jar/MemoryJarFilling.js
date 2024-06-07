@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 
 import Memory from "./Memory";
-import memoryJarImage from "../images/memory-jar.jpg";
+import memoryJarImage from "../images/memory-jar-white-background.jpg";
 import Button from "../components/Button/Button.tsx";
 
 function MemoryJarFilling(props) {
   const memories = props.memories;
   const amounts = props.amounts;
   const setFillingJar = props.setFillingJar;
+  const isDarkMode = props.isDarkMode;
 
   const [percentages, setPercentages] = useState(
     Array(memories.length).fill(
@@ -97,6 +98,7 @@ function MemoryJarFilling(props) {
             memoryColour={memoryObj.memoryColour}
             showSlider={true}
             createPercentages={createPercentages}
+            isDarkMode={isDarkMode}
           />
         ))}
       </div>
@@ -111,6 +113,7 @@ function MemoryJarFilling(props) {
             memoryColour={memoryObj.memoryColour}
             showSlider={true}
             createPercentages={createPercentages}
+            isDarkMode={isDarkMode}
           />
         ))}
       </div>
