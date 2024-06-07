@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import Memory from "./Memory";
-import memoryJarImage from "../images/memory-jar-white-background.jpg";
+import memoryJarImage from "../images/memory-jar-no-background.png";
 import Button from "../components/Button/Button.tsx";
 
 function MemoryJarFilling(props) {
@@ -20,7 +20,7 @@ function MemoryJarFilling(props) {
       .fill()
       .map(
         (_, index) =>
-          (0.715 * (100 / memories.length) * (index + 1) + 2.5).toString() + "%"
+          (0.715 * (100 / memories.length) * (index + 1) + 1.8).toString() + "%"
       )
   );
 
